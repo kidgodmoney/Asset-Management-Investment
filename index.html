@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Korea CRE Market Outlook</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131929;
+    --surface2: #1c2540;
+    --border: #243058;
+    --accent: #4f8ef7;
+    --accent2: #f59e0b;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --card-radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11,15,26,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 6px;
+    height: 52px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 12px;
+    white-space: nowrap; padding: 4px 10px; border-radius: 6px;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--accent); background: rgba(79,142,247,0.1); }
+  .nav-brand {
+    font-weight: 700; font-size: 13px; color: var(--text);
+    margin-right: 12px; white-space: nowrap;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0d1b3e 0%, #0b0f1a 60%, #1a0d2e 100%);
+    padding: 80px 24px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(79,142,247,0.12) 0%, transparent 70%);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(79,142,247,0.12); border: 1px solid rgba(79,142,247,0.3);
+    color: var(--accent); padding: 4px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(24px, 5vw, 42px);
+    font-weight: 800; line-height: 1.2;
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .hero-sub {
+    color: var(--muted); font-size: 14px; margin-bottom: 28px;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  }
+  .tag {
+    padding: 4px 12px; border-radius: 6px; font-size: 12px;
+    background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* ── METRICS BAR ── */
+  .metrics-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px; padding: 32px 20px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .metric {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 18px 16px;
+    text-align: center; transition: transform 0.2s;
+  }
+  .metric:hover { transform: translateY(-2px); }
+  .metric-val {
+    font-size: 26px; font-weight: 800; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-label { font-size: 11px; color: var(--muted); line-height: 1.3; }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .warn { color: var(--yellow); }
+  .blue { color: var(--accent); }
+  .gold { color: var(--accent2); }
+
+  /* ── SECTION ── */
+  section { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+  section + section { border-top: 1px solid var(--border); }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 8px;
+  }
+  h2 {
+    font-size: clamp(20px, 3vw, 28px); font-weight: 800;
+    margin-bottom: 20px; line-height: 1.3;
+  }
+  h3 { font-size: 17px; font-weight: 700; margin: 28px 0 12px; color: var(--text); }
+  p { color: var(--muted); margin-bottom: 14px; }
+  strong { color: var(--text); }
+
+  /* ── GRID 2 ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* ── CHART CARD ── */
+  .chart-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 24px;
+  }
+  .chart-card h3 { margin-top: 0; font-size: 14px; color: var(--muted); font-weight: 600; }
+  .chart-wrap { position: relative; height: 260px; }
+  .chart-wrap-lg { position: relative; height: 380px; }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; border-radius: var(--card-radius); border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--surface2); }
+  th {
+    padding: 12px 16px; text-align: left; font-size: 11px;
+    font-weight: 700; letter-spacing: 0.05em; color: var(--muted);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  td { padding: 11px 16px; border-top: 1px solid var(--border); vertical-align: middle; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 700;
+  }
+  .badge-green { background: rgba(34,197,94,0.15); color: #4ade80; }
+  .badge-red { background: rgba(239,68,68,0.15); color: #f87171; }
+  .badge-yellow { background: rgba(234,179,8,0.15); color: #fbbf24; }
+  .badge-blue { background: rgba(79,142,247,0.15); color: #93c5fd; }
+  .badge-gray { background: rgba(148,163,184,0.15); color: #94a3b8; }
+
+  /* ── SECTOR BAR ── */
+  .sector-list { display: flex; flex-direction: column; gap: 10px; }
+  .sector-item { display: grid; grid-template-columns: 180px 1fr 80px; align-items: center; gap: 12px; }
+  @media (max-width: 500px) { .sector-item { grid-template-columns: 130px 1fr 60px; } }
+  .sector-name { font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sector-bar-bg { background: var(--surface2); border-radius: 4px; height: 10px; overflow: hidden; }
+  .sector-bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+  .sector-score { font-size: 12px; color: var(--muted); text-align: right; }
+
+  /* ── SCENARIO ── */
+  .scenario-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 640px) { .scenario-cards { grid-template-columns: 1fr; } }
+  .scenario-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 18px; text-align: center;
+  }
+  .scenario-prob {
+    font-size: 32px; font-weight: 800; line-height: 1;
+    margin-bottom: 6px;
+  }
+  .scenario-name { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .scenario-desc { font-size: 12px; color: var(--muted); }
+
+  /* ── DIFF TABLE ── */
+  .diff-tag {
+    display: inline-block; padding: 2px 6px; border-radius: 4px;
+    font-size: 11px; margin-right: 4px;
+  }
+  .diff-koramco { background: rgba(148,163,184,0.1); color: var(--muted); }
+  .diff-ours { background: rgba(79,142,247,0.1); color: var(--accent); }
+
+  /* ── ACCORDION ── */
+  .accordion { display: flex; flex-direction: column; gap: 8px; }
+  .acc-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); overflow: hidden;
+  }
+  .acc-head {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px; cursor: pointer; background: none; border: none; color: var(--text);
+    font-size: 14px; font-weight: 700; text-align: left;
+  }
+  .acc-head:hover { background: rgba(255,255,255,0.03); }
+  .acc-arrow { transition: transform 0.3s; font-size: 12px; color: var(--muted); }
+  .acc-item.open .acc-arrow { transform: rotate(180deg); }
+  .acc-body { display: none; padding: 0 20px 20px; color: var(--muted); font-size: 14px; }
+  .acc-item.open .acc-body { display: block; }
+  .acc-body ul { padding-left: 18px; }
+  .acc-body li { margin-bottom: 6px; }
+  .acc-body strong { color: var(--text); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface); border-top: 1px solid var(--border);
+    padding: 32px 20px; text-align: center; color: var(--muted); font-size: 12px;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 0; }
+
+  /* ── KEY FINDINGS ── */
+  .findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .finding {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 18px;
+  }
+  .finding-icon { font-size: 24px; margin-bottom: 8px; }
+  .finding-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+  .finding-desc { font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">2026 CRE Outlook</span>
+  <a href="#summary">Executive Summary</a>
+  <a href="#macro">Global Macro</a>
+  <a href="#sectors">섹터 분석</a>
+  <a href="#caprate">Cap Rate</a>
+  <a href="#reit">K-리츠</a>
+  <a href="#credit">Private Credit</a>
+  <a href="#strategy">투자 전략</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📊 Independent Research</div>
+  <h1>2026 Korea CRE<br>Market Outlook</h1>
+  <p class="hero-sub">
+    선별적 회복의 시대, 구조적 전환의 서막<br>
+    Based on KORAMCO Q1 2026 + CBRE · Cushman&Wakefield · Colliers · JLL
+  </p>
+  <div class="hero-tags">
+    <span class="tag">2026년 4월</span>
+    <span class="tag">14개 섹터 분석</span>
+    <span class="tag">10개+ 기관 리서치</span>
+    <span class="tag">글로벌 CRE 연계</span>
+  </div>
+</div>
+
+<!-- KEY METRICS -->
+<div class="metrics-bar">
+  <div class="metric">
+    <div class="metric-val up">34조</div>
+    <div class="metric-label">2025 CRE 거래 규모<br>(역대 최고)</div>
+  </div>
+  <div class="metric">
+    <div class="metric-val down">−7.7%</div>
+    <div class="metric-label">오피스 실질임대료<br>YoY 변화율</div>
+  </div>
+  <div class="metric">
+    <div class="metric-val warn">2.7%</div>
+    <div class="metric-label">수도권 DC 전력<br>본심사 통과율</div>
+  </div>
+  <div class="metric">
+    <div class="metric-val down">30%+</div>
+    <div class="metric-label">PF 토지담보<br>대출 연체율</div>
+  </div>
+  <div class="metric">
+    <div class="metric-val blue">8.3%</div>
+    <div class="metric-label">K-리츠 평균<br>배당수익률</div>
+  </div>
+  <div class="metric">
+    <div class="metric-val up">−71%</div>
+    <div class="metric-label">수도권 물류<br>신규 공급 감소</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EXECUTIVE SUMMARY -->
+<section id="summary">
+  <div class="section-label">Executive Summary</div>
+  <h2>코람코 리포트와의 핵심 시각 차이</h2>
+  <p>코람코의 "Selective Recovery" 테제는 방향성으로 유효하나, 회복의 강도·속도에 대한 기대는 조정이 필요하다. 본 리포트는 코람코가 다루지 않은 7개 추가 섹터와 10개 대안 시각을 제시한다.</p>
+
+  <div class="tbl-wrap" style="margin-top: 20px;">
+    <table>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>코람코 시각</th>
+          <th>본 리포트 시각</th>
+          <th>판정</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>미국 관세 리스크</strong></td>
+          <td>물가 불안 요인으로 언급</td>
+          <td>2026년 최대 Tail Risk — 한국 수출·원화 직격</td>
+          <td><span class="badge badge-red">상향 경보</span></td>
+        </tr>
+        <tr>
+          <td><strong>오피스 실질임대료</strong></td>
+          <td>하락 인정, 거래 견조 강조</td>
+          <td>−7.7% = 구조적 균열, Cap 4.3%에서 실질수익 제로</td>
+          <td><span class="badge badge-red">과낙관 수정</span></td>
+        </tr>
+        <tr>
+          <td><strong>데이터센터 전력</strong></td>
+          <td>진입장벽 높아짐</td>
+          <td>통과율 2.7% = 사실상 진입 봉쇄</td>
+          <td><span class="badge badge-blue">강화 해석</span></td>
+        </tr>
+        <tr>
+          <td><strong>호텔 수요</strong></td>
+          <td>관광객 회복 강조</td>
+          <td>THAAD형 지정학 꼬리 리스크 과소평가</td>
+          <td><span class="badge badge-yellow">유보</span></td>
+        </tr>
+        <tr>
+          <td><strong>물류 회복</strong></td>
+          <td>정상 거래 전환 긍정적</td>
+          <td>소형·저등급 자산은 구조적 퇴출 국면</td>
+          <td><span class="badge badge-red">차별화 필요</span></td>
+        </tr>
+        <tr>
+          <td><strong>건설/PF</strong></td>
+          <td>미언급</td>
+          <td>NPL 11.5%, 연체율 30%+ — 공급 쇼크 예고</td>
+          <td><span class="badge badge-red">신규 발굴</span></td>
+        </tr>
+        <tr>
+          <td><strong>K-리츠</strong></td>
+          <td>딜 사례만 언급</td>
+          <td>NAV 30~40% 할인 = 잠재 재평가 기회</td>
+          <td><span class="badge badge-green">신규 발굴</span></td>
+        </tr>
+        <tr>
+          <td><strong>Private Credit</strong></td>
+          <td>미언급</td>
+          <td>ESR $325M 펀드, 메자닌 8~12% 수익률</td>
+          <td><span class="badge badge-green">신규 발굴</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- KEY FINDINGS CARDS -->
+<section style="padding-top: 0;">
+  <div class="findings">
+    <div class="finding">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-title">스태그플레이션 리스크</div>
+      <div class="finding-desc">Liberation Day 관세 → Core PCE 재반등 → 연준 딜레마. Bear 시나리오(동결) 35% 부여.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-icon">⚡</div>
+      <div class="finding-title">전력 봉쇄가 만든 기회</div>
+      <div class="finding-desc">수도권 DC 전력 본심사 통과율 2.7%. 기존 자산 보유자는 독과점적 가격결정권 획득.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-icon">🏗️</div>
+      <div class="finding-title">PF 위기 → 공급 쇼크</div>
+      <div class="finding-desc">PF 186.6조 익스포저, 브릿지론 연체 17%+. 2027~2028년 신규 공급 대폭 감소 예고.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-icon">📈</div>
+      <div class="finding-title">K-리츠 NAV 할인</div>
+      <div class="finding-desc">평균 배당 8.3%, NAV 30~40% 할인. 금리 하락 환경에서 30~50% 재평가 여지.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-icon">👴</div>
+      <div class="finding-title">초고령사회 진입</div>
+      <div class="finding-desc">2025년 65세+ 인구 20% 돌파. 시니어하우징 현재 공급 2.7%, 은빛산업 168조 목표.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-icon">🌍</div>
+      <div class="finding-title">글로벌 자본 재진입</div>
+      <div class="finding-desc">2025 크로스보더 CRE +25%. DC 딜 +37%. KKR·Blackstone·GIC 한국 물류·코리빙 집중.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MACRO -->
+<section id="macro">
+  <div class="section-label">Global Macro</div>
+  <h2>스태그플레이션의 그림자</h2>
+
+  <div class="scenario-cards">
+    <div class="scenario-card" style="border-color: rgba(34,197,94,0.3);">
+      <div class="scenario-prob up">20%</div>
+      <div class="scenario-name">🟢 Bull</div>
+      <div class="scenario-desc">연내 2~3회 인하<br>3.75~4.00%<br>자산 가치 10~15% 상승</div>
+    </div>
+    <div class="scenario-card" style="border-color: rgba(79,142,247,0.3);">
+      <div class="scenario-prob blue">45%</div>
+      <div class="scenario-name">🔵 Base</div>
+      <div class="scenario-desc">연내 1회 인하<br>4.25~4.50%<br>Cap rate 안정, 거래 유지</div>
+    </div>
+    <div class="scenario-card" style="border-color: rgba(239,68,68,0.3);">
+      <div class="scenario-prob down">35%</div>
+      <div class="scenario-name">🔴 Bear</div>
+      <div class="scenario-desc">동결 지속<br>4.50% 이상<br>원화 약세, 자산 가치 −10~20%</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top: 24px;">
+    <div class="chart-card">
+      <h3>Fed 금리 시나리오 확률</h3>
+      <div class="chart-wrap">
+        <canvas id="scenarioChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>한국 2026 주요 거시 지표</h3>
+      <div class="chart-wrap">
+        <canvas id="macroChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTOR ANALYSIS -->
+<section id="sectors">
+  <div class="section-label">Sector Analysis</div>
+  <h2>섹터별 심화 분석</h2>
+  <p>코람코의 6개 섹터를 14개로 확장하고, 각 섹터별 대안 시각과 투자 전략을 제시한다.</p>
+
+  <div class="accordion">
+    <div class="acc-item open">
+      <button class="acc-head" onclick="toggleAcc(this)">
+        <span>🏢 Part 1–2. 오피스 — 화려한 거래, 균열 가는 펀더멘털</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <p>2025년 오피스 거래 26.1조 원(역대 최고)이지만 <strong>거래 건수 95건은 역대 최저</strong>. 셰어딜·S&LB·사옥 목적이 대부분.</p>
+        <ul>
+          <li><strong>실질임대료 −7.7%</strong> — 명목 Cap 4.3%에서 실질 수익은 제로에 근접</li>
+          <li><strong>렌트프리 1.6개월/년</strong> 확대 — 공급 우위 임대 시장 신호</li>
+          <li><strong>CBD 프라임 공실 4.0%</strong> vs <strong>BBD 6.3%</strong> — IT 구조조정 BBD 직격</li>
+          <li>2028년까지 신규 공급 10년 평균(37만평) 하회 — 프라임 자산 임대 협상력 유지</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>투자 전략:</strong> CBD 프라임 Grade-A Overweight / BBD 중소형 Underweight / 소형 구축 Avoid</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" onclick="toggleAcc(this)">
+        <span>🏭 Part 3. 물류센터 — 양극화 고착, 공급 공백 예고</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li><strong>초대형 상온 공실 6.3%</strong>(Q4 2025) — 급격한 하락세</li>
+          <li><strong>평균 공실 13.3%</strong> — 소형·중형과의 격차 심화</li>
+          <li><strong>임대료: 초대형 +15% vs 소형 −8%</strong></li>
+          <li><strong>신규 공급 71% 급감</strong> — 2026~2027년 공급 공백 구간 예상</li>
+          <li>해외 자본(KKR, Blackstone, Brookfield, M&G) 대형 우량 자산 집중 매입</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>투자 전략:</strong> 수도권 초대형 Buy / 소형·비수도권 Avoid</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" onclick="toggleAcc(this)">
+        <span>⚡ Part 4. 데이터센터 — 전력 봉쇄가 만든 독과점</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li>수도권 전력계통영향평가 본심사 통과: <strong>334건 중 9건(2.7%)</strong></li>
+          <li>신규 개발 사실상 불가 → 기존 전력 확보 자산의 독과점 지위</li>
+          <li>Microsoft, Google, AWS, Meta 한국 AI 인프라 투자 계획</li>
+          <li>국민성장펀드 AI 분야 6조 원 (2030년 목표), 4대 금융 400조 혁신 투자</li>
+          <li>부산 등 비수도권 DC: 전력 통과율 87~90%로 대안 입지 부상</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>투자 전략:</strong> 전력 확보 기존 DC Core Buy / 전력 미확보 그린필드 Avoid</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" onclick="toggleAcc(this)">
+        <span>🏨 Part 5. 호텔 — 회복의 이면에 숨은 지정학 리스크</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li>2025년 외래 관광객 <strong>1,582만 명</strong> — 코로나 이전 수준 초과</li>
+          <li>서울 4~5성급 RevPAR 강하게 상승 중</li>
+          <li><strong>THAAD 리스크</strong>: 2017년 중국 관광객 −75% 경험. 한미 동맹 강화 기조에서 재현 가능성</li>
+          <li>중국 489만명, 일본 455만명 — 상위 2개국 의존도 집중</li>
+          <li>2026~2027년 신규 호텔 공급 예정 — RevPAR 상승 모멘텀 둔화 우려</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>투자 전략:</strong> 서울 4~5성급 Neutral / 제주 Underweight / 부산 Neutral</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" onclick="toggleAcc(this)">
+        <span>🏠 Part 6·10. 주거·코리빙·시니어하우징 — 구조적 수요의 시대</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li><strong>월세 비중 61%</strong> — 스트레스DSR·고금리·전세사기 복합 결과. 구조적 전환</li>
+          <li>1인 가구 <strong>41.8%</strong>, 1,000만 가구 돌파 — 코리빙 수요 기반</li>
+          <li>코리빙 임대료: 40㎡ 이하 월 <strong>113만원</strong> (오피스텔 대비 1.5배)</li>
+          <li>에피소드 신촌 369실 <strong>입주율 90%+</strong> 유지</li>
+          <li>초고령사회 진입(65세+ 20%). 시니어하우징 공급 <strong>2.7%</strong> — 극심한 공급 부족</li>
+          <li>은빛산업 2030년 168조 원. 정부 헬스케어리츠·실버스테이 도입 예정</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" onclick="toggleAcc(this)">
+        <span>🛍️ Part 7. 리테일 — 죽음이 아니라 변태(Metamorphosis)</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li>2025년 리테일 거래 <strong>0.8조 원, YoY −20%</strong></li>
+          <li>홈플러스·W몰·더샵서울숲 등 노후 유통시설 컨버전 주도</li>
+          <li><strong>성수·용산·홍대</strong> 신흥 상권: 팝업·플래그십 임대료 급등</li>
+          <li><strong>명동</strong>: 외국인 관광 회복으로 공실 빠르게 감소</li>
+          <li>체험·F&B·엔터 콘텐츠 보유 시설만 트래픽 유지</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>컨버전 체크리스트:</strong> 용도전환 가능성 → 임차인 퇴거 비용 → 개발 후 출구 → 인근 수요 검증</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-head" onclick="toggleAcc(this)">
+        <span>🏗️ Part 8. 건설/PF 위기 — 공급 쇼크의 예고편</span>
+        <span class="acc-arrow">▼</span>
+      </button>
+      <div class="acc-body">
+        <ul>
+          <li>PF 총 익스포저 <strong>186.6조 원</strong> (한국 GDP 대비 약 8%)</li>
+          <li>브릿지론 연체율 <strong>17%+</strong>, 토지담보 연체율 <strong>30%+</strong></li>
+          <li>저축은행 NPL 비율: 2021년 3.4% → 2024년 <strong>11.5%</strong></li>
+          <li>2025년 건설투자 <strong>−9.0%</strong> (264조원, 9년 만의 최대 감소)</li>
+          <li>2026년 SOC 예산 21.1조(역대 최대)이나 민간 착공 회복 지연</li>
+        </ul>
+        <p style="margin-top:12px;"><strong>기회:</strong> NPL → 정상 매물화 → Value-Add 저점 매수 타이밍</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAP RATE -->
+<section id="caprate">
+  <div class="section-label">Capital Markets</div>
+  <h2>섹터별 Cap Rate 종합 비교</h2>
+
+  <div class="chart-card">
+    <h3>2025년말 기준 주요 섹터 Cap Rate vs 국고채 3년(3.25%)</h3>
+    <div class="chart-wrap-lg">
+      <canvas id="capRateChart"></canvas>
+    </div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top: 20px;">
+    <table>
+      <thead>
+        <tr>
+          <th>섹터</th>
+          <th>Cap Rate</th>
+          <th>국고채 3Y 스프레드</th>
+          <th>추세</th>
+          <th>2026 전망</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>서울 오피스 (프라임)</strong></td>
+          <td>4.3%</td>
+          <td>+105 bp</td>
+          <td>↘ 하락 중</td>
+          <td><span class="badge badge-yellow">Bull +150bp 압축 가능</span></td>
+        </tr>
+        <tr>
+          <td><strong>수도권 물류 (초대형)</strong></td>
+          <td>4.8~5.0%</td>
+          <td>+175 bp</td>
+          <td>↘ 하락 중</td>
+          <td><span class="badge badge-green">임대료 반등으로 추가 하락</span></td>
+        </tr>
+        <tr>
+          <td><strong>수도권 물류 (평균)</strong></td>
+          <td>5.3%</td>
+          <td>+205 bp</td>
+          <td>→ 안정</td>
+          <td><span class="badge badge-blue">현 수준 유지</span></td>
+        </tr>
+        <tr>
+          <td><strong>서울 호텔 (4~5성급)</strong></td>
+          <td>5.0~6.0%</td>
+          <td>+225 bp</td>
+          <td>↘ 하락 중</td>
+          <td><span class="badge badge-yellow">공급 증가 시 반등 리스크</span></td>
+        </tr>
+        <tr>
+          <td><strong>데이터센터 (전력 확보)</strong></td>
+          <td>5.5~6.5%*</td>
+          <td>+275 bp</td>
+          <td>↘ 하락 압력</td>
+          <td><span class="badge badge-green">공급 봉쇄로 급격 압축 전망</span></td>
+        </tr>
+        <tr>
+          <td><strong>시니어하우징</strong></td>
+          <td>5.5~7.0%*</td>
+          <td>+300 bp</td>
+          <td>시장 형성 중</td>
+          <td><span class="badge badge-blue">초기 시장, 표준화 진행 중</span></td>
+        </tr>
+        <tr>
+          <td><strong>리테일 (프라임 상권)</strong></td>
+          <td>4.5~5.5%</td>
+          <td>+175 bp</td>
+          <td>→ 안정</td>
+          <td><span class="badge badge-gray">컨버전 기회 집중</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px; color: var(--muted); margin-top: 8px;">* 추정치 (공시 거래 데이터 부족)</p>
+</section>
+
+<!-- K-REIT -->
+<section id="reit">
+  <div class="section-label">K-REIT</div>
+  <h2>K-리츠: NAV 할인이 만든 투자 기회</h2>
+
+  <div class="grid2">
+    <div class="chart-card">
+      <h3>K-리츠 배당수익률 vs. 대안 자산</h3>
+      <div class="chart-wrap">
+        <canvas id="reitYieldChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>주요 K-리츠 NAV 할인율</h3>
+      <div class="chart-wrap">
+        <canvas id="navChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top: 20px;">
+    <table>
+      <thead>
+        <tr>
+          <th>리츠명</th>
+          <th>섹터</th>
+          <th>NAV 대비</th>
+          <th>배당 특징</th>
+          <th>투자 의견</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ESR켄달스퀘어리츠</strong></td>
+          <td>물류</td>
+          <td><span class="badge badge-green">프리미엄 5~10%</span></td>
+          <td>안정적</td>
+          <td>물류 희소성 반영, 이미 충분히 평가</td>
+        </tr>
+        <tr>
+          <td><strong>신한알파리츠</strong></td>
+          <td>오피스</td>
+          <td><span class="badge badge-yellow">할인 20~30%</span></td>
+          <td>안정적</td>
+          <td>CBD 오피스 기반, 재평가 여지</td>
+        </tr>
+        <tr>
+          <td><strong>롯데리츠</strong></td>
+          <td>리테일</td>
+          <td><span class="badge badge-yellow">할인 15~25%</span></td>
+          <td>안정적</td>
+          <td>백화점·마트 S&L, 장기 임차</td>
+        </tr>
+        <tr>
+          <td><strong>SK리츠</strong></td>
+          <td>오피스+인프라</td>
+          <td><span class="badge badge-yellow">할인 20~30%</span></td>
+          <td>성장형</td>
+          <td>사옥 기반, 신규 편입 여부 주시</td>
+        </tr>
+        <tr>
+          <td><strong>마스턴프리미어리츠</strong></td>
+          <td>해외 물류</td>
+          <td><span class="badge badge-red">할인 35%+</span></td>
+          <td>고배당(10.87%)</td>
+          <td>환율 헤지 비용 vs 초과 배당 비교 필수</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="background: var(--surface); border: 1px solid rgba(79,142,247,0.3); border-radius: var(--card-radius); padding: 20px; margin-top: 20px;">
+    <h3 style="margin-top:0; color: var(--accent);">재평가 시나리오</h3>
+    <p style="margin-bottom: 0;">현재 NAV 30~40% 할인 → 금리 하락(H2 2026) + 운용 실적 개선 + 리츠 인식 확산 → NAV 할인 10~20% 수렴 시 <strong style="color: var(--green);">30~50% 주가 상승 여지</strong>. 세제 혜택: 3년 이상 보유 시 배당소득 <strong style="color: var(--accent2);">9.9% 분리과세</strong>.</p>
+  </div>
+</section>
+
+<!-- PRIVATE CREDIT -->
+<section id="credit">
+  <div class="section-label">Private Credit</div>
+  <h2>Private Credit: 부동산 금융의 새로운 축</h2>
+
+  <div class="grid2">
+    <div class="chart-card">
+      <h3>전략별 기대 수익률</h3>
+      <div class="chart-wrap">
+        <canvas id="creditChart"></canvas>
+      </div>
+    </div>
+    <div>
+      <div class="tbl-wrap" style="height: 100%;">
+        <table>
+          <thead><tr><th>전략</th><th>기대 수익률</th><th>주요 리스크</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Senior Secured</strong></td><td><span class="badge badge-blue">5.5~7.0%</span></td><td>금리 재상승</td></tr>
+            <tr><td><strong>Mezzanine</strong></td><td><span class="badge badge-yellow">8.0~12.0%</span></td><td>후순위 손실</td></tr>
+            <tr><td><strong>Bridge Loan</strong></td><td><span class="badge badge-yellow">10.0~15.0%+</span></td><td>연체율 17%+</td></tr>
+            <tr><td><strong>NPL 인수·정리</strong></td><td><span class="badge badge-red">IRR 12~20%</span></td><td>정리 지연 리스크</td></tr>
+            <tr><td><strong>Distressed Debt</strong></td><td><span class="badge badge-red">IRR 15~25%</span></td><td>법적 분쟁</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h3>주요 글로벌 크레딧 플레이어 한국 진입 현황</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>플레이어</th><th>규모</th><th>전략</th><th>대상 자산</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ESR</strong></td><td>$325M (2024)</td><td>크레딧 펀드</td><td>물류·DC·인프라</td></tr>
+        <tr><td><strong>CapitaLand</strong></td><td>별도 펀드</td><td>크레딧</td><td>한국 부동산 전반</td></tr>
+        <tr><td><strong>SC Lowy + ADIA</strong></td><td>$157.9M</td><td>Senior Secured</td><td>서울 주거 개발</td></tr>
+        <tr><td><strong>IMM</strong></td><td>국내 최초</td><td>독자 크레딧 펀드</td><td>국내 LP 기반</td></tr>
+        <tr><td><strong>NPS, 생보사</strong></td><td>배분 확대 중</td><td>Senior·Mezzanine</td><td>시니어·메자닌</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- STRATEGY -->
+<section id="strategy">
+  <div class="section-label">Investment Strategy</div>
+  <h2>2026 섹터별 매력도 & 투자 전략</h2>
+
+  <div class="sector-list">
+    <div class="sector-item"><span class="sector-name">⚡ 데이터센터 (전력확보)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:100%; background: linear-gradient(90deg,#4f8ef7,#22c55e);"></div></div><span class="sector-score">최선호</span></div>
+    <div class="sector-item"><span class="sector-name">👴 시니어하우징 (개발)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:88%; background: #4f8ef7;"></div></div><span class="sector-score">선호</span></div>
+    <div class="sector-item"><span class="sector-name">🏭 물류 (수도권 초대형)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:82%; background: #4f8ef7;"></div></div><span class="sector-score">선호</span></div>
+    <div class="sector-item"><span class="sector-name">🏢 오피스 (CBD 프라임)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:80%; background: #4f8ef7;"></div></div><span class="sector-score">선호</span></div>
+    <div class="sector-item"><span class="sector-name">📊 K-리츠 (NAV 할인)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:70%; background: #eab308;"></div></div><span class="sector-score">중립상단</span></div>
+    <div class="sector-item"><span class="sector-name">🏠 코리빙 (운영 검증)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:68%; background: #eab308;"></div></div><span class="sector-score">중립상단</span></div>
+    <div class="sector-item"><span class="sector-name">💳 Private Credit (메자닌)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:65%; background: #eab308;"></div></div><span class="sector-score">중립상단</span></div>
+    <div class="sector-item"><span class="sector-name">🏨 호텔 (서울 4~5성급)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:58%; background: #f59e0b;"></div></div><span class="sector-score">중립</span></div>
+    <div class="sector-item"><span class="sector-name">🏠 임대주거 (서울)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:56%; background: #f59e0b;"></div></div><span class="sector-score">중립</span></div>
+    <div class="sector-item"><span class="sector-name">🛍️ 리테일 (컨버전 대상)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:44%; background: #f97316;"></div></div><span class="sector-score">중립하단</span></div>
+    <div class="sector-item"><span class="sector-name">🏭 물류 (소형·비수도권)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:28%; background: #ef4444;"></div></div><span class="sector-score">비선호</span></div>
+    <div class="sector-item"><span class="sector-name">🏢 오피스 (중소형 구축)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:12%; background: #ef4444;"></div></div><span class="sector-score">회피</span></div>
+    <div class="sector-item"><span class="sector-name">🛍️ 리테일 (일반 스트릿)</span><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:8%; background: #ef4444;"></div></div><span class="sector-score">회피</span></div>
+  </div>
+
+  <h3>포트폴리오 배분 제안</h3>
+  <div class="grid2">
+    <div class="chart-card">
+      <h3>전략 유형별 목표 비중</h3>
+      <div class="chart-wrap">
+        <canvas id="allocationChart"></canvas>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="finding">
+        <div class="finding-title">Core (30%)</div>
+        <div class="finding-desc">CBD 프라임 오피스, 수도권 초대형 물류, 서울 운영 호텔 → IRR 6~8%</div>
+      </div>
+      <div class="finding">
+        <div class="finding-title">Core-Plus (25%)</div>
+        <div class="finding-desc">전력 확보 DC, ESG 인증 오피스, 운영 검증 코리빙 → IRR 8~10%</div>
+      </div>
+      <div class="finding">
+        <div class="finding-title">Value-Add (25%)</div>
+        <div class="finding-desc">시니어하우징 개발, 리테일 컨버전, K-리츠 NAV 할인 → IRR 10~14%</div>
+      </div>
+      <div class="finding">
+        <div class="finding-title">Opportunistic (15%)</div>
+        <div class="finding-desc">PF 정리 NPL, 메자닌 크레딧, DC 비수도권 개발 → IRR 14~20%</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>8대 핵심 투자 원칙</h3>
+  <div class="findings">
+    <div class="finding"><div class="finding-title">1. Quality Over Quantity</div><div class="finding-desc">거래 규모보다 임차인 신용도·자산 펀더멘털 우선</div></div>
+    <div class="finding"><div class="finding-title">2. Power is the New Location</div><div class="finding-desc">DC에서 전력 확보는 입지보다 중요한 변수</div></div>
+    <div class="finding"><div class="finding-title">3. Flight to Liquidity</div><div class="finding-desc">소형·비유동 자산 프리미엄 소멸</div></div>
+    <div class="finding"><div class="finding-title">4. Operational Alpha</div><div class="finding-desc">운영 개선으로 가치창출 — 거래 의존보다 유효</div></div>
+    <div class="finding"><div class="finding-title">5. Hedge the Macro</div><div class="finding-desc">원/달러 헤지, 금리 스왑을 투자 비용으로 인식</div></div>
+    <div class="finding"><div class="finding-title">6. ESG as Entry Filter</div><div class="finding-desc">2027년 규제 대응 — 그린빌딩 인증 여부 기본 필터</div></div>
+    <div class="finding"><div class="finding-title">7. Credit Before Equity</div><div class="finding-desc">고금리 국면에서 채권 우선 구조가 유리</div></div>
+    <div class="finding"><div class="finding-title">8. Demographic Thesis</div><div class="finding-desc">1인 가구·초고령화를 장기 확실성 수요 동인으로</div></div>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section style="background: linear-gradient(135deg, #0d1b3e 0%, #0b0f1a 100%); border-radius: var(--card-radius); margin: 0 20px 60px; padding: 48px 40px; max-width: calc(1100px); border: 1px solid var(--border);">
+  <div class="section-label">&nbsp;&nbsp;&nbsp;결론</div>
+  <h2>"선별"을 넘어 "구조"를 보라</h2>
+  <p>코람코의 Selective Recovery 테제는 맞다. 그러나 선별의 차원이 자산 등급 수준에서 <strong>시장 구조 자체</strong>로 확대되고 있다.</p>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 12px; margin-top: 20px;">
+    <div style="border-left: 3px solid var(--accent); padding-left: 14px;"><strong>오피스</strong><p style="font-size:13px; margin-bottom:0;">거래 착시를 걷어내면 실질임대료 -7.7%의 구조적 균열</p></div>
+    <div style="border-left: 3px solid var(--green); padding-left: 14px;"><strong>물류</strong><p style="font-size:13px; margin-bottom:0;">소형 자산 구조적 퇴출 시작, 되돌릴 수 없는 흐름</p></div>
+    <div style="border-left: 3px solid var(--accent2); padding-left: 14px;"><strong>데이터센터</strong><p style="font-size:13px; margin-bottom:0;">전력 봉쇄(2.7%)가 기존 자산 보유자에게 독과점 지위 부여</p></div>
+    <div style="border-left: 3px solid var(--yellow); padding-left: 14px;"><strong>주거</strong><p style="font-size:13px; margin-bottom:0;">월세 61% 전환은 구조적, 코리빙·시니어가 장기 확실 테마</p></div>
+  </div>
+  <p style="margin-top: 24px; font-size: 14px; color: var(--text); font-weight: 700;">2026년은 섹터 내 선별이 아니라, 섹터 간 자본 배분의 구조 자체를 재설계해야 하는 해다.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>본 리포트는 KORAMCO Q1 2026 · CBRE Korea · Cushman&Wakefield · Colliers · JLL · Knight Frank · KED Global 등을 바탕으로 작성된 개인 리서치입니다. 투자 권유 목적이 아닙니다.</p>
+  <p style="margin-top: 8px; color: #475569;">© 2026 · 작성일: 2026년 4월 10일 · v2.0</p>
+</footer>
+
+<script>
+// ── CHARTS ──
+const C = {
+  bg: '#131929', border: '#243058',
+  accent: '#4f8ef7', green: '#22c55e', yellow: '#eab308',
+  red: '#ef4444', gold: '#f59e0b', muted: '#94a3b8'
+};
+
+Chart.defaults.color = C.muted;
+Chart.defaults.borderColor = C.border;
+Chart.defaults.font.family = "'Pretendard','Noto Sans KR',sans-serif";
+
+// 1. Scenario donut
+new Chart(document.getElementById('scenarioChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['🟢 Bull (2~3회 인하)', '🔵 Base (1회 인하)', '🔴 Bear (동결)'],
+    datasets: [{
+      data: [20, 45, 35],
+      backgroundColor: ['rgba(34,197,94,0.7)', 'rgba(79,142,247,0.7)', 'rgba(239,68,68,0.7)'],
+      borderColor: [C.green, C.accent, C.red],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, font: { size: 12 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}%` } }
+    },
+    cutout: '60%'
+  }
+});
+
+// 2. Macro bar
+new Chart(document.getElementById('macroChart'), {
+  type: 'bar',
+  data: {
+    labels: ['GDP 성장률\n(2026E)', '기준금리\n(2025말)', '국고채 10년', 'CPI', 'USD/KRW\n(백 단위)'],
+    datasets: [{
+      label: '수치',
+      data: [1.6, 2.5, 3.6, 2.3, 14.7],
+      backgroundColor: [
+        'rgba(79,142,247,0.6)', 'rgba(234,179,8,0.6)', 'rgba(234,179,8,0.6)',
+        'rgba(239,68,68,0.6)', 'rgba(239,68,68,0.6)'
+      ],
+      borderColor: [C.accent, C.yellow, C.yellow, C.red, C.red],
+      borderWidth: 1, borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid: { color: C.border } }
+    }
+  }
+});
+
+// 3. Cap Rate horizontal bar
+new Chart(document.getElementById('capRateChart'), {
+  type: 'bar',
+  data: {
+    labels: [
+      '서울 오피스 (프라임)', '리테일 (프라임)', '물류 초대형',
+      '물류 평균', '호텔 4~5성급', 'DC (전력확보)', '시니어하우징'
+    ],
+    datasets: [
+      {
+        label: 'Cap Rate',
+        data: [4.3, 5.0, 4.9, 5.3, 5.5, 6.0, 6.3],
+        backgroundColor: 'rgba(79,142,247,0.7)',
+        borderColor: C.accent, borderWidth: 1, borderRadius: 4
+      },
+      {
+        label: '국고채 3Y (3.25%)',
+        data: [3.25, 3.25, 3.25, 3.25, 3.25, 3.25, 3.25],
+        type: 'line', borderColor: C.red, borderWidth: 2,
+        borderDash: [6, 3], pointRadius: 0, fill: false
+      }
+    ]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.x}%` } }
+    },
+    scales: {
+      x: {
+        min: 0, max: 8,
+        ticks: { callback: v => v + '%' },
+        grid: { color: C.border }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// 4. REIT yield
+new Chart(document.getElementById('reitYieldChart'), {
+  type: 'bar',
+  data: {
+    labels: ['K-리츠 평균', '국고채 10Y', '코스피 배당', '국고채 3Y', '예금 금리'],
+    datasets: [{
+      label: '수익률 (%)',
+      data: [8.3, 3.6, 2.3, 3.25, 2.8],
+      backgroundColor: [
+        'rgba(34,197,94,0.7)', 'rgba(234,179,8,0.5)', 'rgba(148,163,184,0.5)',
+        'rgba(234,179,8,0.5)', 'rgba(148,163,184,0.5)'
+      ],
+      borderColor: [C.green, C.yellow, C.muted, C.yellow, C.muted],
+      borderWidth: 1, borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { ticks: { callback: v => v + '%' }, grid: { color: C.border } }
+    }
+  }
+});
+
+// 5. NAV discount
+new Chart(document.getElementById('navChart'), {
+  type: 'bar',
+  data: {
+    labels: ['ESR켄달스퀘어', '롯데리츠', '신한알파', 'SK리츠', '마스턴프리미어', 'KOREIT'],
+    datasets: [{
+      label: 'NAV 대비 할인/프리미엄(%)',
+      data: [7, -20, -25, -25, -37, -70],
+      backgroundColor: ctx => ctx.parsed.y >= 0
+        ? 'rgba(34,197,94,0.7)' : 'rgba(239,68,68,0.6)',
+      borderColor: ctx => ctx.parsed.y >= 0 ? C.green : C.red,
+      borderWidth: 1, borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false } },
+      y: {
+        ticks: { callback: v => (v >= 0 ? '+' : '') + v + '%' },
+        grid: { color: C.border }
+      }
+    }
+  }
+});
+
+// 6. Credit yield
+new Chart(document.getElementById('creditChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Senior\nSecured', 'Mezzanine', 'Bridge\nLoan', 'NPL\n정리', 'Distressed'],
+    datasets: [
+      {
+        label: '최소',
+        data: [5.5, 8, 10, 12, 15],
+        backgroundColor: 'rgba(79,142,247,0.5)',
+        borderColor: C.accent, borderWidth: 1, borderRadius: 4
+      },
+      {
+        label: '최대',
+        data: [7, 12, 15, 20, 25],
+        backgroundColor: 'rgba(245,158,11,0.5)',
+        borderColor: C.gold, borderWidth: 1, borderRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { ticks: { callback: v => v + '%' }, grid: { color: C.border } }
+    }
+  }
+});
+
+// 7. Portfolio allocation donut
+new Chart(document.getElementById('allocationChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Core (6~8%)', 'Core-Plus (8~10%)', 'Value-Add (10~14%)', 'Opportunistic (14~20%)', 'Hedge'],
+    datasets: [{
+      data: [30, 25, 25, 15, 5],
+      backgroundColor: [
+        'rgba(79,142,247,0.75)', 'rgba(34,197,94,0.75)',
+        'rgba(234,179,8,0.75)', 'rgba(245,158,11,0.75)', 'rgba(148,163,184,0.5)'
+      ],
+      borderColor: [C.accent, C.green, C.yellow, C.gold, C.muted],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}%` } }
+    },
+    cutout: '55%'
+  }
+});
+
+// ── ACCORDION ──
+function toggleAcc(btn) {
+  const item = btn.closest('.acc-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
