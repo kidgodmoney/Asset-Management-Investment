@@ -1,1 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>운용사 펀드 불완전판매 및 설명의무 위반 배상책임 분석</title>
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131929;
+    --surface2: #1c2540;
+    --border: #243058;
+    --accent: #4f8ef7;
+    --accent2: #f59e0b;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --card-radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
+    font-size: 15px;
+  }
 
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11,15,26,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 6px;
+    height: 52px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 12px;
+    white-space: nowrap; padding: 4px 10px; border-radius: 6px;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--accent); background: rgba(79,142,247,0.1); }
+  .nav-brand {
+    font-weight: 700; font-size: 13px; color: var(--text);
+    margin-right: 12px; white-space: nowrap;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0d1b3e 0%, #0b0f1a 60%, #1a0d2e 100%);
+    padding: 80px 24px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(79,142,247,0.12) 0%, transparent 70%);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(79,142,247,0.12); border: 1px solid rgba(79,142,247,0.3);
+    color: var(--accent); padding: 4px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 800; line-height: 1.3;
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+  }
+  .hero-sub {
+    color: var(--muted); font-size: 14px; margin-bottom: 28px;
+  }
+
+  /* ── SECTION ── */
+  section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+  section + section { border-top: 1px solid var(--border); }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 8px;
+  }
+  h2 {
+    font-size: clamp(20px, 3vw, 24px); font-weight: 800;
+    margin-bottom: 20px; line-height: 1.3;
+  }
+  h3 { font-size: 16px; font-weight: 700; margin: 28px 0 12px; color: var(--text); padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  p { color: var(--muted); margin-bottom: 14px; }
+  strong { color: var(--text); }
+  ul { padding-left: 20px; color: var(--muted); margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+
+  /* ── GRID 2 ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* ── CHART CARD ── */
+  .chart-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--card-radius); padding: 24px;
+    height: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .chart-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+  .chart-card h4 { margin-top: 0; margin-bottom: 12px; font-size: 14px; color: var(--text); font-weight: 700; }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; border-radius: var(--card-radius); border: 1px solid var(--border); background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--surface2); }
+  th {
+    padding: 12px 16px; text-align: left; font-size: 11px;
+    font-weight: 700; letter-spacing: 0.05em; color: var(--muted);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  td { padding: 11px 16px; border-top: 1px solid var(--border); vertical-align: middle; color: var(--text); }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block; padding: 4px 10px; border-radius: 6px;
+    font-size: 11px; font-weight: 700;
+  }
+  .badge-critical { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+  .badge-green { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+
+  /* ── SCENARIO (TL;DR) ── */
+  .tldr-card {
+    background: rgba(79,142,247,0.05); border: 1px solid rgba(79,142,247,0.2);
+    border-radius: var(--card-radius); padding: 20px; text-align: left;
+    margin-bottom: 24px;
+  }
+  .tldr-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--accent); display: flex; align-items: center; gap: 6px;}
+  .tldr-desc { font-size: 14px; color: var(--text); line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface); border-top: 1px solid var(--border);
+    padding: 32px 20px; text-align: center; color: var(--muted); font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Compliance Case Study</span>
+  <a href="#issue">1. 검토 배경 및 쟁점</a>
+  <a href="#analysis">2. 취약논리 vs 방어논리</a>
+  <a href="#action">3. 실무 중심 대응 방안</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">⚖️ 판례 및 해석분석 심층 리포트</div>
+  <h1>자산운용사 불완전판매 및<br>설명의무 위반 배상책임 분석</h1>
+  <p class="hero-sub">
+    핵심 펀드 위험요인 누락으로 인한 연대 배상책임 리스크와 운용사의 실무적 방어 전략
+  </p>
+</div>
+
+<!-- SECTION 1 -->
+<section id="issue">
+  <div class="section-label">01. Issue & Background</div>
+  <h2>검토 배경 및 법령 근거</h2>
+  <div class="tldr-card" style="border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.05);">
+    <div class="tldr-title" style="color: var(--red);">TL;DR (핵심 요약)</div>
+    <div class="tldr-desc">자본시장법 제47조에 따라, 자산운용사가 상품설명서/제안서에 펀드의 불리한 정보나 구조적 위험을 누락하여 판매사의 불완전판매를 유발한 경우 판매사와 함께 다액의 연대 배상책임을 부담하게 됩니다.</div>
+  </div>
+
+  <ul>
+    <li><strong>배경:</strong> 사모펀드 사태 및 각종 대체투자 환매중단 사태 이후, 투자자 측 소송 대리인들은 직접 판매사뿐만 아니라 상품을 제조한 운용사의 책임배상 한도까지 강하게 묻는 추세가 뚜렷합니다.</li>
+    <li><strong>핵심 쟁점:</strong> 운용사가 제공한 자료의 부실 등 기망행위가 불완전판매의 원인인지, 그리고 투자자 본인의 과실(경험)이 배상책임을 제한(상계)할 수 있는지 소구합니다.</li>
+  </ul>
+
+  <h3>관련 규제 (Applicable Laws)</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>법령명 / 조항</th><th>주요 내용 및 리스크 포인트</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>자본시장법 제47조(설명의무)</strong></td>
+          <td>단순 수익성 강조 금지, <strong>실질적인 위험(원본손실, 구조위험 등)</strong>을 고객이 온전히 이해하도록 설명할 의무.</td>
+        </tr>
+        <tr>
+          <td><strong>금융소비자보호법 (입증책임 전환)</strong></td>
+          <td>고객 손실 발생 시, <strong>투자자가 아닌 금융회사 측에서 '고의 및 과실 없음'을 증명</strong>하지 못하면 즉시 배상책임 부과.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section id="analysis">
+  <div class="section-label">02. Precedent Analysis</div>
+  <h2>재판부 주요 법리: 취약 논리 vs 방어 논리</h2>
+  <p>최근 거액의 집단소송 관련 법원 판례 및 금융감독원 분쟁조정위원회의 해석례에서 도출된 운용사의 리스크 요소와 항변 논리입니다.</p>
+  
+  <div class="grid2">
+    <!-- 취약논리 -->
+    <div class="chart-card" style="border-top: 3px solid var(--red);">
+      <h4 style="display: flex; justify-content: space-between; align-items: center;">
+        🔴 운용사 취약 논리 (패소 요건)
+      </h4>
+      <p style="font-size: 13px;">운용사가 판매사/투자자에게 패소하여 거액의 연대 배상책임을 물게 되는 주요 근거입니다.</p>
+      <ul style="font-size: 13px; margin-top: 14px;">
+        <li><strong>정보비대칭성과 연대 책임:</strong> 해당 펀드 자산 구조를 가장 잘 아는 전문 주체가 운용사임에도 핵심 신용/구조위험을 누락했다면 '공동불법행위'로 인정됨.</li>
+        <li><strong>전문투자자 면책의 한계:</strong> 상대가 경험이 많은 투자자라도, 구조가 대단히 복잡하고 중요 위험 정보를 운용사가 숨겼다면 설명의무 위반이 인정됨.</li>
+      </ul>
+    </div>
+    
+    <!-- 방어논리 -->
+    <div class="chart-card" style="border-top: 3px solid var(--green);">
+      <h4 style="display: flex; justify-content: space-between; align-items: center;">
+        🟢 운용사 방어 논리 (책임 상계/면제 여건)
+      </h4>
+      <p style="font-size: 13px;">운용사들의 법무방어팀이 소송에서 활용하여 배상 범위를 줄이거나 면책받는 방어 논리입니다.</p>
+      <ul style="font-size: 13px; margin-top: 14px;">
+        <li><strong>소비자 자기책임 원칙:</strong> 투자자의 경험, 직업적 전문성을 근거로 자발적 위험 인수를 주장하여 배상 비율 대폭(20~80%) 축소(과실상계).</li>
+        <li><strong>판매사 임의 일탈 주장:</strong> 운용사 공식 제안서를 넘어 판매사 직원이 비공식 브로셔로 임의·허위 설명했다면 판매자 측 전적 과실 주장.</li>
+        <li><strong>외생변수 기인 (인과 단절):</strong> 손실이 펀드의 내재적 문제보다 급격한 금리상승, 팬데믹 등 시황 악화 때문이라는 점을 입증.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section id="action">
+  <div class="section-label">03. Business Impact & Action Items</div>
+  <h2>실무적 영향 및 우선 점검 사항</h2>
+  
+  <div class="tldr-card" style="margin-top: 10px;">
+    <div class="tldr-title" style="display: flex; justify-content: space-between;">
+      <span>리스크 심각도 및 전사적 Impact</span>
+      <span class="badge badge-critical">🔴 매우 높음 (Critical)</span>
+    </div>
+    <div class="tldr-desc" style="font-size:13px; margin-top: 8px;">
+      수백억 원 규모의 집단/다중 손해배상 소송 및 금융위원회 제재 심사 대상이 될 수 있어 <strong>회사의 생존 및 영업 지속성</strong>에 결정적 악영향을 초래합니다.
+    </div>
+  </div>
+
+  <div class="chart-card" style="background: rgba(255,255,255,0.02)">
+    <h4>📋 준법감시 및 내부통제 Action Items</h4>
+    <ul style="font-size: 14px;">
+      <li><strong>운용제안서(IM) 준법감시 허들 상향:</strong> 모든 투자제안서 배포 전, '원금 100% 손실 가능성 등 최악 시나리오(Stress-test)' 기재 유무를 준법감시팀이 사전 승인.</li>
+      <li><strong>단호한 면책/한계 조항 명문화:</strong> 공식 제안서 첫 페이지에 "운용사 자료와 무관한 판매사의 일탈적 영업·자료 변조시 운용사는 면책됨" 독소 방어조항 신설.</li>
+      <li><strong>컴플라이언스 데이터 보존(Record Keeping):</strong> 판매사와 교류한 자료와 소통 기록을 타임스탬프화 하여 추후 불완전판매 소송 시 책임 전가를 차단하는 소구 자료로 완비.</li>
+    </ul>
+  </div>
+</section>
+
+<footer style="margin-top: 40px;">
+  © 2026 Asset Management Compliance & Legal Brief | Case Analysis
+</footer>
+
+</body>
+</html>
