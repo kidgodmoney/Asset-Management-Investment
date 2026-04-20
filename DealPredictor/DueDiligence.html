@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ASSET-2026-0001 — ○○시 ○○면 ○○리 | 투자검토 리포트</title>
+<style>
+/* ─── Mastern Brand Variables ─── */
+:root {
+  --primary:  #1a3a5c;
+  --accent:   #2e6da4;
+  --light:    #e8f0f7;
+  --border:   #c5d5e8;
+  --text:     #1e2d3d;
+  --muted:    #5a7a9a;
+  --bg:       #f5f8fc;
+  --white:    #ffffff;
+  --ok:       #1e7e34;
+  --warn:     #b45309;
+  --danger:   #b91c1c;
+  --hold:     #6b7280;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ─── Cover ─── */
+.cover {
+  background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 50%, #2e6da4 100%);
+  color: var(--white);
+  padding: 72px 60px 56px;
+  page-break-after: always;
+}
+.cover-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 4px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  margin-bottom: 28px;
+}
+.cover-asset-id {
+  font-size: 13px;
+  opacity: 0.65;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.cover h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.cover-sub {
+  font-size: 16px;
+  opacity: 0.75;
+  margin-bottom: 40px;
+}
+.cover-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.20);
+}
+.cover-stat { text-align: center; }
+.cover-stat .val {
+  font-size: 26px;
+  font-weight: 700;
+  display: block;
+  line-height: 1.1;
+}
+.cover-stat .lbl {
+  font-size: 11px;
+  opacity: 0.65;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+.cover-verdict {
+  display: inline-block;
+  background: rgba(255,200,50,0.20);
+  border: 1.5px solid rgba(255,200,50,0.60);
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fde68a;
+}
+.cover-date {
+  margin-top: 48px;
+  font-size: 11px;
+  opacity: 0.45;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Layout ─── */
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 80px; }
+
+/* ─── Section ─── */
+.section { margin-bottom: 40px; }
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  margin-bottom: 18px;
+}
+
+/* ─── Banner ─── */
+.banner {
+  background: #fff7ed;
+  border: 1.5px solid #fbbf24;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  font-size: 13px;
+  color: #92400e;
+}
+.banner strong { color: #b45309; }
+
+/* ─── Summary Grid ─── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.summary-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.summary-card .card-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+.summary-card .card-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+}
+.summary-card .card-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.card-full { grid-column: 1 / -1; }
+.card-verdict { background: var(--light); border-color: var(--accent); }
+.card-verdict .card-value { color: var(--accent); font-size: 17px; }
+
+/* ─── Tables ─── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+thead th {
+  background: var(--primary);
+  color: var(--white);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+}
+tbody tr:nth-child(even) { background: var(--bg); }
+tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* Lot type colors */
+.lot-factory { color: #1d4ed8; font-weight: 600; }
+.lot-forest  { color: #15803d; font-weight: 600; }
+.lot-field   { color: #b45309; font-weight: 600; }
+.own-corp    { color: var(--primary); }
+.own-person  { color: var(--danger); }
+
+/* Grade badges */
+.grade {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.grade-a { background:#dcfce7; color:#15803d; }
+.grade-b { background:#dbeafe; color:#1d4ed8; }
+.grade-c { background:#fee2e2; color:#b91c1c; }
+
+/* Risk badges */
+.risk-high   { display:inline-block; padding:2px 8px; border-radius:4px; background:#fee2e2; color:#b91c1c; font-size:11px; font-weight:700; }
+.risk-medium { display:inline-block; padding:2px 8px; border-radius:4px; background:#fef9c3; color:#b45309; font-size:11px; font-weight:700; }
+.risk-low    { display:inline-block; padding:2px 8px; border-radius:4px; background:#dcfce7; color:#15803d; font-size:11px; font-weight:700; }
+
+/* ─── Score Bar ─── */
+.score-bars { display: flex; flex-direction: column; gap: 14px; }
+.score-row { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; }
+.score-row-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.score-label { font-weight: 700; font-size: 14px; color: var(--primary); }
+.score-badge { font-size: 13px; font-weight: 700; }
+.score-badge.cond  { color: #d97706; }
+.score-badge.hold  { color: var(--hold); }
+.bar-track { height: 10px; background: var(--light); border-radius: 10px; overflow: hidden; }
+.bar-fill  { height: 100%; border-radius: 10px; transition: width 0.4s; }
+.bar-cond  { background: linear-gradient(90deg, #d97706, #f59e0b); }
+.bar-hold  { background: #9ca3af; }
+.score-meta { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+/* ─── Composition Bar ─── */
+.comp-bar { height: 22px; border-radius: 6px; overflow: hidden; display: flex; margin-bottom: 8px; }
+.comp-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--white); }
+.comp-seg.factory { background: #2563eb; }
+.comp-seg.forest  { background: #16a34a; }
+.comp-seg.field   { background: #d97706; }
+
+/* ─── Sensitivity Table ─── */
+.delta-pos { color: var(--ok); font-weight: 700; }
+.delta-neg { color: var(--danger); font-weight: 700; }
+
+/* ─── Actions Grid ─── */
+.actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.action-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+.action-card h4 { font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.action-card ol, .action-card ul { padding-left: 18px; font-size: 13px; }
+.action-card li { margin-bottom: 6px; }
+
+/* ─── Conclusion Boxes ─── */
+.conclusion-go   { background: #f0fdf4; border: 1.5px solid #16a34a; border-radius: 8px; padding: 18px 22px; margin-bottom: 12px; }
+.conclusion-stop { background: #fff1f2; border: 1.5px solid #b91c1c; border-radius: 8px; padding: 18px 22px; }
+.conclusion-go h4   { color: #15803d; margin-bottom: 8px; font-size: 14px; }
+.conclusion-stop h4 { color: #b91c1c; margin-bottom: 8px; font-size: 14px; }
+
+/* ─── Checklist ─── */
+.checklist-tier { margin-bottom: 24px; }
+.checklist-tier h4 { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+.checklist-tier ul { list-style: none; padding: 0; }
+.checklist-tier li {
+  padding: 7px 12px 7px 32px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.checklist-tier li:last-child { border-bottom: none; }
+.checklist-tier li::before {
+  content: '☐';
+  position: absolute;
+  left: 10px;
+  color: var(--muted);
+}
+
+/* ─── Disclaimer / Footer ─── */
+.disclaimer {
+  margin-top: 40px;
+  padding: 14px 18px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .cover { page-break-after: always; }
+  .section { page-break-inside: avoid; }
+  body { background: var(--white); }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="cover">
+  <div class="cover-badge">투자검토 리포트 · 2차 스크리닝</div>
+  <div class="cover-asset-id">ASSET-2026-0001</div>
+  <h1>○○시 ○○면 ○○리<br>9필지 통합 매물</h1>
+  <div class="cover-sub">경기도 ○○시 ○○면 ○○리 ***-1/2/4/5, ***, ***, ***, 산**-2/산**-3</div>
+
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <span class="val">32,729㎡</span>
+      <span class="lbl">총 면적 (9,901평)</span>
+    </div>
+    <div class="cover-stat">
+      <span class="val">9필지</span>
+      <span class="lbl">통합 매물</span>
+    </div>
+    <div class="cover-stat">
+      <span class="val">○○○억원</span>
+      <span class="lbl">매도 희망가</span>
+    </div>
+    <div class="cover-stat">
+      <span class="val" style="color:#fde68a;">81점</span>
+      <span class="lbl">물류센터 적합도</span>
+    </div>
+    <div class="cover-stat">
+      <span class="val">○.○○백만원</span>
+      <span class="lbl">평당 단가</span>
+    </div>
+  </div>
+
+  <div class="cover-verdict">▶ 조건부 진행 (상단) — 우선검토 85 경계 근접</div>
+  <div class="cover-date">○○투자운용 | 2026. 04. 16 | v0.2.1 (1차→2차 업데이트, +11점)</div>
+</div>
+
+<!-- ═══════════════════ CONTENT ═══════════════════ -->
+<div class="container">
+
+  <!-- Banner: 사전질의 경고 -->
+  <div class="banner">
+    <strong>⚠ 사전질의 4건 회신 전 본격 DD 착수 불가</strong> —
+    PRE-01 (산림청 보전산지) · PRE-02 (환경청 환경평가) · PRE-03 (○○시 경관지구) · PRE-04 (토양오염 이력)
+    중 1건이라도 부정 회신 시 점수 급락 가능.
+  </div>
+
+  <!-- ─── 1. 1페이지 요약 ─── -->
+  <div class="section">
+    <div class="section-title">1. 1페이지 요약</div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="card-label">물건</div>
+        <div class="card-value" style="font-size:15px;">○○시 ○○면 ○○리 9필지</div>
+        <div class="card-sub">기존 공장 부지 + 임야 + 전 (통합)</div>
+      </div>
+      <div class="summary-card">
+        <div class="card-label">면적</div>
+        <div class="card-value">32,729㎡</div>
+        <div class="card-sub">9,901평 | 공장용지 79% · 임야 11% · 전 10%</div>
+      </div>
+      <div class="summary-card">
+        <div class="card-label">소유 구성</div>
+        <div class="card-value" style="font-size:16px;">법인 88.6% + 개인 9.6%</div>
+        <div class="card-sub">법인 6필지 (단일 추정) + 개인 3명</div>
+      </div>
+      <div class="summary-card">
+        <div class="card-label">매도가</div>
+        <div class="card-value">○○○억원</div>
+        <div class="card-sub">약 ○,○○○,○○○원/평 (공장용지 기준 상대 저렴)</div>
+      </div>
+      <div class="summary-card card-full card-verdict">
+        <div class="card-label">투자검토 의견</div>
+        <div class="card-value">조건부 진행 (상단) · 1차 70 → 2차 81점 (+11)</div>
+        <div class="card-sub">우선 활용안: 물류센터 (81/100) · 대체: 데이터센터 (63/100, 보류 상위)</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>핵심 리스크</th><th>등급</th><th>최대 영향</th></tr></thead>
+      <tbody>
+        <tr><td>개인지주 3명 holdout 리스크</td><td><span class="risk-high">HIGH</span></td><td class="delta-neg">−15점</td></tr>
+        <tr><td>공장 토양오염 이력 (PRE-04)</td><td><span class="risk-high">HIGH</span></td><td class="delta-neg">−8점</td></tr>
+        <tr><td>용도지역 미확정 (계획관리 가정)</td><td><span class="risk-high">HIGH</span></td><td class="delta-neg">미산정</td></tr>
+        <tr><td>보전산지 확정 리스크 (PRE-01)</td><td><span class="risk-high">HIGH</span></td><td class="delta-neg">사업 재설계</td></tr>
+        <tr><td>환경영향평가 + 경관규제 중첩</td><td><span class="risk-medium">MEDIUM</span></td><td class="delta-neg">6개월+ 지연</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── 2. 물건 개요 ─── -->
+  <div class="section">
+    <div class="section-title">2. 물건 개요 — 필지 명세</div>
+
+    <div class="comp-bar">
+      <div class="comp-seg factory" style="width:79%;">공장용지 79%</div>
+      <div class="comp-seg forest"  style="width:11%;">임야 11%</div>
+      <div class="comp-seg field"   style="width:10%;">전 10%</div>
+    </div>
+    <div style="font-size:11px; color:var(--muted); margin-bottom:14px;">
+      면적 기준 지목 구성비 | 지적측량 실측: 31,652.1㎡ (공부 대비 −1,076.9㎡, 3.3% 오차)
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>지번</th><th>지목</th><th>면적(㎡)</th><th>소유</th><th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>○○리 ***-1</td><td class="lot-factory">공장용지</td><td>10,681</td><td class="own-corp">법인</td><td>기존 공장 건물 (위성확인)</td></tr>
+        <tr><td>2</td><td>○○리 ***-2</td><td class="lot-factory">공장용지</td><td>6,748</td><td class="own-corp">법인</td><td>기존 공장 건물</td></tr>
+        <tr><td>3</td><td>○○리 ***-5</td><td class="lot-factory">공장용지</td><td>6,271</td><td class="own-corp">법인</td><td>기존 공장 건물</td></tr>
+        <tr><td>4</td><td>○○리 ***-4</td><td class="lot-factory">공장용지</td><td>2,142</td><td class="own-corp">법인</td><td>—</td></tr>
+        <tr><td>5</td><td>○○리 산**-3</td><td class="lot-forest">임야</td><td>1,977</td><td class="own-corp">법인</td><td>산지전용 필요</td></tr>
+        <tr><td>6</td><td>○○리 산**-2</td><td class="lot-forest">임야</td><td>1,756</td><td class="own-corp">법인</td><td>산지전용 필요</td></tr>
+        <tr><td>7</td><td>○○리 ***</td><td class="lot-field">전</td><td>1,268</td><td class="own-person">개인 A</td><td>농지전용, 개별 계약</td></tr>
+        <tr><td>8</td><td>○○리 ***</td><td class="lot-field">전</td><td>1,132</td><td class="own-person">개인 B</td><td>농지전용, 개별 계약</td></tr>
+        <tr><td>9</td><td>○○리 ***</td><td class="lot-field">전</td><td>754</td><td class="own-person">개인 C</td><td>농지전용, 개별 계약</td></tr>
+        <tr style="font-weight:700; background:var(--light);">
+          <td colspan="3">합계</td><td>32,729㎡</td><td colspan="2">법인 88.6% · 개인 9.6%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── 3. 입지 분석 ─── -->
+  <div class="section">
+    <div class="section-title">3. 입지 분석</div>
+    <table>
+      <thead><tr><th>구분</th><th>내용</th><th>평가</th></tr></thead>
+      <tbody>
+        <tr><td>고속도로 접근</td><td>[IC-1]·[IC-2]·[IC-3]·[IC-4] IC 모두 15~25분 추정</td><td><span class="risk-medium">중립</span></td></tr>
+        <tr><td>물류벨트 위치</td><td>[물류벨트 코어] 코어에서 북쪽 외곽</td><td><span class="risk-medium">2선</span></td></tr>
+        <tr><td>배후수요 (+)</td><td>[대기업 A] ○○ 캠퍼스 반도체 물류 배후</td><td><span class="risk-low">긍정</span></td></tr>
+        <tr><td>배후수요 (−)</td><td>대형 3PL([물류사 A]·[대형 3PL] 등) 1선 입지 아님</td><td><span class="risk-high">부정</span></td></tr>
+        <tr><td>[철도노선] 역세권</td><td>[인근역] 인근 — 거리·규제 미확인</td><td><span class="risk-medium">미확인</span></td></tr>
+        <tr><td>진입 인프라</td><td>도로 폭원·부지 형상·단차 미확인</td><td><span class="risk-medium">미확인</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── 4. 법률 및 도시계획 ─── -->
+  <div class="section">
+    <div class="section-title">4. 법률 및 도시계획</div>
+    <table>
+      <thead><tr><th>법령</th><th>주요 이슈</th><th>인허가 등급</th></tr></thead>
+      <tbody>
+        <tr><td>국토계획법</td><td>용도지역 미확정 (계획관리지역이면 가능)</td><td><span class="grade grade-c">C</span></td></tr>
+        <tr><td>산지관리법</td><td>산**-2/산**-3 산지전용 — <strong>보전산지 여부가 최대 변수</strong></td><td><span class="grade grade-c">C</span></td></tr>
+        <tr><td>농지법</td><td>전 3필지 농지전용 — 농업진흥구역 1필지라도 해당 시 통합개발 불가</td><td><span class="grade grade-c">C</span></td></tr>
+        <tr><td>환경영향평가법</td><td>32,729㎡ — 소규모 환경평가 경계선 (공장용지 제외 시 완화)</td><td><span class="grade grade-b">B</span></td></tr>
+        <tr><td>경관법·문화재</td><td>[문화지구] 인근 경관지구 지정 여부 미확인</td><td><span class="grade grade-c">C</span></td></tr>
+        <tr><td>건축법·물류시설법</td><td>표준 절차 (용도지역 확정 후)</td><td><span class="grade grade-b">B</span></td></tr>
+        <tr><td>토양환경보전법</td><td>기존 공장 이력 — 토양오염 소급 조사 필요 (PRE-04)</td><td><span class="grade grade-c">C</span></td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:12px; color:var(--muted);">종합 인허가 확실성: <strong>C등급</strong> | 계약 복잡도: <strong>C등급</strong> (9필지 통합, holdout)</div>
+  </div>
+
+  <!-- ─── 5. 개발 유형별 적합도 ─── -->
+  <div class="section">
+    <div class="section-title">5. 개발 유형별 적합도</div>
+
+    <div class="score-bars">
+      <div class="score-row">
+        <div class="score-row-header">
+          <span class="score-label">물류센터</span>
+          <span class="score-badge cond">81 / 100 — 조건부 (상단)</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-cond" style="width:81%;"></div></div>
+        <div class="score-meta">사전질의 4건 모두 긍정 시 우선검토(85+) 전환 가능 · 기존 공장 활용 또는 철거 후 신축</div>
+      </div>
+      <div class="score-row">
+        <div class="score-row-header">
+          <span class="score-label">데이터센터</span>
+          <span class="score-badge hold">63 / 100 — 보류 (상위)</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-hold" style="width:63%;"></div></div>
+        <div class="score-meta">전력 공급 확인 시 재평가 대상 · 현재 보류 상위 유지</div>
+      </div>
+      <div class="score-row">
+        <div class="score-row-header">
+          <span class="score-label">창고형 R&D (대안)</span>
+          <span class="score-badge hold">검토 가치</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-hold" style="width:45%;"></div></div>
+        <div class="score-meta">[대기업 A] 협력사 앵커 임차 사전 확보 시 검토 · 정식 점수 미산정</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 6. 1차→2차 변화 ─── -->
+  <div class="section">
+    <div class="section-title">6. 1차 → 2차 스크리닝 변화</div>
+
+    <table>
+      <thead><tr><th>측면</th><th>1차</th><th>2차</th><th>평가</th></tr></thead>
+      <tbody>
+        <tr><td>물류 점수</td><td>70 (경계선)</td><td><strong>81 (상단)</strong></td><td class="delta-pos">▲ 유리</td></tr>
+        <tr><td>최대 다운사이드</td><td>−21</td><td><strong>−26</strong></td><td class="delta-neg">▼ 악화 (holdout + 토양)</td></tr>
+        <tr><td>최대 업사이드</td><td>+12</td><td>+8</td><td style="color:var(--muted);">변동성 감소</td></tr>
+        <tr><td>사전질의 건수</td><td>3건</td><td><strong>4건</strong></td><td style="color:var(--muted);">+공장 토양오염</td></tr>
+        <tr><td>계약 복잡도</td><td>미지</td><td><strong>C (4 parties)</strong></td><td class="delta-neg">▼ 신규 부각</td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <thead><tr><th>민감도 항목</th><th>시나리오</th><th>점수 변동</th></tr></thead>
+      <tbody>
+        <tr><td>보전산지 확정</td><td>산**-2/산**-3 보전산지 해당 시</td><td class="delta-neg">−12 이상</td></tr>
+        <tr><td>농업진흥구역</td><td>전 3필지 중 1필지라도 해당 시</td><td class="delta-neg">−10 이상</td></tr>
+        <tr><td>개인 holdout</td><td>개인 3명 중 1명 계약 불발 시</td><td class="delta-neg">−15 (사업 파기)</td></tr>
+        <tr><td>토양오염 확정</td><td>토양오염 조사 부정 시</td><td class="delta-neg">−8 이상</td></tr>
+        <tr><td>앵커 LOI 확보</td><td>대형 3PL 1개사 LOI 확보 시</td><td class="delta-pos">+5 ~ +8</td></tr>
+        <tr><td>법인 단일 소유 확인</td><td>88.6% 단일 법인 확정 시</td><td class="delta-pos">+3 ~ +5</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── 7. 주요 리스크 ─── -->
+  <div class="section">
+    <div class="section-title">7. 주요 리스크</div>
+
+    <table>
+      <thead><tr><th>#</th><th>리스크</th><th>등급</th><th>대응 방향</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>개인지주 3명 holdout</strong> — 1필지 계약 불발 시 전체 사업 파기</td>
+          <td><span class="risk-high">HIGH</span></td>
+          <td>일괄 조건부 계약·에스크로·특약 필수</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>보전산지 확정</strong> — 산**-2/산**-3 보전산지 시 물류창고 불가</td>
+          <td><span class="risk-high">HIGH</span></td>
+          <td>PRE-01 산림청 사전질의 (즉시)</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>공장 토양오염 이력</strong> — 기존 공장 운영 소급 조사 미실시</td>
+          <td><span class="risk-high">HIGH</span></td>
+          <td>PRE-04 토양오염 사전조사 (즉시)</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>환경평가 + 경관규제 중첩</strong> — 사업기간 6개월+ 지연 가능</td>
+          <td><span class="risk-medium">MEDIUM</span></td>
+          <td>PRE-02/PRE-03 병행 질의</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>입지 2선 리스크</strong> — 대형 3PL 앵커 유치 난이도 높음</td>
+          <td><span class="risk-medium">MEDIUM</span></td>
+          <td>앵커 3사 사전 타진 (단기)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── 8. 종합 의견 ─── -->
+  <div class="section">
+    <div class="section-title">8. 종합 의견 및 권고 순서</div>
+
+    <div class="actions-grid" style="margin-bottom:16px;">
+      <div class="action-card">
+        <h4>즉시 (1~2주) — 사전질의 + 지주 접촉</h4>
+        <ol>
+          <li>개인 지주 3명 개별 접촉 (holdout 완화)</li>
+          <li>PRE-01 산림청 보전산지 사전질의</li>
+          <li>PRE-04 공장 토양오염 소급 조사</li>
+          <li>PRE-02/PRE-03 환경청·○○시 병행 질의</li>
+        </ol>
+      </div>
+      <div class="action-card">
+        <h4>단기 (2~4주) — DD 준비</h4>
+        <ol>
+          <li>법인 1사 등기·재무 확인 (88.6% 소유)</li>
+          <li>주변 거래사례 3건 이상 (최근 6개월)</li>
+          <li>앵커 임차 3사 사전 타진</li>
+          <li>진입도로 폭원 실측·부지 단차 측량</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="conclusion-go">
+      <h4>▶ 4가지 모두 긍정 → 본격 DD 진입</h4>
+      사전질의 4건 긍정 회신 + 개인 지주 3명 계약 확약 달성 시 우선검토(85+) 전환.
+      본격 DD 및 법무·세무 검토 착수. ○○○억원 협상 근거 확보 후 감정평가 의뢰.
+    </div>
+    <div class="conclusion-stop">
+      <h4>✕ 1가지라도 결정적 부정 → 보류 또는 사업 재설계</h4>
+      법인 6필지만 매입 + 개인 3필지 장기 옵션/임차 구조 재설계 검토.
+      보전산지 확정 또는 토양오염 심각 시 전면 보류 전환.
+    </div>
+  </div>
+
+  <!-- ─── 9. 체크리스트 ─── -->
+  <div class="section">
+    <div class="section-title">9. 추가 실사 체크리스트</div>
+
+    <div class="checklist-tier">
+      <h4>즉시 (1~2주)</h4>
+      <ul>
+        <li>9필지 토지이용계획확인원·지적도·임야대장·농지대장 열람</li>
+        <li>9필지 등기부등본·소유자 구성 파악</li>
+        <li>중개사/매도자 측 매매 구조·일괄 여부 확인</li>
+        <li>산림청 산**-2/산**-3 보전산지 사전질의 (PRE-01)</li>
+        <li>유역환경청 환경영향평가 사전질의 (PRE-02)</li>
+        <li>○○시 도시계획과 용도지역·경관지구 확인 (PRE-03)</li>
+        <li>토양환경보전법 소급 조사 (PRE-04, 기존 공장 이력)</li>
+      </ul>
+    </div>
+
+    <div class="checklist-tier">
+      <h4>단기 (2~4주)</h4>
+      <ul>
+        <li>주변 거래사례 3건 이상 (최근 6개월)</li>
+        <li>감정평가 사전 예비 (필지별·통합)</li>
+        <li>진입도로 폭원 실측</li>
+        <li>부지 단차·법면 정밀측량</li>
+        <li>[대기업 A] 협력사·대형 3PL 3개사 사전 타진</li>
+        <li>[철도노선] [인근역] 역세권 규제 확인</li>
+        <li>법인 1사 등기·사업자등록·재무제표 확인</li>
+      </ul>
+    </div>
+
+    <div class="checklist-tier">
+      <h4>중기 (1~2개월)</h4>
+      <ul>
+        <li>지자체 건축과·도로과 비공식 협의</li>
+        <li>법무 검토 (9필지 계약 구조·조건부 계약 설계)</li>
+        <li>세무 검토 (취득·등록·개발부담금)</li>
+        <li>감정평가 본의뢰</li>
+        <li>IC 안건 자료 준비</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    본 리포트는 <strong>2차 스크리닝</strong> 결과입니다 (사용자 제공 지적정보·네이버 위성지도 반영, 2026-04-16).
+    1차 리포트 내용은 §1~5에 잔존하나 §6 종합 의견·요약은 2차 기준으로 업데이트됨.
+    점수 변동 이력: decisions.log.md 2026-04-16 2차 산정 엔트리 참조.
+    3차 스크리닝은 사전질의 4건 회신 + 개인지주 3명 접촉 후 예정.
+    본 문서는 <strong>내부 검토 자료</strong>로서 투자 권유 또는 법적 조언이 아닙니다.
+    실사·법무·세무 전문가 의견을 별도로 구하시기 바랍니다.
+  </div>
+
+  <div class="footer">
+    ○○투자운용 | ASSET-2026-0001 | 2026. 04. 16 | 본 문서는 내부 검토 자료입니다
+  </div>
+
+</div>
+</body>
+</html>
