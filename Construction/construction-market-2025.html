@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 건설경기 동향 분석 대시보드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script>if(typeof Chart !== 'undefined') { Chart.defaults.animation = false; }</script>
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { interpolate-size: allow-keywords; }
+
+    html.theme-dark {
+      --bg: #0A0A0A; --surface: #141414; --surface-hover: #1C1C1C;
+      --border: rgba(255,255,255,0.06);
+      --text: #EDEDED; --text-secondary: #888;
+      --accent: #3b82f6; --accent-secondary: #8b5cf6;
+      --positive: #10b981; --negative: #f43f5e; --warning: #f59e0b;
+    }
+    html.theme-light {
+      --bg: #F5F5F4; --surface: #FFFFFF; --surface-hover: #F0F0EF;
+      --border: rgba(0,0,0,0.07);
+      --text: #0f172a; --text-secondary: #64748b;
+      --accent: #2563eb; --accent-secondary: #7c3aed;
+      --positive: #059669; --negative: #e11d48; --warning: #d97706;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Inter', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1, h2, h3, h4 {
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    h1 { font-weight: 700; font-size: 2.8rem; }
+    h2 { font-weight: 600; font-size: 2rem; }
+    h3 { font-weight: 600; font-size: 1.5rem; }
+    h4 { font-weight: 500; font-size: 1.1rem; }
+
+    /* Layout */
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      background: radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.06) 0%, transparent 50%);
+    }
+    .hero-meta { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .hero-title { margin-bottom: 12px; }
+    .hero-subtitle { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 40px; font-weight: 400; }
+    .hero-source { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* KPI Strip */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      padding: 40px 0;
+    }
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      transition: box-shadow 0.2s;
+    }
+    .kpi-card:hover { box-shadow: 0 0 0 1px var(--border), 0 8px 24px rgba(0,0,0,0.12); }
+    .kpi-label { font-size: 0.78rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .kpi-value { font-size: 2rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+    .kpi-sub { font-size: 0.8rem; color: var(--text-secondary); margin-top: 6px; }
+    .kpi-badge {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 20px; margin-left: 6px;
+      vertical-align: middle;
+    }
+    .badge-neg { background: rgba(244,63,94,0.15); color: var(--negative); }
+    .badge-pos { background: rgba(16,185,129,0.15); color: var(--positive); }
+    .badge-warn { background: rgba(245,158,11,0.15); color: var(--warning); }
+
+    /* Section */
+    section {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-header { margin-bottom: 32px; }
+    .section-label {
+      font-size: 0.75rem; color: var(--accent); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
+    }
+    .section-desc { color: var(--text-secondary); font-size: 0.95rem; margin-top: 6px; }
+
+    /* Chart Grid */
+    .chart-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(580px, 1fr));
+      gap: 24px;
+    }
+    .chart-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 24px;
+    }
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px 28px;
+      transition: box-shadow 0.2s;
+    }
+    .chart-card:hover { box-shadow: 0 0 0 1px var(--border), 0 8px 24px rgba(0,0,0,0.1); }
+    .chart-card-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .chart-card-subtitle { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 20px; }
+    .chart-container {
+      position: relative;
+      height: 320px;
+    }
+    .chart-container-sm {
+      position: relative;
+      height: 260px;
+    }
+
+    /* Insight Callout */
+    .insight-box {
+      background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(139,92,246,0.04) 100%);
+      border: 1px solid rgba(59,130,246,0.15);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 20px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+    .insight-box strong { color: var(--text); font-weight: 600; }
+
+    /* Risk Scale */
+    .risk-scale {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    .risk-bar {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    /* Table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .data-table th {
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--surface-hover); }
+    .num-pos { color: var(--positive); font-weight: 600; }
+    .num-neg { color: var(--negative); font-weight: 600; }
+    .num-warn { color: var(--warning); font-weight: 600; }
+
+    /* Polarization visual */
+    .polar-visual {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .polar-bar-wrap {
+      flex: 1;
+      background: var(--surface-hover);
+      border-radius: 4px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .polar-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.8s ease;
+    }
+    .polar-label { font-size: 0.75rem; color: var(--text-secondary); min-width: 60px; }
+    .polar-value { font-size: 0.88rem; font-weight: 600; min-width: 44px; text-align: right; }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { animation: fadeInUp 0.6s ease-out both; }
+    .animate.delay-1 { animation-delay: 0.1s; }
+    .animate.delay-2 { animation-delay: 0.2s; }
+    .animate.delay-3 { animation-delay: 0.3s; }
+    .animate.delay-4 { animation-delay: 0.4s; }
+    .animate.delay-5 { animation-delay: 0.5s; }
+    .animate.delay-6 { animation-delay: 0.6s; }
+    /* chart-section: always visible — no opacity animation on chart containers */
+    .chart-section { opacity: 1; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* Print */
+    @media print {
+      body { background: white !important; color: black !important; }
+      .viz-menu { display: none; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .chart-card { break-inside: avoid; border: 1px solid #ddd; box-shadow: none; }
+      * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    /* Menu */
+    .viz-menu { position: fixed; top: 16px; right: 16px; z-index: 9999; }
+    .viz-menu-toggle {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(12px); transition: all 0.2s;
+    }
+    .viz-menu-toggle:hover { background: var(--surface-hover); }
+    .viz-menu-dropdown {
+      position: absolute; top: 52px; right: 0; min-width: 200px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 8px;
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: all 0.2s; backdrop-filter: blur(16px);
+    }
+    .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .viz-menu-dropdown button {
+      width: 100%; padding: 10px 14px; border: none; border-radius: 8px;
+      background: transparent; color: var(--text); font-size: 14px;
+      font-family: inherit; cursor: pointer; text-align: left;
+      display: flex; align-items: center; gap: 10px; transition: background 0.15s;
+    }
+    .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+
+    @media (max-width: 375px) { body { overflow-x: hidden; } }
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+      .chart-grid-2, .chart-grid-3 { grid-template-columns: 1fr; }
+      .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:10000;padding:8px 16px;background:var(--accent);color:white;text-decoration:none;border-radius:4px;" onfocus="this.style.cssText='position:fixed;left:16px;top:16px;z-index:10000;padding:8px 16px;background:var(--accent);color:white;text-decoration:none;border-radius:4px;'" onblur="this.style.cssText='position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;'">본문 바로가기</a>
+
+  <!-- MENU -->
+  <div class="viz-menu">
+    <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/>
+      </svg>
+    </button>
+    <div class="viz-menu-dropdown" id="vizMenuDropdown">
+      <button onclick="cycleTheme()"><span id="themeIcon">🌙</span><span id="themeLabel">다크 모드</span></button>
+      <button onclick="downloadImage()"><span>📥</span><span>PNG 다운로드</span></button>
+      <button onclick="window.print()"><span>🖨️</span><span>인쇄 / PDF</span></button>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="container">
+        <p class="hero-meta animate">마스턴투자운용 디지털혁신실 | 2026.02</p>
+        <h1 class="hero-title animate delay-1">2025년 건설경기 동향 및<br>2026년 전망</h1>
+        <p class="hero-subtitle animate delay-2">건설경기실사지수(CBSI) · 공사비 · PF 리스크 · 수주전망 · SOC예산 종합 분석</p>
+        <p class="hero-source animate delay-3">데이터 출처: CERIK, RICON, 국토교통부, 기획재정부, 금융감독원</p>
+      </div>
+    </section>
+
+    <!-- ===== KPI STRIP ===== -->
+    <section style="padding: 0; border-top: none;">
+      <div class="container">
+        <div class="kpi-strip">
+          <div class="kpi-card animate delay-1">
+            <div class="kpi-label">2025 CBSI 연평균</div>
+            <div class="kpi-value" style="color: var(--warning);" data-count="71.6" data-suffix="">71.6</div>
+            <div class="kpi-sub">기준(100) 대비 <span class="kpi-badge badge-neg">▼28.4p</span></div>
+          </div>
+          <div class="kpi-card animate delay-2">
+            <div class="kpi-label">기업 양극화 격차</div>
+            <div class="kpi-value" style="color: var(--negative);" data-count="33.5" data-suffix="p">33.5p</div>
+            <div class="kpi-sub">대기업 91.3 vs 중소 57.8</div>
+          </div>
+          <div class="kpi-card animate delay-3">
+            <div class="kpi-label">2026 수주전망</div>
+            <div class="kpi-value" style="color: var(--positive);" data-count="231" data-suffix="조">231조</div>
+            <div class="kpi-sub">전년비 <span class="kpi-badge badge-pos">+4.0%</span></div>
+          </div>
+          <div class="kpi-card animate delay-4">
+            <div class="kpi-label">PF 우발채무</div>
+            <div class="kpi-value" style="color: var(--negative);" data-count="32.5" data-suffix="조">32.5조</div>
+            <div class="kpi-sub">고위험 12조 <span class="kpi-badge badge-neg">44%</span></div>
+          </div>
+          <div class="kpi-card animate delay-5">
+            <div class="kpi-label">SOC 예산 증가율</div>
+            <div class="kpi-value" style="color: var(--positive);" data-count="9.1" data-suffix="%">9.1%</div>
+            <div class="kpi-sub">2026년 27.7조원</div>
+          </div>
+          <div class="kpi-card animate delay-6">
+            <div class="kpi-label">2025 건설투자 전망</div>
+            <div class="kpi-value" style="color: var(--negative);" data-count="-3.5" data-suffix="%">-3.5%</div>
+            <div class="kpi-sub">4년 연속 감소 추세</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 1: CBSI 추이 ===== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Section 01</p>
+          <h2>건설경기실사지수(CBSI) 추이</h2>
+          <p class="section-desc">건설기업 대상 체감경기 지수 — 100 기준, 초과 시 호황 / 미만 시 불황</p>
+        </div>
+        <div class="chart-grid-2 chart-section">
+          <div class="chart-card">
+            <div class="chart-card-title">연도별 CBSI 추이 (2020–2025)</div>
+            <div class="chart-card-subtitle">코로나 이후 반등 → 2022 하락 → 저점 유지</div>
+            <div class="chart-container">
+              <canvas id="cbsiTrend" role="img" aria-label="연도별 CBSI 추이 2020년부터 2025년까지 꺾은선 그래프"></canvas>
+            </div>
+            <div class="insight-box">
+              <strong>핵심 시사점:</strong> 2021년 91.4 고점 이후 4년 연속 기준선 이하 유지. 2025년 71.6으로 여전히 심각한 불황 구간. COVID 특수 수혜 종료 후 구조적 침체 진입.
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">2025년 기업규모별 CBSI 분포</div>
+            <div class="chart-card-subtitle">대기업과 중소기업 간 33.5p 격차 — 사상 최대 수준</div>
+            <div class="chart-container">
+              <canvas id="cbsiBySize" role="img" aria-label="기업 규모별 CBSI 비교 막대 그래프"></canvas>
+            </div>
+            <div class="insight-box">
+              <strong>양극화 심각:</strong> 대기업(91.3)은 기준선 근접한 반면, 중견(65.8)·중소(57.8)는 극심한 불황. 부도 위험은 중소·중견에 집중.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 2: 지역·공종별 양극화 ===== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Section 02</p>
+          <h2>지역별 · 공종별 양극화</h2>
+          <p class="section-desc">서울/수도권 집중과 주택부문 침체의 이중 구조</p>
+        </div>
+        <div class="chart-grid-2 chart-section">
+          <div class="chart-card">
+            <div class="chart-card-title">지역별 CBSI (2025년)</div>
+            <div class="chart-card-subtitle">서울 84.8 vs 지방 61.9 — 22.9p 격차</div>
+            <div style="margin-top: 16px;">
+              <div style="margin-bottom: 14px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="font-size:0.88rem; font-weight:600;">서울</span>
+                  <span style="font-size:0.88rem; font-weight:700; color:var(--positive);">84.8</span>
+                </div>
+                <div class="polar-bar-wrap"><div class="polar-bar-fill" style="width:84.8%; background: var(--positive);"></div></div>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="font-size:0.88rem; font-weight:600;">수도권</span>
+                  <span style="font-size:0.88rem; font-weight:700; color:var(--accent);">79.2</span>
+                </div>
+                <div class="polar-bar-wrap"><div class="polar-bar-fill" style="width:79.2%; background: var(--accent);"></div></div>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="font-size:0.88rem; font-weight:600;">지방 광역시</span>
+                  <span style="font-size:0.88rem; font-weight:700; color:var(--warning);">68.4</span>
+                </div>
+                <div class="polar-bar-wrap"><div class="polar-bar-fill" style="width:68.4%; background: var(--warning);"></div></div>
+              </div>
+              <div style="margin-bottom: 14px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="font-size:0.88rem; font-weight:600;">지방</span>
+                  <span style="font-size:0.88rem; font-weight:700; color:var(--negative);">61.9</span>
+                </div>
+                <div class="polar-bar-wrap"><div class="polar-bar-fill" style="width:61.9%; background: var(--negative);"></div></div>
+              </div>
+              <div style="border-top: 1px solid var(--border); margin-top: 20px; padding-top: 14px; font-size: 0.78rem; color: var(--text-secondary);">
+                ※ 100 기준선: 기준선 미만 = 불황, 기준선 초과 = 호황
+              </div>
+            </div>
+            <div class="insight-box">
+              <strong>수도권 집중:</strong> 서울·수도권은 상대적 선방. 지방은 미분양 누적·인구감소 이중 타격으로 회복 모멘텀 부재.
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">공종별 신규수주 비중 (2025년)</div>
+            <div class="chart-card-subtitle">주택 43.3조원 포함 총 발주 구조</div>
+            <div class="chart-container">
+              <canvas id="workTypeChart" role="img" aria-label="공종별 신규수주 비중 도넛 차트"></canvas>
+            </div>
+            <div class="insight-box">
+              <strong>비주택 대안:</strong> 주택 침체 속 데이터센터·물류·스마트팜 등 비주택 건축이 수요 보완. 토목은 SOC 예산 증가로 반등 기대.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 3: 건설공사비지수 ===== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Section 03</p>
+          <h2>건설공사비지수(CCI) 상승률 추이</h2>
+          <p class="section-desc">원자재·인건비 상승 → 2024 저점 → 2025 재확대 구조</p>
+        </div>
+        <div class="chart-card chart-section">
+          <div class="chart-card-title">건물/토목 공사비 상승률 비교 (2022–2025)</div>
+          <div class="chart-card-subtitle">RICON 건설공사비지수 기준 YoY 상승률(%)</div>
+          <div class="chart-container">
+            <canvas id="cciChart" role="img" aria-label="건물 및 토목 건설공사비 상승률 연도별 그룹 막대 그래프"></canvas>
+          </div>
+          <div class="insight-box" style="margin-top: 20px;">
+            <strong>비용 구조 변화:</strong> 2022년 급등(건물 +6.36%, 토목 +7.86%) 이후 안정화됐으나, 2025년 재확대(건물 +1.63%, 토목 +2.98%). 인건비 상승 압력이 지속되며 도급 수익성 악화 우려. 수주 잔고 소화 과정에서 원가 리스크 현실화 가능성.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 4: 수주전망 ===== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Section 04</p>
+          <h2>2026년 건설수주 전망</h2>
+          <p class="section-desc">총 231.2조원 (+4.0%) — 공공 주도 완만한 회복</p>
+        </div>
+        <div class="chart-grid-2 chart-section">
+          <div class="chart-card">
+            <div class="chart-card-title">수주 전망 부문별 증감률 (2026년)</div>
+            <div class="chart-card-subtitle">공공 +8.4% vs 민간 +2.2% — 공공 견인</div>
+            <div class="chart-container">
+              <canvas id="orderForecast" role="img" aria-label="2026년 수주전망 부문별 증감률 막대 그래프"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">건설수주 절대치 추이 (2021–2026F)</div>
+            <div class="chart-card-subtitle">수주 절벽 후 반등 — 그러나 2021년 고점 미회복</div>
+            <div class="chart-container">
+              <canvas id="orderAbsolute" role="img" aria-label="건설수주 절대치 2021년부터 2026년 전망까지 꺾은선 그래프"></canvas>
+            </div>
+            <div class="insight-box">
+              <strong>주의:</strong> 2022~2024년 급락 이후 반등이나, 2021년 고점(约258조) 대비 여전히 10% 이상 낮은 수준. 민간 주택 회복 속도가 관건.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 5: PF 부실 리스크 ===== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Section 05</p>
+          <h2>PF 우발채무 및 부실 리스크</h2>
+          <p class="section-desc">32.5조원 규모 — 고위험 비중 44% (약 12조원)</p>
+        </div>
+        <div class="chart-grid-2 chart-section">
+          <div class="chart-card">
+            <div class="chart-card-title">PF 우발채무 리스크 등급 구조</div>
+            <div class="chart-card-subtitle">금융감독원 기준 (2025.Q3)</div>
+            <div class="chart-container">
+              <canvas id="pfRisk" role="img" aria-label="PF 우발채무 리스크 등급별 구조 도넛 차트"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">건설사 법정관리 현황 및 영향</div>
+            <div class="chart-card-subtitle">2025년 7개사 법정관리 — 연쇄도산 리스크</div>
+            <div style="margin-top: 16px;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>구분</th>
+                    <th>지표</th>
+                    <th>수준</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>법정관리 건설사</td>
+                    <td>2025년 누적</td>
+                    <td class="num-neg">7개사</td>
+                  </tr>
+                  <tr>
+                    <td>PF 총 우발채무</td>
+                    <td>증권사 보유</td>
+                    <td class="num-warn">32.5조원</td>
+                  </tr>
+                  <tr>
+                    <td>고위험 비중</td>
+                    <td>요주의↑ 등급</td>
+                    <td class="num-neg">44% (12조원)</td>
+                  </tr>
+                  <tr>
+                    <td>브리지론 미전환</td>
+                    <td>착공 전 단계</td>
+                    <td class="num-neg">高위험</td>
+                  </tr>
+                  <tr>
+                    <td>지방 미분양</td>
+                    <td>2025.09 기준</td>
+                    <td class="num-warn">6.2만 호</td>
+                  </tr>
+                  <tr>
+                    <td>전국 미분양</td>
+                    <td>2025.09 기준</td>
+                    <td class="num-warn">7.2만 호</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="insight-box" style="margin-top: 16px;">
+                <strong>연쇄 리스크:</strong> 시행사 → 시공사 → 금융기관으로의 손실 전이 경로. 정부 PF 구조조정 펀드(+캠코) 작동 중이나, 지방 사업장 중심 정상화 지연.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 6: SOC 예산 ===== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Section 06</p>
+          <h2>2026년 SOC 예산 분석</h2>
+          <p class="section-desc">27.7조원 (+9.1%) — 철도·물류 중심 대폭 증액</p>
+        </div>
+        <div class="chart-card chart-section">
+          <div class="chart-card-title">SOC 세부 항목별 예산 증가율 (2026년)</div>
+          <div class="chart-card-subtitle">2025년 대비 증감률(%). 적색=삭감, 청색=증액</div>
+          <div class="chart-container" style="height: 360px;">
+            <canvas id="socBudget" role="img" aria-label="SOC 세부 예산 항목별 증감률 수평 막대 그래프"></canvas>
+          </div>
+          <div class="insight-box" style="margin-top: 20px;">
+            <strong>투자 기회:</strong> 철도(+26.3%)·물류(+21%)·지역도시개발(+12.7%) 급증. 도로(-2.4%)는 완공 사업 위주로 감소. GTX 광역철도, 가덕도신공항, 새만금 SOC 등 대형 프로젝트 발주 예상. 민관협력(PPP/BTO) 구조 활용 가능성 주목.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 7: 관세 리스크 ===== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">Section 07</p>
+          <h2>대미 관세 부과 시 건설경기 영향 시나리오</h2>
+          <p class="section-desc">트럼프 2기 관세 정책 → 국내 건설경기 파급 채널</p>
+        </div>
+        <div class="chart-grid-3 chart-section">
+          <div class="chart-card">
+            <div class="chart-card-title">시나리오별 건설투자 영향</div>
+            <div class="chart-card-subtitle">GDP 경로 통한 간접 충격</div>
+            <div class="chart-container-sm">
+              <canvas id="tariffScenario" role="img" aria-label="관세 시나리오별 건설투자 영향 막대 그래프"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">파급 채널 구조</div>
+            <div class="chart-card-subtitle">수출→GDP→건설 투자 연결 고리</div>
+            <div style="margin-top: 16px; font-size: 0.85rem;">
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="background:rgba(244,63,94,0.08); border:1px solid rgba(244,63,94,0.2); border-radius:8px; padding:12px 16px;">
+                  <div style="font-weight:600; color:var(--negative); margin-bottom:4px;">① 수출 충격</div>
+                  <div style="color:var(--text-secondary); font-size:0.8rem;">대미 수출 -10~20% → GDP -0.4~0.8%p</div>
+                </div>
+                <div style="text-align:center; color:var(--text-secondary); font-size:1.2rem;">↓</div>
+                <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:8px; padding:12px 16px;">
+                  <div style="font-weight:600; color:var(--warning); margin-bottom:4px;">② 기업심리 위축</div>
+                  <div style="color:var(--text-secondary); font-size:0.8rem;">설비투자 감소 → 민간 건설 수요 감소</div>
+                </div>
+                <div style="text-align:center; color:var(--text-secondary); font-size:1.2rem;">↓</div>
+                <div style="background:rgba(59,130,246,0.08); border:1px solid rgba(59,130,246,0.2); border-radius:8px; padding:12px 16px;">
+                  <div style="font-weight:600; color:var(--accent); margin-bottom:4px;">③ 정부 대응</div>
+                  <div style="color:var(--text-secondary); font-size:0.8rem;">SOC 추경 검토 → 건설경기 방어막</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">철강·알루미늄 수입가 영향</div>
+            <div class="chart-card-subtitle">25% 관세 부과 시 국내 건설 원가 상승</div>
+            <div class="chart-container-sm">
+              <canvas id="materialCost" role="img" aria-label="관세로 인한 건설 원자재 가격 상승 영향 막대 그래프"></canvas>
+            </div>
+            <div style="margin-top: 12px; font-size: 0.78rem; color: var(--text-secondary);">
+              ※ KDI 추정치 기반 분석. 실제 영향은 환율·시장 구조에 따라 상이.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4 style="margin-bottom: 10px; font-size: 0.9rem;">데이터 출처</h4>
+            <ul style="list-style: none; font-size: 0.8rem; color: var(--text-secondary); line-height: 2;">
+              <li>· 한국건설산업연구원(CERIK) — CBSI, 수주전망</li>
+              <li>· 한국건설기술연구원(RICON) — 건설공사비지수</li>
+              <li>· 국토교통부 — 인허가·착공·준공 통계</li>
+              <li>· 기획재정부 — 2026년 SOC 예산안</li>
+              <li>· 금융감독원 — PF 우발채무 현황</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin-bottom: 10px; font-size: 0.9rem;">보고서 정보</h4>
+            <ul style="list-style: none; font-size: 0.8rem; color: var(--text-secondary); line-height: 2;">
+              <li>· 원본: 마스턴투자운용 (2026.02)</li>
+              <li>· 팩트체크·보완: Claude AI 보조 분석</li>
+              <li>· 시각화 생성: 2026-03-30</li>
+              <li>· 본 자료는 투자 권유가 아님</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    // === Menu ===
+    function toggleMenu() {
+      var dropdown = document.getElementById('vizMenuDropdown');
+      if (dropdown) dropdown.classList.toggle('open');
+    }
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.viz-menu')) {
+        var dropdown = document.getElementById('vizMenuDropdown');
+        if (dropdown) dropdown.classList.remove('open');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var dropdown = document.getElementById('vizMenuDropdown');
+        if (dropdown) dropdown.classList.remove('open');
+      }
+    });
+
+    // === Theme ===
+    var savedTheme = (function(){ try { return localStorage.getItem('viz-theme'); } catch(e){ return null; } })();
+    var currentTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    function applyTheme(t) {
+      document.documentElement.className = 'theme-' + t;
+      document.getElementById('themeIcon').textContent = t === 'dark' ? '🌙' : '☀️';
+      document.getElementById('themeLabel').textContent = t === 'dark' ? '다크 모드' : '라이트 모드';
+      try { localStorage.setItem('viz-theme', t); } catch(e) {}
+      currentTheme = t;
+      if (typeof onThemeChange === 'function') onThemeChange();
+    }
+    function cycleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
+    applyTheme(currentTheme);
+
+    // === Scroll Reveal ===
+    document.querySelectorAll('[data-reveal]').forEach(function(el) { el.classList.add('reveal'); });
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+    // === Number Counter ===
+    function animateCounters() {
+      document.querySelectorAll('[data-count]').forEach(function(el) {
+        if (el.dataset.counted) return;
+        el.dataset.counted = '1';
+        var target = parseFloat(el.dataset.count);
+        var suffix = el.dataset.suffix || '';
+        var isNeg = target < 0;
+        var absTarget = Math.abs(target);
+        var start = performance.now(), duration = 1400;
+        (function tick(now) {
+          var p = Math.min((now - start) / duration, 1), eased = 1 - Math.pow(1 - p, 3);
+          var val = absTarget * eased;
+          var disp = Number.isInteger(target) ? Math.round(val) : val.toFixed(1);
+          el.textContent = (isNeg ? '-' : '') + disp + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }
+    var counterEl = document.querySelector('[data-count]');
+    if (counterEl) {
+      var cObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); cObs.disconnect(); } });
+      }, { threshold: 0.3 });
+      cObs.observe(counterEl);
+    }
+
+    // === Download PNG ===
+    async function downloadImage() {
+      var menu = document.querySelector('.viz-menu');
+      menu.style.display = 'none';
+      try {
+        var url = await htmlToImage.toPng(document.body, { quality: 1, pixelRatio: 2 });
+        var a = document.createElement('a'); a.href = url;
+        a.download = 'construction-market-2025-dashboard.png'; a.click();
+      } catch(e) { console.error('Download failed:', e); }
+      menu.style.display = '';
+    }
+
+    // =====================
+    // === Chart Manager ===
+    // =====================
+    var ChartManager = {
+      charts: new Map(),
+      safeInit: function(canvasId, config) {
+        if (typeof Chart === 'undefined') {
+          console.error('Chart.js not loaded');
+          return null;
+        }
+        try {
+          if (this.charts.has(canvasId)) {
+            this.charts.get(canvasId).destroy();
+            this.charts.delete(canvasId);
+          }
+          var ctx = document.getElementById(canvasId);
+          if (!ctx) { console.error('Canvas not found: ' + canvasId); return null; }
+          if (ctx.chart) { ctx.chart.destroy(); delete ctx.chart; }
+          ctx.setAttribute('role', 'img');
+          var chart = new Chart(ctx, config);
+          this.charts.set(canvasId, chart);
+          return chart;
+        } catch(err) {
+          console.error('Chart init failed for ' + canvasId + ':', err);
+          return null;
+        }
+      },
+      destroyAll: function() {
+        this.charts.forEach(function(chart) { try { chart.destroy(); } catch(e) {} });
+        this.charts.clear();
+      }
+    };
+
+    var chartsBuilt = false;
+
+    function getThemeColors() {
+      var isDark = document.documentElement.classList.contains('theme-dark');
+      return {
+        text: isDark ? '#EDEDED' : '#0f172a',
+        textSec: isDark ? '#888' : '#64748b',
+        grid: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.07)',
+        accent: isDark ? '#3b82f6' : '#2563eb',
+        accentSec: isDark ? '#8b5cf6' : '#7c3aed',
+        positive: isDark ? '#10b981' : '#059669',
+        negative: isDark ? '#f43f5e' : '#e11d48',
+        warning: isDark ? '#f59e0b' : '#d97706',
+        surface: isDark ? '#1C1C1C' : '#F0F0EF'
+      };
+    }
+
+    function buildCharts() {
+      if (typeof Chart === 'undefined') { console.error('Chart.js not loaded'); return; }
+      if (!ChartManager) { return; }  // ChartManager not yet initialized (called too early)
+      ChartManager.destroyAll();
+      var c = getThemeColors();
+
+      var baseFont = { family: "'Noto Sans KR', 'Inter', sans-serif", size: 12 };
+      var tickColor = c.textSec;
+      var gridColor = c.grid;
+
+      // === Chart 1: CBSI Trend (Line) ===
+      ChartManager.safeInit('cbsiTrend', {
+        type: 'line',
+        data: {
+          labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+          datasets: [{
+            label: 'CBSI',
+            data: [72.4, 91.4, 68.6, 72.9, 71.2, 71.6],
+            borderColor: c.accent,
+            backgroundColor: 'rgba(59,130,246,0.08)',
+            borderWidth: 2.5,
+            pointBackgroundColor: c.accent,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            fill: true,
+            tension: 0.35
+          }, {
+            label: '기준선 (100)',
+            data: [100, 100, 100, 100, 100, 100],
+            borderColor: 'rgba(244,63,94,0.4)',
+            borderWidth: 1.5,
+            borderDash: [6, 4],
+            segment: { borderDash: function() { return [6, 4]; } },
+            pointRadius: 0,
+            fill: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10, bottom: 10, left: 10, right: 10 } },
+          plugins: {
+            legend: { labels: { color: tickColor, font: baseFont, boxWidth: 16 } },
+            tooltip: { enabled: true }
+          },
+          scales: {
+            x: {
+              ticks: { color: tickColor, font: baseFont },
+              grid: { color: gridColor }
+            },
+            y: {
+              min: 50, max: 110,
+              ticks: { color: tickColor, font: baseFont },
+              grid: { color: gridColor }
+            }
+          }
+        }
+      });
+
+      // === Chart 2: CBSI by Company Size (Bar) ===
+      ChartManager.safeInit('cbsiBySize', {
+        type: 'bar',
+        data: {
+          labels: ['대기업', '중견기업', '중소기업'],
+          datasets: [{
+            label: 'CBSI (2025년)',
+            data: [91.3, 65.8, 57.8],
+            backgroundColor: [
+              'rgba(16,185,129,0.75)',
+              'rgba(245,158,11,0.75)',
+              'rgba(244,63,94,0.75)'
+            ],
+            borderColor: [
+              'rgba(16,185,129,1)',
+              'rgba(245,158,11,1)',
+              'rgba(244,63,94,1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                afterLabel: function(ctx) { return ctx.raw < 100 ? '기준선 이하 (불황)' : '기준선 초과 (호황)'; }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: tickColor, font: baseFont }, grid: { display: false } },
+            y: {
+              min: 40, max: 110,
+              ticks: { color: tickColor, font: baseFont },
+              grid: { color: gridColor }
+            }
+          }
+        }
+      });
+
+      // === Chart 3: Work Type Donut ===
+      ChartManager.safeInit('workTypeChart', {
+        type: 'doughnut',
+        data: {
+          labels: ['주택건축', '비주택건축', '토목', '플랜트/기타'],
+          datasets: [{
+            data: [37.5, 28.2, 24.8, 9.5],
+            backgroundColor: [
+              'rgba(244,63,94,0.75)',
+              'rgba(59,130,246,0.75)',
+              'rgba(16,185,129,0.75)',
+              'rgba(139,92,246,0.75)'
+            ],
+            borderColor: [
+              'rgba(244,63,94,1)',
+              'rgba(59,130,246,1)',
+              'rgba(16,185,129,1)',
+              'rgba(139,92,246,1)'
+            ],
+            borderWidth: 2,
+            hoverOffset: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '62%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: tickColor, font: baseFont, padding: 12, boxWidth: 14 }
+            },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                label: function(ctx) { return ' ' + ctx.label + ': ' + ctx.raw + '%'; }
+              }
+            }
+          }
+        }
+      });
+
+      // === Chart 4: CCI (Grouped Bar) ===
+      ChartManager.safeInit('cciChart', {
+        type: 'bar',
+        data: {
+          labels: ['2022', '2023', '2024', '2025'],
+          datasets: [{
+            label: '건물 공사비 상승률',
+            data: [6.36, 2.78, 0.87, 1.63],
+            backgroundColor: 'rgba(59,130,246,0.7)',
+            borderColor: 'rgba(59,130,246,1)',
+            borderWidth: 1,
+            borderRadius: 5
+          }, {
+            label: '토목 공사비 상승률',
+            data: [7.86, 2.66, 1.49, 2.98],
+            backgroundColor: 'rgba(16,185,129,0.7)',
+            borderColor: 'rgba(16,185,129,1)',
+            borderWidth: 1,
+            borderRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10 } },
+          plugins: {
+            legend: { labels: { color: tickColor, font: baseFont, boxWidth: 16 } },
+            tooltip: {
+              enabled: true,
+              callbacks: { label: function(ctx) { return ' ' + ctx.dataset.label + ': +' + ctx.raw + '%'; } }
+            }
+          },
+          scales: {
+            x: { ticks: { color: tickColor, font: baseFont }, grid: { display: false } },
+            y: {
+              min: 0, max: 10,
+              ticks: {
+                color: tickColor, font: baseFont,
+                callback: function(v) { return v + '%'; }
+              },
+              grid: { color: gridColor }
+            }
+          }
+        }
+      });
+
+      // === Chart 5: Order Forecast (Bar) ===
+      ChartManager.safeInit('orderForecast', {
+        type: 'bar',
+        data: {
+          labels: ['공공 건설', '민간 건설', '전체'],
+          datasets: [{
+            label: '2026년 전망 증감률(%)',
+            data: [8.4, 2.2, 4.0],
+            backgroundColor: [
+              'rgba(59,130,246,0.75)',
+              'rgba(139,92,246,0.75)',
+              'rgba(16,185,129,0.75)'
+            ],
+            borderColor: [
+              'rgba(59,130,246,1)',
+              'rgba(139,92,246,1)',
+              'rgba(16,185,129,1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: { label: function(ctx) { return ' 증감률: +' + ctx.raw + '%'; } }
+            }
+          },
+          scales: {
+            x: { ticks: { color: tickColor, font: baseFont }, grid: { display: false } },
+            y: {
+              min: 0, max: 12,
+              ticks: { color: tickColor, font: baseFont, callback: function(v) { return '+' + v + '%'; } },
+              grid: { color: gridColor }
+            }
+          }
+        }
+      });
+
+      // === Chart 6: Order Absolute (Line) ===
+      ChartManager.safeInit('orderAbsolute', {
+        type: 'line',
+        data: {
+          labels: ['2021', '2022', '2023', '2024', '2025E', '2026F'],
+          datasets: [{
+            label: '건설수주 (조원)',
+            data: [258.0, 231.5, 198.3, 204.7, 222.3, 231.2],
+            borderColor: c.accent,
+            backgroundColor: 'rgba(59,130,246,0.07)',
+            borderWidth: 2.5,
+            pointBackgroundColor: [c.textSec, c.textSec, c.textSec, c.textSec, c.warning, c.positive],
+            pointRadius: [4, 4, 4, 4, 6, 7],
+            pointHoverRadius: 8,
+            fill: true,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: { label: function(ctx) { return ' ' + ctx.raw + '조원'; } }
+            }
+          },
+          scales: {
+            x: { ticks: { color: tickColor, font: baseFont }, grid: { display: false } },
+            y: {
+              min: 170, max: 280,
+              ticks: { color: tickColor, font: baseFont, callback: function(v) { return v + '조'; } },
+              grid: { color: gridColor }
+            }
+          }
+        }
+      });
+
+      // === Chart 7: PF Risk Donut ===
+      ChartManager.safeInit('pfRisk', {
+        type: 'doughnut',
+        data: {
+          labels: ['고위험 (요주의↑)', '중위험 (정상 하단)', '저위험 (정상)'],
+          datasets: [{
+            data: [12.0, 8.5, 12.0],
+            backgroundColor: [
+              'rgba(244,63,94,0.8)',
+              'rgba(245,158,11,0.8)',
+              'rgba(16,185,129,0.8)'
+            ],
+            borderColor: [
+              'rgba(244,63,94,1)',
+              'rgba(245,158,11,1)',
+              'rgba(16,185,129,1)'
+            ],
+            borderWidth: 2,
+            hoverOffset: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '55%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: tickColor, font: baseFont, padding: 10, boxWidth: 14 }
+            },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                label: function(ctx) { return ' ' + ctx.label + ': ' + ctx.raw + '조원'; }
+              }
+            }
+          }
+        }
+      });
+
+      // === Chart 8: SOC Budget (Horizontal Bar) ===
+      ChartManager.safeInit('socBudget', {
+        type: 'bar',
+        data: {
+          labels: ['철도·도시철도', '물류·항만', '지역도시개발', '수자원', '환경', '전체 SOC', '도로'],
+          datasets: [{
+            label: '예산 증감률 (%)',
+            data: [26.3, 21.0, 12.7, 7.2, 4.8, 9.1, -2.4],
+            backgroundColor: [
+              'rgba(59,130,246,0.8)',
+              'rgba(59,130,246,0.75)',
+              'rgba(59,130,246,0.7)',
+              'rgba(59,130,246,0.6)',
+              'rgba(59,130,246,0.5)',
+              'rgba(16,185,129,0.75)',
+              'rgba(244,63,94,0.7)'
+            ],
+            borderColor: [
+              'rgba(59,130,246,1)',
+              'rgba(59,130,246,1)',
+              'rgba(59,130,246,1)',
+              'rgba(59,130,246,1)',
+              'rgba(59,130,246,1)',
+              'rgba(16,185,129,1)',
+              'rgba(244,63,94,1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 5,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10, right: 20 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                label: function(ctx) {
+                  var v = ctx.raw;
+                  return ' ' + (v >= 0 ? '+' : '') + v + '%';
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: tickColor, font: baseFont, callback: function(v) { return v + '%'; } },
+              grid: { color: gridColor }
+            },
+            y: {
+              ticks: { color: tickColor, font: { family: "'Noto Sans KR', 'Inter', sans-serif", size: 12 } },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+
+      // === Chart 9: Tariff Scenario (Bar) ===
+      ChartManager.safeInit('tariffScenario', {
+        type: 'bar',
+        data: {
+          labels: ['기준 시나리오\n(관세 없음)', '보통 충격\n(관세 10%)', '심각 충격\n(관세 25%+)'],
+          datasets: [{
+            label: '건설투자 증감률(%)',
+            data: [-3.5, -5.2, -7.8],
+            backgroundColor: [
+              'rgba(59,130,246,0.7)',
+              'rgba(245,158,11,0.75)',
+              'rgba(244,63,94,0.8)'
+            ],
+            borderColor: [
+              'rgba(59,130,246,1)',
+              'rgba(245,158,11,1)',
+              'rgba(244,63,94,1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 5,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: { label: function(ctx) { return ' 건설투자: ' + ctx.raw + '%'; } }
+            }
+          },
+          scales: {
+            x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } },
+            y: {
+              min: -10, max: 0,
+              ticks: { color: tickColor, font: baseFont, callback: function(v) { return v + '%'; } },
+              grid: { color: gridColor }
+            }
+          }
+        }
+      });
+
+      // === Chart 10: Material Cost (Bar) ===
+      ChartManager.safeInit('materialCost', {
+        type: 'bar',
+        data: {
+          labels: ['형강', 'H빔', '알루미늄\n새시', '스테인리스\n파이프'],
+          datasets: [{
+            label: '관세 25% 시 가격 상승 추정(%)',
+            data: [4.2, 4.8, 6.5, 3.8],
+            backgroundColor: 'rgba(244,63,94,0.65)',
+            borderColor: 'rgba(244,63,94,1)',
+            borderWidth: 1,
+            borderRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 10 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: { label: function(ctx) { return ' 예상 상승: +' + ctx.raw + '%'; } }
+            }
+          },
+          scales: {
+            x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } },
+            y: {
+              min: 0, max: 10,
+              ticks: { color: tickColor, font: baseFont, callback: function(v) { return '+' + v + '%'; } },
+              grid: { color: gridColor }
+            }
+          }
+        }
+      });
+
+      chartsBuilt = true;
+      // Force all charts to recalculate their dimensions after DOM is fully painted
+      setTimeout(function() {
+        ChartManager.charts.forEach(function(chart) {
+          try { chart.resize(); } catch(e) {}
+        });
+      }, 50);
+    }
+
+    function onThemeChange() {
+      if (!ChartManager || !chartsBuilt) return;  // skip if not yet initialized
+      chartsBuilt = false;
+      buildCharts();
+    }
+
+    window.addEventListener('load', function() {
+      if (typeof Chart === 'undefined') {
+        // Chart.js not yet available — wait for fallback CDN
+        var tries = 0;
+        var waitForChart = setInterval(function() {
+          tries++;
+          if (typeof Chart !== 'undefined') {
+            Chart.defaults.animation = false;
+            clearInterval(waitForChart);
+            buildCharts();
+          } else if (tries > 20) {
+            clearInterval(waitForChart);
+            console.error('Chart.js failed to load from both CDNs');
+          }
+        }, 200);
+      } else {
+        buildCharts();
+      }
+    });
+  </script>
+</body>
+</html>
