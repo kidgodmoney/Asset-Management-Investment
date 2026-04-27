@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 시대 오피스·물류센터 IT 인프라 | 마스턴투자운용</title>
+  <style>
+    :root {
+      --color-bg: #0a0a0f;
+      --color-surface: #12121a;
+      --color-surface-2: #1a1a26;
+      --color-border: rgba(255,255,255,0.08);
+      --color-accent: #6366f1;
+      --color-accent-2: #818cf8;
+      --color-gold: #f59e0b;
+      --color-gold-muted: rgba(245,158,11,0.15);
+      --color-text: #e2e8f0;
+      --color-muted: #64748b;
+      --color-green: #10b981;
+      --color-red: #f43f5e;
+      --color-cyan: #06b6d4;
+
+      --font-display: 'Pretendard', -apple-system, 'Noto Sans KR', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-display);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(6,182,212,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 90% 70%, rgba(245,158,11,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-2);
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--color-muted);
+      max-width: 620px;
+      margin: 0 auto var(--space-lg);
+    }
+
+    .hero-metrics {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .metric-chip {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.75rem;
+      text-align: center;
+      min-width: 150px;
+    }
+
+    .metric-chip .value {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .metric-chip .label {
+      font-size: 0.72rem;
+      color: var(--color-muted);
+      margin-top: 0.3rem;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    /* ── THREAT SECTION ── */
+    .threat-banner {
+      background: linear-gradient(135deg, rgba(244,63,94,0.08) 0%, rgba(99,102,241,0.08) 100%);
+      border: 1px solid rgba(244,63,94,0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md) var(--space-md) var(--space-md) calc(var(--space-md) + 4px);
+      border-left: 4px solid var(--color-red);
+      margin-bottom: var(--space-md);
+    }
+
+    .threat-banner .threat-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-red);
+      margin-bottom: 0.5rem;
+    }
+
+    .threat-banner p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--color-text);
+    }
+
+    .threat-banner strong { color: #fff; }
+
+    /* ── STATS GRID ── */
+    .stats-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    @media (max-width: 640px) {
+      .stats-3 { grid-template-columns: 1fr 1fr; }
+      .stats-3 .stat-card:last-child { grid-column: span 2; }
+    }
+
+    .stat-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+
+    .stat-card .stat-val {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .stat-card .stat-source {
+      font-size: 0.65rem;
+      color: rgba(100,116,139,0.6);
+      margin-top: 0.5rem;
+    }
+
+    /* ── OFFICE REQUIREMENTS ── */
+    .req-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+    }
+
+    @media (max-width: 700px) {
+      .req-grid { grid-template-columns: 1fr; }
+    }
+
+    .req-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .req-card:hover { border-color: rgba(99,102,241,0.4); }
+
+    .req-card .req-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .req-card .req-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--color-text);
+    }
+
+    .req-card .req-desc {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    .req-card .req-tag {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(99,102,241,0.15);
+      color: var(--color-accent-2);
+    }
+
+    /* ── LOGISTICS SECTION ── */
+    .logistics-section {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .trap-callout {
+      background: var(--color-surface-2);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-left: 4px solid var(--color-gold);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: var(--space-md) 0;
+    }
+
+    .trap-callout .trap-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .trap-callout p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .infra-checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin: var(--space-md) 0;
+    }
+
+    @media (max-width: 600px) {
+      .infra-checklist { grid-template-columns: 1fr; }
+    }
+
+    .infra-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+    }
+
+    .infra-item .infra-icon {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--color-gold-muted);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+    }
+
+    .infra-item .infra-text .it-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .infra-item .infra-text .it-desc {
+      font-size: 0.75rem;
+      color: var(--color-muted);
+    }
+
+    .quote-block {
+      background: var(--color-surface-2);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: var(--space-md) 0;
+      position: relative;
+    }
+
+    .quote-block::before {
+      content: '"';
+      position: absolute;
+      top: -0.5rem;
+      left: 1.25rem;
+      font-size: 4rem;
+      color: var(--color-accent);
+      opacity: 0.3;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    .quote-block blockquote {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      padding-left: 1rem;
+    }
+
+    .quote-block cite {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--color-muted);
+      font-style: normal;
+      padding-left: 1rem;
+    }
+
+    /* ── SOURCES ── */
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .source-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s;
+      display: block;
+    }
+
+    .source-card:hover { border-color: rgba(99,102,241,0.4); }
+    .source-card .src-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .source-card .src-name { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .source-card .src-desc { font-size: 0.75rem; color: var(--color-muted); line-height: 1.4; }
+
+    /* ── LINKEDIN POST ── */
+    .linkedin-section {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .linkedin-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .linkedin-card::before {
+      content: 'in';
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #0077b5;
+      opacity: 0.3;
+    }
+
+    .linkedin-text {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      white-space: pre-wrap;
+      color: var(--color-text);
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--space-sm);
+      transition: opacity 0.2s;
+    }
+
+    .copy-btn:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      color: var(--color-muted);
+      font-size: 0.8rem;
+    }
+
+    footer strong { color: var(--color-text); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent);
+      margin: 0 var(--space-md);
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--color-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--color-surface-2); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">마스턴투자운용 · 디지털혁신실 · 2026 Q2</div>
+    <h1>오피스·물류센터,<br><em>IT 인프라가 자산 가치를 결정한다</em></h1>
+    <p class="hero-sub">
+      AI 확산이 바꾼 부동산 경쟁력의 핵심 변수.<br>
+      IT 관점에서 본 인프라 설계의 새로운 기준.
+    </p>
+    <div class="hero-metrics">
+      <div class="metric-chip">
+        <div class="value" style="color: var(--color-red)">83%</div>
+        <div class="label">섀도 AI 통제<br>기술 수단 없는 기업</div>
+      </div>
+      <div class="metric-chip">
+        <div class="value" style="color: var(--color-gold)">$670K</div>
+        <div class="label">섀도 AI 침해 시<br>추가 비용 (건당)</div>
+      </div>
+      <div class="metric-chip">
+        <div class="value" style="color: var(--color-red)">97%</div>
+        <div class="label">AI 침해 기업 중<br>접근 통제 미비</div>
+      </div>
+      <div class="metric-chip">
+        <div class="value" style="color: var(--color-cyan)">2026</div>
+        <div class="label">Physical AI<br>물류 상용화 원년</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SHADOW AI THREAT
+══════════════════════════════════════════════ -->
+<section>
+  <div class="section-label">위협 현황</div>
+  <h2>섀도 AI — 이미 벌어지고 있는 일</h2>
+
+  <div class="threat-banner">
+    <div class="threat-label">IBM 2025 Cost of Data Breach Report</div>
+    <p>
+      섀도 AI(Shadow AI)란 직원들이 회사 승인 없이 ChatGPT 같은 <strong>외부 AI 서비스에 내부 문서를 올리는 행위</strong>입니다.<br>
+      기술적 통제 수단 없이 교육과 정책에만 의존하는 기업이 83%에 달하며,<br>
+      이로 인해 데이터 침해가 발생할 경우 <strong>건당 $670,000의 추가 비용</strong>이 발생합니다.<br>
+    </p>
+  </div>
+
+  <div class="stats-3">
+    <div class="stat-card">
+      <div class="stat-val" style="color: var(--color-red)">83%</div>
+      <div class="stat-label">기업이 외부 AI 데이터 업로드를 막을 기술적 수단 없음</div>
+      <div class="stat-source">IBM 2025 Breach Report</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color: var(--color-gold)">$670K</div>
+      <div class="stat-label">섀도 AI 관련 침해 시 표준 대비 추가 비용 (건당)</div>
+      <div class="stat-source">IBM 2025 Breach Report</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color: var(--color-red)">97%</div>
+      <div class="stat-label">AI 모델 침해를 경험한 기업 중 접근 제어 미비 비율</div>
+      <div class="stat-source">IBM 2025 Breach Report</div>
+    </div>
+  </div>
+
+  <div class="trap-callout">
+    <div class="trap-label">IT실장의 진단</div>
+    <p>
+      이건 보안 정책의 문제가 아닙니다. <strong>인프라 설계의 문제</strong>입니다.<br>
+      데이터가 회사 밖으로 나가지 않는 구조 - 온프레미스 AI 환경 - 이 답입니다.<br>
+      그리고 그 환경을 만들 수 있는 건물인지가, 이제 오피스 선택의 기준이 됩니다.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     OFFICE IT REQUIREMENTS
+══════════════════════════════════════════════ -->
+<section>
+  <div class="section-label">오피스 IT 체크리스트</div>
+  <h2>AI 거버넌스 기업의 빌딩 선택 기준</h2>
+
+  <div class="req-grid">
+    <div class="req-card">
+      <span class="req-icon">⚡</span>
+      <div class="req-title">전력 용량</div>
+      <div class="req-desc">
+        전용 GPU 서버룸 운영을 위한 충분한 전력 공급과 최소 2N 이중화 구성.
+        AI 워크로드는 일반 IT 대비 3~5배 전력 소비.
+      </div>
+      <span class="req-tag">필수 인프라</span>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">🔒</span>
+      <div class="req-title">네트워크 분리</div>
+      <div class="req-desc">
+        내부망과 외부망의 물리적 분리가 가능한 구조. AI 환경에서 데이터가
+        외부로 유출되지 않도록 망분리 설계가 입주 전 반영되어야 함.
+      </div>
+      <span class="req-tag">보안 핵심</span>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">❄️</span>
+      <div class="req-title">냉각 설계</div>
+      <div class="req-desc">
+        고밀도 서버 운영을 위한 정밀 공조 또는 액냉 준비 공간.
+        사후 공사로는 비용과 공간 제약이 커서 설계 단계 반영이 필수.
+      </div>
+      <span class="req-tag">설계 선반영</span>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">🛡️</span>
+      <div class="req-title">물리 보안</div>
+      <div class="req-desc">
+        서버룸 접근 통제, CCTV, 생체인증 등 물리 보안 체계.
+        AI 인프라는 사이버 보안만큼 물리 보안도 중요.
+      </div>
+      <span class="req-tag">컴플라이언스</span>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">📡</span>
+      <div class="req-title">고대역 연결</div>
+      <div class="req-desc">
+        AI 모델 업데이트 및 내부 데이터 동기화를 위한 고대역 인터넷.
+        다중 ISP 이중화 구성으로 단일 장애점 제거.
+      </div>
+      <span class="req-tag">안정성</span>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">📐</span>
+      <div class="req-title">확장 여유 공간</div>
+      <div class="req-desc">
+        AI 인프라는 빠르게 확장됨. 초기 서버룸 면적의 2배 여유 확보.
+        랙 증설 경로와 케이블 트레이 공간 사전 계획 필수.
+      </div>
+      <span class="req-tag">미래 대비</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     LOGISTICS CENTER
+══════════════════════════════════════════════ -->
+<div class="logistics-section">
+  <section>
+    <div class="section-label">물류센터 IT 인프라</div>
+    <h2>Physical AI 시대, IT 후시공의 덫</h2>
+
+    <div class="quote-block">
+      <blockquote>
+        Integration determines success more than any specific automation technology.
+        In 2026, integration planning will be treated as a mission-critical stage of any automation project.
+      </blockquote>
+      <cite>— Hy-Tek Intralogistics, 2026 Warehouse Automation Trends</cite>
+    </div>
+
+    <p style="font-size: 1rem; line-height: 1.8; margin-bottom: var(--space-md); color: var(--color-muted);">
+      2026년, Physical AI가 물류 현장에 실제 투입되고 있습니다. AMR(자율이동로봇)이 스스로 판단하고,<br>
+      AI가 WMS(창고관리시스템) 전체를 조율합니다. 하지만 로봇 기술보다 먼저 결정되어야 할 것이 있습니다.<br>
+      <strong style="color: var(--color-text);">IT 인프라 설계입니다.</strong>
+    </p>
+
+    <div class="section-label">설계 단계 선반영 필수 항목</div>
+    <div class="infra-checklist">
+      <div class="infra-item">
+        <div class="infra-icon">🤖</div>
+        <div class="infra-text">
+          <div class="it-title">AMR 충전 인프라</div>
+          <div class="it-desc">로봇 동선과 충전 스테이션 전원 공급 경로를 바닥 시공 전 설계</div>
+        </div>
+      </div>
+      <div class="infra-item">
+        <div class="infra-icon">💻</div>
+        <div class="infra-text">
+          <div class="it-title">에지 컴퓨팅 배치</div>
+          <div class="it-desc">현장 AI 추론을 위한 분산 엣지 서버 위치와 전원·냉각 사전 확보</div>
+        </div>
+      </div>
+      <div class="infra-item">
+        <div class="infra-icon">📶</div>
+        <div class="infra-text">
+          <div class="it-title">고밀도 Wi-Fi 설계</div>
+          <div class="it-desc">수백 대 로봇의 동시 통신을 위한 AP 배치와 주파수 간섭 설계</div>
+        </div>
+      </div>
+      <div class="infra-item">
+        <div class="infra-icon">🔁</div>
+        <div class="infra-text">
+          <div class="it-title">디지털 트윈 연동</div>
+          <div class="it-desc">실시간 센서 데이터 수집을 위한 IoT 배선과 데이터 백본 사전 포설</div>
+        </div>
+      </div>
+      <div class="infra-item">
+        <div class="infra-icon">⚡</div>
+        <div class="infra-text">
+          <div class="it-title">에너지 관리 인프라</div>
+          <div class="it-desc">전기화 설비 증가에 따른 전력 모니터링 시스템과 스마트 분전반</div>
+        </div>
+      </div>
+      <div class="infra-item">
+        <div class="infra-icon">🔗</div>
+        <div class="infra-text">
+          <div class="it-title">WES 통합 네트워크</div>
+          <div class="it-desc">WMS·WCS·로봇·컨베이어를 단일 오케스트레이션 레이어로 연결하는 백본</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trap-callout">
+      <div class="trap-label">IT 후시공의 덫</div>
+      <p>
+        물류센터 완공 후 위 항목들을 사후 추가하면 - 바닥 철거, 배선 재공사, 운영 중단이 겹칩니다.<br>
+        <strong>완공 전 IT 인프라 선반영이 3~5년 뒤 운영 경쟁력을 결정합니다.</strong><br>
+        물류센터를 기획하고 있다면, 착공 전에 IT 설계자를 테이블에 앉히세요.
+      </p>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     SOURCES
+══════════════════════════════════════════════ -->
+<section>
+  <div class="section-label">참고 자료</div>
+  <h2>데이터 출처</h2>
+  <div class="sources-grid">
+    <a class="source-card" href="https://www.kiteworks.com/cybersecurity-risk-management/ibm-2025-data-breach-report-ai-risks/" target="_blank">
+      <div class="src-icon">🔴</div>
+      <div class="src-name">IBM 2025 Breach Report</div>
+      <div class="src-desc">섀도 AI 침해 비용 $670K 및 83% 통계 원출처</div>
+    </a>
+    <a class="source-card" href="https://www.cio.com/article/4157352/ai-is-no-longer-software-its-enterprise-infrastructure.html" target="_blank">
+      <div class="src-icon">📱</div>
+      <div class="src-name">CIO.com — AI is Infrastructure</div>
+      <div class="src-desc">AI가 소프트웨어에서 엔터프라이즈 인프라로 전환된다는 CIO 분석</div>
+    </a>
+    <a class="source-card" href="https://www.cio.com/article/4106578/2026-the-year-of-scale-or-fail-in-enterprise-ai.html" target="_blank">
+      <div class="src-icon">📊</div>
+      <div class="src-name">CIO.com — Scale or Fail</div>
+      <div class="src-desc">2026년 기업 AI의 scale or fail 원년 분석</div>
+    </a>
+    <a class="source-card" href="https://www.ey.com/en_us/insights/coo/physical-ai-powering-adaptive-supply-chains" target="_blank">
+      <div class="src-icon">🏭</div>
+      <div class="src-name">EY — Physical AI</div>
+      <div class="src-desc">피지컬 AI가 공급망 인프라를 어떻게 바꾸는지 분석</div>
+    </a>
+    <a class="source-card" href="https://hy-tek.com/resources/2026-warehouse-automation-trends-where-software-ai-and-robotics-converge/" target="_blank">
+      <div class="src-icon">📦</div>
+      <div class="src-name">Hy-Tek — 2026 Warehouse Trends</div>
+      <div class="src-desc">통합이 자동화 기술보다 먼저라는 2026 물류 트렌드 보고서</div>
+    </a>
+    <a class="source-card" href="https://www.freightwaves.com/news/ryderventures-physical-ai-warehouse-automation-2026" target="_blank">
+      <div class="src-icon">🚛</div>
+      <div class="src-name">FreightWaves — Physical AI</div>
+      <div class="src-desc">RyderVentures의 물류 창고 Physical AI 투자 분석</div>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     LINKEDIN POST
+══════════════════════════════════════════════ -->
+<div class="linkedin-section">
+  <section>
+    <div class="section-label">LinkedIn 게시글</div>
+    <h2>복사해서 바로 게시하세요</h2>
+    <div class="linkedin-card">
+      <div class="linkedin-text" id="linkedin-content">기업의 83%는 직원들이 외부 AI에 내부 데이터를 올리는 걸 막을 기술적 수단이 없습니다.
+경고 메일, 교육, 또는 아무것도 없는 것 중 하나로 버티고 있습니다.
+
+그리고 섀도 AI로 인한 데이터 유출이 발생하면, 건당 $670,000의 추가 비용이 발생합니다.
+(IBM 2025 Cost of Data Breach Report)
+
+---
+
+IT실장으로서 이 숫자를 볼 때마다 드는 생각이 있습니다.
+
+"이건 보안 문제가 아니라, 인프라 설계의 문제다."
+
+섀도 AI(Shadow AI)란 직원들이 회사 승인 없이 ChatGPT 같은 외부 AI에 업무 자료를 올리는 행위입니다. 막고 싶어도 기술적으로 통제할 방법이 없다면, 정책이나 교육은 결국 허울입니다.
+
+해답은 하나입니다. 온프레미스 AI — 데이터가 회사 밖으로 나가지 않는 내부 AI 환경 구축.
+
+---
+
+그런데 이게 바로 오피스 선택 기준이 됩니다.
+
+AI 에이전트가 기업 업무 구조에 깊이 들어오면서, 기업들은 이제 사무공간을 이렇게 봅니다.
+
+"이 건물에서 내부 AI 서버를 운영할 수 있는가?"
+
+구체적으로는:
+- 전용 GPU 서버룸을 감당할 전력 용량 (최소 2N 이중화)
+- 내부망·외부망을 완전 분리할 수 있는 네트워크 구조
+- 입주 전부터 냉각·보안 설계가 반영된 공간
+
+이건 임차인의 요구사항이 아닙니다. AI 거버넌스를 진지하게 생각하는 기업들의 기본 스펙 체크리스트입니다.
+
+---
+
+물류센터 얘기도 빠질 수 없습니다.
+
+2026년은 글로벌 물류 업계가 Physical AI 원년이라 부르는 해입니다. AMR(자율이동로봇)이 스스로 판단하고, AI가 창고 운영 전체를 조율하는 구조가 실제로 상용화되고 있습니다.
+
+여기서 반복해서 나오는 교훈이 있습니다.
+
+"Integration determines success more than any specific automation technology."
+— Hy-Tek Intralogistics, 2026 Warehouse Automation Trends
+
+로봇을 아무리 좋은 걸 사도, 처음 설계에 IT 인프라가 빠져 있으면 완공 후 공사가 반복됩니다.
+
+충전 인프라, 에지 컴퓨팅 배치, 고대역 네트워크, 디지털 트윈 연동.
+이것들은 나중에 추가하는 옵션이 아니라 설계도면에 먼저 들어가야 할 것들입니다.
+
+저는 이걸 'IT 후시공의 덫'이라고 부릅니다.
+
+---
+
+부동산 자산의 경쟁력을 이야기할 때, IT 설계 수준이 점점 더 중요한 변수가 되고 있습니다.
+
+같은 위치, 같은 면적이라도 IT 인프라를 얼마나 선반영했느냐가 향후 임차인 유치와 자산 가치를 가를 것입니다.
+
+자산의 존속 가능성을 논하는 자리에, IT 담당자가 있어야 하는 이유입니다.
+
+---
+
+#AI인프라 #섀도AI #온프레미스AI #물류자동화 #스마트오피스 #PhysicalAI #부동산IT #CIO</div>
+      <button class="copy-btn" onclick="copyLinkedIn()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        게시글 복사
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer>
+  <strong>마스턴투자운용</strong> · AI 시대 오피스·물류센터 IT 인프라 · 2026 Q2<br>
+  <span style="margin-top: 0.5rem; display: block">데이터 출처: IBM 2025 Cost of Data Breach Report · CIO.com · EY · Hy-Tek Intralogistics</span>
+</footer>
+
+<script>
+  function copyLinkedIn() {
+    const text = document.getElementById('linkedin-content').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = '복사 완료!';
+      setTimeout(() => {
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> 게시글 복사`;
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
