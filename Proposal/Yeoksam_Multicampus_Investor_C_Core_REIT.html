@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멀티캠퍼스 역삼 투자제안서 — 투자자 C (안정형 리츠)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-mid: #243057;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --bg: #f8f6f1;
+  --bg-card: #ffffff;
+  --text: #1a1a2e;
+  --text-muted: #5a6070;
+  --border: #e0dbd0;
+  --accent: #15803d;
+  --accent-light: #dcfce7;
+  --accent-dark: #14532d;
+  --positive: #15803d;
+  --positive-bg: #dcfce7;
+  --warning: #b45309;
+  --warning-bg: #fef3c7;
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+  --blue: #1e40af;
+  --blue-light: #dbeafe;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; }
+a { color: var(--accent); text-decoration: none; }
+
+.cover {
+  background: var(--navy);
+  color: white;
+  padding: 70px 60px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  background: var(--accent);
+  opacity: 0.08;
+  border-radius: 50%;
+}
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 3px;
+  margin-bottom: 28px;
+}
+.cover-subtitle { color: var(--gold); font-family: 'Noto Serif KR', serif; font-size: 14px; letter-spacing: 1.5px; margin-bottom: 16px; text-transform: uppercase; }
+.cover h1 { font-family: 'Noto Serif KR', serif; font-size: clamp(26px,4vw,40px); font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+.cover-tagline { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 44px; }
+.cover-meta { display: flex; gap: 36px; flex-wrap: wrap; }
+.cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.cover-meta-label { color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.cover-meta-value { color: white; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; }
+.cover-line { width: 60px; height: 3px; background: var(--accent); margin: 28px 0; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 48px 32px; }
+
+.toc { background: var(--navy); color: white; padding: 36px 40px; }
+.toc-title { color: var(--gold); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px 24px; }
+.toc-item { display: flex; align-items: center; gap: 10px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.toc-num { color: #86efac; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; min-width: 28px; opacity: 0.8; }
+.toc-item a { color: rgba(255,255,255,0.8); font-size: 13px; transition: color 0.2s; }
+.toc-item a:hover { color: var(--gold-light); }
+
+.section { background: var(--bg-card); border-radius: 8px; margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.section-header { background: var(--navy); padding: 18px 28px; display: flex; align-items: center; gap: 14px; }
+.section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #86efac; font-weight: 600; opacity: 0.8; }
+.section-title { font-family: 'Noto Serif KR', serif; font-size: 17px; font-weight: 700; color: white; }
+.section-body { padding: 28px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 16px 0; }
+thead tr { background: var(--navy); color: white; }
+thead th { padding: 11px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }
+tbody tr:nth-child(even) { background: #fafaf7; }
+tbody tr:hover { background: var(--accent-light); transition: background 0.15s; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); }
+tbody td:first-child { color: var(--text-muted); font-size: 13px; }
+.highlight-row { background: var(--accent-light) !important; }
+.highlight-row td { font-weight: 700 !important; }
+.td-bold { font-weight: 700; color: var(--text) !important; }
+.td-accent { font-weight: 700; color: var(--accent) !important; }
+.td-positive { font-weight: 700; color: var(--positive) !important; }
+.td-warning { font-weight: 700; color: var(--warning) !important; }
+.td-danger { font-weight: 700; color: var(--danger) !important; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.kpi-card { background: var(--navy); color: white; padding: 20px; border-radius: 6px; position: relative; overflow: hidden; }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+.kpi-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+.kpi-value { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; color: white; line-height: 1.1; }
+.kpi-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 5px; }
+
+.callout { border-left: 4px solid var(--accent); background: var(--accent-light); padding: 16px 20px; border-radius: 0 6px 6px 0; margin: 16px 0; }
+.callout.gold { border-left-color: var(--gold); background: #fefce8; }
+.callout.blue { border-left-color: var(--blue); background: var(--blue-light); }
+.callout.warning { border-left-color: var(--warning); background: var(--warning-bg); }
+.callout.danger { border-left-color: var(--danger); background: var(--danger-bg); }
+.callout-title { font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--accent-dark); }
+.callout.gold .callout-title { color: #854d0e; }
+.callout.blue .callout-title { color: #1e3a8a; }
+.callout.warning .callout-title { color: #7c2d12; }
+.callout.danger .callout-title { color: #7f1d1d; }
+.callout p, .callout li { font-size: 13.5px; line-height: 1.6; }
+.callout ul { padding-left: 16px; }
+
+/* REIT ROADMAP */
+.roadmap { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
+.roadmap-item { display: grid; grid-template-columns: 120px 1fr; gap: 0; }
+.roadmap-left { display: flex; flex-direction: column; align-items: center; padding: 0 20px; }
+.roadmap-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg-card); box-shadow: 0 0 0 3px var(--accent); margin-top: 16px; z-index: 1; flex-shrink: 0; }
+.roadmap-line { flex: 1; width: 2px; background: var(--accent); opacity: 0.3; }
+.roadmap-item:last-child .roadmap-line { display: none; }
+.roadmap-content { padding: 14px 0 20px; }
+.roadmap-stage { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.roadmap-period { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+.roadmap-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 6px; }
+.roadmap-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+/* FFO YIELD CHART */
+.yield-chart { background: var(--navy); padding: 24px; border-radius: 8px; margin: 16px 0; }
+.yield-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.yield-year { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.6); min-width: 60px; }
+.yield-bar-wrap { flex: 1; background: rgba(255,255,255,0.08); border-radius: 3px; height: 22px; }
+.yield-bar { height: 100%; border-radius: 3px; background: var(--accent); display: flex; align-items: center; padding: 0 8px; transition: width 0.3s; }
+.yield-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: white; white-space: nowrap; }
+.yield-note { font-size: 10px; color: rgba(255,255,255,0.4); min-width: 200px; }
+
+/* WALE TABLE */
+.wale-table .badge { display: inline-block; padding: 3px 9px; border-radius: 3px; font-size: 11px; font-weight: 700; }
+.badge-low { background: var(--positive-bg); color: var(--positive); }
+.badge-mid { background: var(--warning-bg); color: var(--warning); }
+.badge-high { background: var(--danger-bg); color: var(--danger); }
+.badge-ok { background: var(--blue-light); color: var(--blue); }
+
+.verdict-box { background: var(--navy); color: white; padding: 28px; border-radius: 8px; margin: 20px 0; text-align: center; }
+.verdict-stars { font-size: 26px; margin-bottom: 10px; letter-spacing: 4px; }
+.verdict-label { color: var(--gold); font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.verdict-sub { color: rgba(255,255,255,0.65); font-size: 13px; }
+
+.check-list { list-style: none; padding: 0; margin: 12px 0; }
+.check-list li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+.check-list li:last-child { border-bottom: none; }
+.check-icon { font-size: 15px; margin-top: 1px; min-width: 18px; }
+
+.section-divider { height: 1px; background: var(--border); margin: 20px 0; }
+.text-muted { color: var(--text-muted); font-size: 12.5px; }
+.footer { background: var(--navy); color: rgba(255,255,255,0.45); text-align: center; padding: 22px; font-size: 12px; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">투자자 C — 안정형 리츠</div>
+  <div class="cover-subtitle">Mastern Investment Management · Research</div>
+  <h1>멀티캠퍼스 역삼<br>투자제안서</h1>
+  <div class="cover-tagline">사모리츠 → 공모리츠 전환 · FFO 배당 성장 · NAV 프리미엄</div>
+  <div class="cover-line"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span class="cover-meta-label">LTV</span><span class="cover-meta-value">30%</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Y1 FFO Yield</span><span class="cover-meta-value">3.02%</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Y6 FFO Yield</span><span class="cover-meta-value">4.03%</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">상장 목표</span><span class="cover-meta-value">Y5~6</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">작성일</span><span class="cover-meta-value">2026-04-30</span></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01</span><a href="#sec01">투자 요약</a></div>
+    <div class="toc-item"><span class="toc-num">02</span><a href="#sec02">리츠 구조 — 공모 전환 로드맵</a></div>
+    <div class="toc-item"><span class="toc-num">03</span><a href="#sec03">재무 모델 — FFO 분석</a></div>
+    <div class="toc-item"><span class="toc-num">04</span><a href="#sec04">WALE 분석</a></div>
+    <div class="toc-item"><span class="toc-num">05</span><a href="#sec05">투자 의견</a></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 01 -->
+  <div class="section" id="sec01">
+    <div class="section-header">
+      <span class="section-num">SECTION 01</span>
+      <span class="section-title">투자 요약</span>
+    </div>
+    <div class="section-body">
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-label">FFO Year 1</div><div class="kpi-value">79.1억</div><div class="kpi-sub">NOI 126.5 - 이자 43.4 - AMC 4.0</div></div>
+        <div class="kpi-card"><div class="kpi-label">초기 배당수익률</div><div class="kpi-value">3.02%</div><div class="kpi-sub">on equity (90% 배당)</div></div>
+        <div class="kpi-card"><div class="kpi-label">안정화 배당수익률</div><div class="kpi-value">~4.2%</div><div class="kpi-sub">Y5 이후</div></div>
+        <div class="kpi-card"><div class="kpi-label">자기자본</div><div class="kpi-value">2,356억</div><div class="kpi-sub">LTV 30%, 출자</div></div>
+      </div>
+
+      <table>
+        <thead><tr><th>항목</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>자산명</td><td class="td-bold">멀티캠퍼스 역삼 (GBD 핵심 오피스)</td></tr>
+          <tr><td>매입가</td><td>3,217억원 (평당 5,000만원)</td></tr>
+          <tr><td>All-in 비용</td><td>3,365억원</td></tr>
+          <tr><td>리츠 구조</td><td class="td-accent">사모리츠 → 공모리츠 전환 (5~6년 차 상장 목표)</td></tr>
+          <tr><td>LTV</td><td>30%</td></tr>
+          <tr><td>선순위 대출</td><td>1,010억원 @ 4.3% → 연 이자 43.4억</td></tr>
+          <tr><td>자기자본 (주주 출자)</td><td class="td-bold">2,356억원</td></tr>
+          <tr><td>WALE (현재)</td><td class="td-warning">약 2년 (2028년 임대만료)</td></tr>
+          <tr class="highlight-row"><td>FFO Year 1</td><td class="td-accent">79.1억원</td></tr>
+          <tr class="highlight-row"><td>초기 배당수익률</td><td class="td-accent">3.02% (on equity)</td></tr>
+          <tr class="highlight-row"><td>안정화 배당수익률</td><td class="td-positive">~4.2% (Y5~)</td></tr>
+          <tr><td>투자 의견</td><td class="td-warning">조건부 매수 (임대차 5년+ MOU 필수)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <div class="callout-title">핵심 판단</div>
+        <p>리츠는 배당 지속가능성이 생명이다. 현재 WALE 2년은 상장리츠 기준 치명적 단점. 임대차 연장 MOU 확보가 투자 실행의 절대 선행조건이며, 이를 달성 시 GBD 우량 Core 자산 기반의 안정적 배당 성장 플랫폼 구축이 가능하다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section" id="sec02">
+    <div class="section-header">
+      <span class="section-num">SECTION 02</span>
+      <span class="section-title">리츠 구조 — 사모→공모 전환 로드맵</span>
+    </div>
+    <div class="section-body">
+
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;color:var(--navy);">구조 개요</h3>
+      <div style="background:var(--navy);color:white;padding:20px 24px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:24px;">
+        <div style="color:rgba(255,255,255,0.6);">[투자자 C 및 기관 공동투자자]</div>
+        <div style="color:var(--gold-light);padding-left:20px;">↓ 출자 (2,356억)</div>
+        <div style="color:rgba(255,255,255,0.8);">[사모리츠 AMC]</div>
+        <div style="color:var(--gold-light);padding-left:20px;">↓ + 선순위 대출 (1,010억)</div>
+        <div style="color:rgba(255,255,255,0.8);">[멀티캠퍼스 역삼 SPC]</div>
+        <div style="color:var(--gold-light);padding-left:20px;">↓ 자산 보유 및 운용</div>
+        <div style="color:#86efac;font-weight:700;">[멀티캠퍼스 역삼 빌딩]</div>
+      </div>
+
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:16px;color:var(--navy);">전환 단계별 로드맵</h3>
+      <div class="roadmap">
+        <div class="roadmap-item">
+          <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
+          <div class="roadmap-content">
+            <div class="roadmap-stage">STAGE 1</div>
+            <div class="roadmap-period">Year 1~2</div>
+            <div class="roadmap-title">사모리츠 설립 · 자산 취득 · 임대 안정화</div>
+            <div class="roadmap-desc">분기 배당 시작, WALE 연장 MOU 이행. 사모리츠 AMC 설립 및 자산 취득 완료.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
+          <div class="roadmap-content">
+            <div class="roadmap-stage">STAGE 2</div>
+            <div class="roadmap-period">Year 2~3</div>
+            <div class="roadmap-title">임대차 재계약 완료 (5년+) · WALE 7년+ 확보</div>
+            <div class="roadmap-desc">안정화 FFO 달성, 배당 성장 궤도 진입. 이 단계 성공이 상장의 핵심 전제조건.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
+          <div class="roadmap-content">
+            <div class="roadmap-stage">STAGE 3</div>
+            <div class="roadmap-period">Year 3~4</div>
+            <div class="roadmap-title">공모리츠 전환 준비 · 회계감사 · IR 자료 · 감독원 심사</div>
+            <div class="roadmap-desc">상장 승인 취득. 3년 감사 재무제표 준비, 공모 투자자 대상 IR 자료 작성.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-left"><div class="roadmap-dot"></div><div class="roadmap-line"></div></div>
+          <div class="roadmap-content">
+            <div class="roadmap-stage">STAGE 4</div>
+            <div class="roadmap-period">Year 5~6</div>
+            <div class="roadmap-title">공모리츠 상장 (코스피/코스닥)</div>
+            <div class="roadmap-desc">NAV 프리미엄 형성, 유동성 확보. 사모 투자자 지분 시장에서 매각 가능.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout blue">
+        <div class="callout-title">공모 전환 시 기대 효과</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="padding:4px 0;">📈 상장 리츠 NAV 프리미엄: 국내 우량 공모리츠 기준 NAV 대비 10~20% 프리미엄 거래</li>
+          <li style="padding:4px 0;">💧 Exit 수단 다양화: 주식 시장을 통한 지분 매각 가능 (전통적 부동산 매각 외 옵션 추가)</li>
+          <li style="padding:4px 0;">🏆 운용사 명성 효과: 공모리츠 상장 실적은 AI운용사 AUM 확대 및 브랜드 강화에 기여</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section" id="sec03">
+    <div class="section-header">
+      <span class="section-num">SECTION 03</span>
+      <span class="section-title">재무 모델 — FFO 분석 및 DPS 성장</span>
+    </div>
+    <div class="section-body">
+
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--navy);">자본 구조</h3>
+      <table>
+        <thead><tr><th>구분</th><th>금액</th><th>비율</th><th>조건</th></tr></thead>
+        <tbody>
+          <tr><td>선순위 대출</td><td class="td-bold">1,010억원</td><td>30% LTV</td><td>4.3% 고정, 7년 만기</td></tr>
+          <tr><td>주주 출자</td><td class="td-bold">2,356억원</td><td>70%</td><td>분기 배당 (90% 의무 배당)</td></tr>
+          <tr class="highlight-row"><td>Total</td><td class="td-bold">3,365억원</td><td>100%</td><td></td></tr>
+        </tbody>
+      </table>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">연도별 FFO 및 DPS 분석</h3>
+      <table>
+        <thead><tr><th>연도</th><th>NOI</th><th>이자비용</th><th>AMC 보수</th><th>FFO</th><th>배당(90%)</th><th>배당수익률</th></tr></thead>
+        <tbody>
+          <tr><td>Year 1</td><td>126.5억</td><td>43.4억</td><td>4.0억</td><td class="td-bold">79.1억</td><td>71.2억</td><td class="td-accent">3.02%</td></tr>
+          <tr><td>Year 2</td><td>128.9억</td><td>43.4억</td><td>4.0억</td><td>81.5억</td><td>73.4억</td><td>3.12%</td></tr>
+          <tr><td>Year 3 (재계약)</td><td>131.5억</td><td>43.4억</td><td>4.0억</td><td>84.1억</td><td>75.7억</td><td>3.21%</td></tr>
+          <tr><td>Year 4 (안정화)</td><td>142.0억</td><td>43.4억</td><td>4.2억</td><td class="td-accent">94.4억</td><td>85.0억</td><td class="td-accent">3.61%</td></tr>
+          <tr><td>Year 5 (상장 준비)</td><td>148.5억</td><td>43.4억</td><td>4.5억</td><td>100.6억</td><td>90.5억</td><td class="td-positive">3.84%</td></tr>
+          <tr class="highlight-row"><td>Year 6 (상장 후)</td><td>154.0억</td><td>43.4억</td><td>5.0억</td><td class="td-bold">105.6억</td><td>95.0억</td><td class="td-positive">4.03%</td></tr>
+        </tbody>
+      </table>
+      <p class="text-muted" style="margin-bottom:20px;">* 가정: AMC 보수 운용자산 대비 0.3% 수준, 90% 의무 배당, 재계약 후 임대료 +8% 현행화</p>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">FFO Yield 성장 경로</h3>
+      <div class="yield-chart">
+        <div class="yield-row">
+          <span class="yield-year">Year 1</span>
+          <div class="yield-bar-wrap"><div class="yield-bar" style="width:47%"><span class="yield-val">3.02%</span></div></div>
+          <span class="yield-note">임대 안정화 구간 (현 임대조건)</span>
+        </div>
+        <div class="yield-row">
+          <span class="yield-year">Year 2</span>
+          <div class="yield-bar-wrap"><div class="yield-bar" style="width:49%"><span class="yield-val">3.12%</span></div></div>
+          <span class="yield-note">에스컬레이션 반영</span>
+        </div>
+        <div class="yield-row">
+          <span class="yield-year">Year 3</span>
+          <div class="yield-bar-wrap"><div class="yield-bar" style="width:50%"><span class="yield-val">3.21%</span></div></div>
+          <span class="yield-note">재계약 직전 (최대 불확실성)</span>
+        </div>
+        <div class="yield-row">
+          <span class="yield-year">Year 4</span>
+          <div class="yield-bar-wrap"><div class="yield-bar" style="width:56%"><span class="yield-val">3.61%</span></div></div>
+          <span class="yield-note">재계약 완료 → 임대료 현행화</span>
+        </div>
+        <div class="yield-row">
+          <span class="yield-year">Year 5</span>
+          <div class="yield-bar-wrap"><div class="yield-bar" style="width:60%"><span class="yield-val">3.84%</span></div></div>
+          <span class="yield-note">안정화 + 상장 준비</span>
+        </div>
+        <div class="yield-row">
+          <span class="yield-year">Year 6+</span>
+          <div class="yield-bar-wrap"><div class="yield-bar" style="width:63%"><span class="yield-val">4.03%+</span></div></div>
+          <span class="yield-note">공모리츠 상장 후 안정적 배당 성장</span>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">상장 후 NAV 시나리오 (Year 6)</h3>
+      <table>
+        <thead><tr><th>시나리오</th><th>Exit Cap Rate</th><th>자산가치</th><th>순자산(NAV)</th><th>NAV 프리미엄</th><th>주주 가치</th></tr></thead>
+        <tbody>
+          <tr><td>Base</td><td>3.8%</td><td>4,053억</td><td>3,043억</td><td>10%</td><td class="td-accent">3,347억</td></tr>
+          <tr><td>Bull</td><td>3.5%</td><td class="td-positive">4,400억</td><td>3,390억</td><td>20%</td><td class="td-positive">4,068억</td></tr>
+          <tr><td>Bear</td><td>4.2%</td><td style="color:var(--warning);font-weight:700;">3,667억</td><td>2,657억</td><td>0%</td><td style="color:var(--warning);font-weight:700;">2,657억</td></tr>
+        </tbody>
+      </table>
+      <div class="callout gold">
+        <div class="callout-title">Base Case 요약</div>
+        <p>NAV 3,043억 × 1.10 = 시가총액 3,347억. 초기 출자 2,356억 대비 약 <strong>42% 자본차익</strong>. 6년 누적 배당 ~491억 + 상장 시 지분 가치 상승 → 총 투자수익 유의미.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section" id="sec04">
+    <div class="section-header">
+      <span class="section-num">SECTION 04</span>
+      <span class="section-title">WALE 분석 — 가장 중요한 리스크 지표</span>
+    </div>
+    <div class="section-body">
+
+      <div class="callout danger">
+        <div class="callout-title">현재 WALE 상황</div>
+        <p><strong>현재 WALE: 약 2년</strong> (2028년 삼성SDS 임대 만료 기준). 상장 리츠 기준 WALE 5년 이상이 통상적인 공모리츠 상장 요건 (감독원 비공식 기준). <strong>현 상태로는 공모리츠 상장 불가. 임대차 연장 없이 Stage 4 진입 불가능.</strong></p>
+      </div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">WALE 시나리오별 리츠 평가</h3>
+      <table class="wale-table">
+        <thead><tr><th>WALE</th><th>리츠 시장 평가</th><th>예상 Cap Rate</th><th>자산가치 영향</th></tr></thead>
+        <tbody>
+          <tr><td class="td-danger">2년 (현재)</td><td><span class="badge badge-high">부정적, 상장 불가</span></td><td>4.0~4.5%</td><td>기준치</td></tr>
+          <tr><td class="td-warning">5년 (MOU 확보)</td><td><span class="badge badge-ok">중립~긍정</span></td><td>3.8~4.0%</td><td>+5~15%</td></tr>
+          <tr><td class="td-positive">7년+ (장기 재계약)</td><td><span class="badge badge-low">매우 긍정, 상장 가능</span></td><td>3.5~3.8%</td><td>+15~25%</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">임대차 연장 MOU 협상 전략</h3>
+      <ul class="check-list">
+        <li><span class="check-icon">🎯</span><div><strong>핵심 요청</strong>: 취득 전 삼성SDS와 5년+ 임대 연장 MOU 체결</div></li>
+        <li><span class="check-icon">⚖️</span><div><strong>협상 레버리지</strong>: 리츠 구조 → 임차인도 안정적 임대료 + 장기 파트너십 이익</div></li>
+        <li><span class="check-icon">🎁</span><div><strong>인센티브 제공</strong>: 임대 조건 소폭 양보 (초기 임대료 동결 1년) 대신 장기 WALE 확보</div></li>
+        <li><span class="check-icon">🚫</span><div><strong>비딩 조건</strong>: MOU 없이는 투자 실행 불가 원칙</div></li>
+      </ul>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">시나리오별 결과</h3>
+      <table>
+        <thead><tr><th>시나리오</th><th>결과</th><th>투자 결정</th></tr></thead>
+        <tbody>
+          <tr><td>7년+ 재계약 MOU</td><td>최선. 상장 가능 + Cap Rate 압축</td><td class="td-positive">즉시 투자 실행</td></tr>
+          <tr><td>5년 재계약 MOU</td><td>양호. 상장 가능 (감독원 협의 필요)</td><td class="td-accent">조건부 투자 실행</td></tr>
+          <tr><td>3년 재계약 MOU</td><td>부족. 상장 지연, 사모 홀딩 연장</td><td class="td-warning">재협상 후 결정</td></tr>
+          <tr class="highlight-row"><td>MOU 불가</td><td>최악. 투자 중단</td><td class="td-danger">비딩 포기</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section" id="sec05">
+    <div class="section-header">
+      <span class="section-num">SECTION 05</span>
+      <span class="section-title">투자 의견</span>
+    </div>
+    <div class="section-body">
+
+      <div class="verdict-box">
+        <div class="verdict-stars">★★★☆☆</div>
+        <div class="verdict-label">조건부 매수 → MOU 확보 시 ★★★★☆</div>
+        <div class="verdict-sub">임대차 5년+ MOU 확보가 리츠 전략 성립의 절대 선행조건</div>
+      </div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">매수 조건 (필수)</h3>
+      <ul class="check-list">
+        <li><span class="check-icon">⚠️</span><div><strong>임대차 5년+ MOU 확보</strong> (절대 선행 조건 — 미달 시 전략 성립 불가)</div></li>
+        <li><span class="check-icon">💰</span><div>선순위 대출 4.3% 이하 확정</div></li>
+        <li><span class="check-icon">🔍</span><div>TDD 결과 중대 하자 없음</div></li>
+        <li><span class="check-icon">💲</span><div>입찰가 평당 5,200만원 이하</div></li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">리츠 투자 매력</h3>
+      <ul class="check-list">
+        <li><span class="check-icon">✅</span><div>GBD 우량 Core 자산 기반 분기 배당 플랫폼 구축 가능</div></li>
+        <li><span class="check-icon">✅</span><div>임대 안정화 후 공모리츠 상장 시 NAV 프리미엄 + 유동성 확보 가능</div></li>
+        <li><span class="check-icon">✅</span><div>30% LTV 보수적 레버리지 → 금리 상승 위험 제한적</div></li>
+      </ul>
+
+      <div class="callout warning" style="margin-top:20px;">
+        <div class="callout-title">주요 위험</div>
+        <ul>
+          <li>WALE 연장 실패: 공모리츠 전환 전략 붕괴, 사모리츠 장기 홀딩으로 전환</li>
+          <li>금리 반등: 배당수익률 상대적 매력 감소, 리츠 주가 할인</li>
+          <li>임차인 이탈: 단독 임차 구조의 집중 위험</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  작성일: 2026-04-30 &nbsp;|&nbsp; AI운용사 리서치 &nbsp;|&nbsp; 내부 검토용 — 대외비
+</div>
+
+</body>
+</html>
