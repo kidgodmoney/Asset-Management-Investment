@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멀티캠퍼스 역삼 투자제안서 — 투자자 B (PE·공격형)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-mid: #243057;
+  --navy-light: #2e3f6e;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --bg: #f8f6f1;
+  --bg-card: #ffffff;
+  --text: #1a1a2e;
+  --text-muted: #5a6070;
+  --border: #e0dbd0;
+  --accent: #b91c1c;
+  --accent-light: #fee2e2;
+  --accent-dark: #7f1d1d;
+  --positive: #15803d;
+  --positive-bg: #dcfce7;
+  --warning: #b45309;
+  --warning-bg: #fef3c7;
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; }
+a { color: var(--accent); text-decoration: none; }
+
+.cover {
+  background: var(--navy);
+  color: white;
+  padding: 70px 60px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  background: var(--accent);
+  opacity: 0.08;
+  border-radius: 50%;
+}
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 3px;
+  margin-bottom: 28px;
+}
+.cover-subtitle { color: var(--gold); font-family: 'Noto Serif KR', serif; font-size: 14px; letter-spacing: 1.5px; margin-bottom: 16px; text-transform: uppercase; }
+.cover h1 { font-family: 'Noto Serif KR', serif; font-size: clamp(26px,4vw,40px); font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+.cover-tagline { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 44px; }
+.cover-meta { display: flex; gap: 36px; flex-wrap: wrap; }
+.cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.cover-meta-label { color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.cover-meta-value { color: white; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; }
+.cover-line { width: 60px; height: 3px; background: var(--accent); margin: 28px 0; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 48px 32px; }
+
+.toc { background: var(--navy); color: white; padding: 36px 40px; }
+.toc-title { color: var(--gold); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px 24px; }
+.toc-item { display: flex; align-items: center; gap: 10px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.toc-num { color: #fca5a5; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; min-width: 28px; opacity: 0.8; }
+.toc-item a { color: rgba(255,255,255,0.8); font-size: 13px; transition: color 0.2s; }
+.toc-item a:hover { color: var(--gold-light); }
+
+.section { background: var(--bg-card); border-radius: 8px; margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.section-header { background: var(--navy); padding: 18px 28px; display: flex; align-items: center; gap: 14px; }
+.section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #fca5a5; font-weight: 600; opacity: 0.8; }
+.section-title { font-family: 'Noto Serif KR', serif; font-size: 17px; font-weight: 700; color: white; }
+.section-body { padding: 28px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 16px 0; }
+thead tr { background: var(--navy); color: white; }
+thead th { padding: 11px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }
+tbody tr:nth-child(even) { background: #fafaf7; }
+tbody tr:hover { background: var(--accent-light); transition: background 0.15s; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); }
+tbody td:first-child { color: var(--text-muted); font-size: 13px; }
+.highlight-row { background: var(--accent-light) !important; }
+.highlight-row td { font-weight: 700 !important; }
+.td-bold { font-weight: 700; color: var(--text) !important; }
+.td-accent { font-weight: 700; color: var(--accent) !important; }
+.td-positive { font-weight: 700; color: var(--positive) !important; }
+.td-warning { font-weight: 700; color: var(--warning) !important; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.kpi-card { background: var(--navy); color: white; padding: 20px; border-radius: 6px; position: relative; overflow: hidden; }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+.kpi-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+.kpi-value { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; color: white; line-height: 1.1; }
+.kpi-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 5px; }
+
+.kpi-card.positive::before { background: var(--positive); }
+.kpi-card.warning::before { background: var(--warning); }
+.kpi-card.danger::before { background: var(--danger); }
+
+.callout { border-left: 4px solid var(--accent); background: var(--accent-light); padding: 16px 20px; border-radius: 0 6px 6px 0; margin: 16px 0; }
+.callout.gold { border-left-color: var(--gold); background: #fefce8; }
+.callout.positive { border-left-color: var(--positive); background: var(--positive-bg); }
+.callout.warning { border-left-color: var(--warning); background: var(--warning-bg); }
+.callout-title { font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--accent-dark); }
+.callout.gold .callout-title { color: #854d0e; }
+.callout.positive .callout-title { color: #14532d; }
+.callout.warning .callout-title { color: #7c2d12; }
+.callout p, .callout li { font-size: 13.5px; line-height: 1.6; }
+.callout ul { padding-left: 16px; }
+
+.lever-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin: 20px 0; }
+.lever-card { background: #fff; border: 2px solid var(--border); border-radius: 8px; padding: 20px; position: relative; }
+.lever-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); border-radius: 8px 8px 0 0; }
+.lever-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.lever-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 10px; }
+.lever-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+.phase-list { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+.phase-item { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px; background: #fafaf7; border-radius: 6px; border: 1px solid var(--border); }
+.phase-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--accent); }
+.phase-day { font-size: 11px; color: var(--text-muted); }
+.phase-content { font-size: 13px; line-height: 1.6; }
+.phase-content strong { color: var(--navy); }
+
+.verdict-box { background: var(--navy); color: white; padding: 28px; border-radius: 8px; margin: 20px 0; text-align: center; }
+.verdict-stars { font-size: 26px; margin-bottom: 10px; letter-spacing: 4px; }
+.verdict-label { color: var(--gold); font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.verdict-sub { color: rgba(255,255,255,0.65); font-size: 13px; }
+
+.check-list { list-style: none; padding: 0; margin: 12px 0; }
+.check-list li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+.check-list li:last-child { border-bottom: none; }
+.check-icon { font-size: 15px; margin-top: 1px; min-width: 18px; }
+
+.waterfall-box { background: var(--navy); color: white; padding: 24px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; margin: 16px 0; }
+.waterfall-box .line { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 2px 0; }
+.waterfall-box .total { border-top: 2px solid var(--gold); border-bottom: none; padding-top: 6px; margin-top: 4px; }
+.waterfall-box .lbl { color: rgba(255,255,255,0.65); }
+.waterfall-box .val { color: white; font-weight: 600; }
+.waterfall-box .val.pos { color: #86efac; }
+.waterfall-box .val.neg { color: #fca5a5; }
+.waterfall-box .val.gold { color: var(--gold-light); }
+
+.section-divider { height: 1px; background: var(--border); margin: 20px 0; }
+.text-muted { color: var(--text-muted); font-size: 12.5px; }
+.footer { background: var(--navy); color: rgba(255,255,255,0.45); text-align: center; padding: 22px; font-size: 12px; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">투자자 B — PE · 공격형</div>
+  <div class="cover-subtitle">Mastern Investment Management · Research</div>
+  <h1>멀티캠퍼스 역삼<br>투자제안서</h1>
+  <div class="cover-tagline">PE 레버리지 전략 · 5년 보유 · 재계약 Alpha</div>
+  <div class="cover-line"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span class="cover-meta-label">LTV</span><span class="cover-meta-value">50%</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">자기자본</span><span class="cover-meta-value">1,683억원</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Base IRR</span><span class="cover-meta-value">4.8%</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Bull IRR</span><span class="cover-meta-value">15.5%</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">작성일</span><span class="cover-meta-value">2026-04-30</span></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01</span><a href="#sec01">투자 요약</a></div>
+    <div class="toc-item"><span class="toc-num">02</span><a href="#sec02">PE 테제 — 3가지 가치창출 레버</a></div>
+    <div class="toc-item"><span class="toc-num">03</span><a href="#sec03">재무 모델</a></div>
+    <div class="toc-item"><span class="toc-num">04</span><a href="#sec04">실행 계획 — 45일 클로징</a></div>
+    <div class="toc-item"><span class="toc-num">05</span><a href="#sec05">투자 의견</a></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 01 -->
+  <div class="section" id="sec01">
+    <div class="section-header">
+      <span class="section-num">SECTION 01</span>
+      <span class="section-title">투자 요약</span>
+    </div>
+    <div class="section-body">
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-label">LTV</div><div class="kpi-value">50%</div><div class="kpi-sub">선순위 1,682억</div></div>
+        <div class="kpi-card warning"><div class="kpi-label">대출금리</div><div class="kpi-value">4.8%</div><div class="kpi-sub">연 이자 80.7억</div></div>
+        <div class="kpi-card positive"><div class="kpi-label">Bull IRR</div><div class="kpi-value">15.5%</div><div class="kpi-sub">재계약+Cap압축</div></div>
+        <div class="kpi-card danger"><div class="kpi-label">Bear IRR</div><div class="kpi-value">-8.0%</div><div class="kpi-sub">재계약 실패시</div></div>
+      </div>
+
+      <table>
+        <thead><tr><th>항목</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>자산명</td><td class="td-bold">멀티캠퍼스 역삼 (GBD 핵심 오피스)</td></tr>
+          <tr><td>매입가</td><td>3,217억원 (평당 5,000만원)</td></tr>
+          <tr><td>LTV</td><td class="td-bold">50%</td></tr>
+          <tr><td>선순위 대출</td><td>1,682억원 @ 4.8% → 연 이자 80.7억</td></tr>
+          <tr><td>자기자본</td><td class="td-bold">1,683억원</td></tr>
+          <tr><td>보유기간</td><td>5년</td></tr>
+          <tr><td>Year 1 Equity CF</td><td>45.8억원 (NOI 126.5 - 이자 80.7)</td></tr>
+          <tr class="highlight-row"><td>Base IRR</td><td class="td-accent">4.8%</td></tr>
+          <tr class="highlight-row"><td>Bull IRR</td><td class="td-positive">15.5%</td></tr>
+          <tr class="highlight-row"><td>Bear IRR</td><td style="color:var(--accent);font-weight:700;">-8.0%</td></tr>
+          <tr><td>투자 의견</td><td class="td-warning">조건부 매수 (LOI 필수)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <div class="callout-title">핵심 테제</div>
+        <p>이 딜의 진짜 가치는 임대 재계약 옵션과 GBD Cap Rate 압축 옵셔널리티다. 현 스프레드는 네거티브 레버리지(-24bps)이지만, 재계약 후 NOI +30% 시나리오에서 레버리지 효과가 폭발한다. <strong>LOI 먼저, 가격 협상은 그 다음.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section" id="sec02">
+    <div class="section-header">
+      <span class="section-num">SECTION 02</span>
+      <span class="section-title">PE 테제 — 3가지 가치창출 레버</span>
+    </div>
+    <div class="section-body">
+      <div class="lever-grid">
+        <div class="lever-card">
+          <div class="lever-num">LEVER 1</div>
+          <div class="lever-title">임대차 재계약 옵션 (핵심 Alpha)</div>
+          <div class="lever-desc">현재 임대 만료 2028년 (취득 후 ~2년). 단기 WALE은 리스크이자 최대 기회. Bull 시나리오: 2028년 재계약 시 시장 임대료(역삼 A급 30만원+)로 현행화 → NOI +20~30%. 재계약 성공 = Exit Cap Rate 압축 + NOI 증가 → 더블 킥.</div>
+        </div>
+        <div class="lever-card">
+          <div class="lever-num">LEVER 2</div>
+          <div class="lever-title">CapEx-Light ESG 포지셔닝</div>
+          <div class="lever-desc">LEED 인증 미보유 → GBD 내 글로벌 기업 임차 수요 대응. 투자 최소화: 인증 컨설팅 + 운영 시스템 교체 중심 (실제 공사 없이 15~20억). ESG 인증 시 Exit 기관 매수자 풀 확대 → Cap Rate 10~20bps 추가 압축.</div>
+        </div>
+        <div class="lever-card">
+          <div class="lever-num">LEVER 3</div>
+          <div class="lever-title">GBD Cap Rate 압축 옵셔널리티</div>
+          <div class="lever-desc">현재 GBD A급 거래 Cap Rate: 3.8~4.0% (2026년 기준). 금리 인하 사이클 + 공급 부족 지속 시 → Cap Rate 3.3~3.5% 압축 가능. Cap Rate 3.5%로 압축 시 자산가치 +18%. 레버리지 구조에서 Cap Rate 압축은 자기자본 가치 증폭 효과.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section" id="sec03">
+    <div class="section-header">
+      <span class="section-num">SECTION 03</span>
+      <span class="section-title">재무 모델</span>
+    </div>
+    <div class="section-body">
+
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--navy);">자본 구조</h3>
+      <table>
+        <thead><tr><th>구분</th><th>금액</th><th>비율</th><th>금리/조건</th></tr></thead>
+        <tbody>
+          <tr><td>선순위 대출</td><td class="td-bold">1,682억원</td><td>50% LTV</td><td>4.8% 고정, 5년 만기</td></tr>
+          <tr><td>자기자본</td><td class="td-bold">1,683억원</td><td>50%</td><td>—</td></tr>
+          <tr class="highlight-row"><td>Total</td><td class="td-bold">3,365억원</td><td>100%</td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="callout warning" style="margin-bottom:20px;">
+        <div class="callout-title">네거티브 레버리지 경고</div>
+        <p>Year 1 Equity CF: 126.5 - 80.7 = <strong>45.8억원</strong> (Equity Yield ~2.7%). 현 구조는 네거티브 레버리지(-24bps). 재계약 전 홀딩 코스트 성격으로 인식해야 함.</p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">시나리오별 Exit 분석 (Year 5)</h3>
+      <table>
+        <thead><tr><th>항목</th><th>Bear (-)</th><th>Base</th><th>Bull (+)</th></tr></thead>
+        <tbody>
+          <tr><td>Exit NOI</td><td>115억</td><td>140억</td><td>165억</td></tr>
+          <tr><td>Exit Cap Rate</td><td>4.5%</td><td>4.0%</td><td>3.5%</td></tr>
+          <tr><td>Exit 자산가치</td><td class="td-accent">2,556억</td><td class="td-warning">3,500억</td><td class="td-positive">4,714억</td></tr>
+          <tr><td>대출 상환</td><td>-1,682억</td><td>-1,682억</td><td>-1,682억</td></tr>
+          <tr><td>Exit Equity</td><td class="td-accent">874억</td><td class="td-warning">1,818억</td><td class="td-positive">3,032억</td></tr>
+          <tr><td>5년 누적 Equity CF</td><td>~218억</td><td>~263억</td><td>~263억</td></tr>
+          <tr class="highlight-row"><td>총 Equity 수령</td><td class="td-accent">~1,092억</td><td class="td-warning">~2,081억</td><td class="td-positive">~3,295억</td></tr>
+          <tr class="highlight-row"><td>Levered IRR</td><td class="td-accent">-8.0%</td><td class="td-warning">4.8%</td><td class="td-positive">15.5%</td></tr>
+          <tr class="highlight-row"><td>Equity Multiple</td><td class="td-accent">0.65x</td><td class="td-warning">1.24x</td><td class="td-positive">1.96x</td></tr>
+        </tbody>
+      </table>
+      <p class="text-muted" style="margin-bottom:20px;">Bear 케이스: 임대 재계약 실패(공실 1년) + 임시 저가 재계약(270만→230만 수준) + Cap Rate 확장</p>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">Equity Waterfall (Base Case, Year 5)</h3>
+      <div class="waterfall-box">
+        <div class="line"><span class="lbl">투자원금</span><span class="val neg">-1,683억</span></div>
+        <div class="line"><span class="lbl">5년 Equity CF</span><span class="val pos">+263억 (연평균 52.6억)</span></div>
+        <div class="line"><span class="lbl">Exit Equity</span><span class="val pos">+1,818억</span></div>
+        <div class="line total"><span class="lbl">총 수령액</span><span class="val gold">2,081억</span></div>
+        <div class="line"><span class="lbl">투자원금</span><span class="val">1,683억</span></div>
+        <div class="line total"><span class="lbl">순이익</span><span class="val pos">+398억</span></div>
+        <div class="line"><span class="lbl">Equity Multiple</span><span class="val gold">1.24x</span></div>
+        <div class="line"><span class="lbl">Levered IRR</span><span class="val gold">4.8%</span></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">손익분기 분석</h3>
+      <table>
+        <thead><tr><th>항목</th><th>손익분기 기준</th></tr></thead>
+        <tbody>
+          <tr><td>임대 재계약 임대료</td><td class="td-bold">최소 250,000원/평/월 이상 (현재 270,000원 대비 -7.4%)</td></tr>
+          <tr><td>Exit Cap Rate</td><td class="td-bold">최대 4.3% 이하 유지 시 원금 보전</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section" id="sec04">
+    <div class="section-header">
+      <span class="section-num">SECTION 04</span>
+      <span class="section-title">실행 계획 — 45일 클로징 전략</span>
+    </div>
+    <div class="section-body">
+      <div class="phase-list">
+        <div class="phase-item">
+          <div>
+            <div class="phase-label">PHASE 1</div>
+            <div class="phase-day">Day 1~15</div>
+          </div>
+          <div class="phase-content">
+            <strong>LOI 선확보 (최우선 과제)</strong><br>
+            삼성SDS 부동산팀과 직접 접촉. 임대 연장 의향서 요청 (5년 이상, 현행 임대료 수준 이상). 협상 카드: 임차인 중심 내부 환경 개선 투자 약속. <strong>LOI 미확보 시 비딩 포기</strong>가 원칙.
+          </div>
+        </div>
+        <div class="phase-item">
+          <div>
+            <div class="phase-label">PHASE 2</div>
+            <div class="phase-day">Day 10~30</div>
+          </div>
+          <div class="phase-content">
+            <strong>실사 병행</strong><br>
+            TDD(기술 실사): 주요 설비 잔존 연한, 즉시 교체 필요 항목 파악. LDD(법적 실사): 소유권, 근저당, 토지 권리 확인. 금융 실사: 기존 임대차 계약서, 임대료 납입 이력, 운영비 명세.
+          </div>
+        </div>
+        <div class="phase-item">
+          <div>
+            <div class="phase-label">PHASE 3</div>
+            <div class="phase-day">Day 20~40</div>
+          </div>
+          <div class="phase-content">
+            <strong>금융 조달 확정</strong><br>
+            선순위 대출: 국내 주요 은행/보험사 대상 50% LTV 약정 확보. 조건: 5년 고정금리 4.8% 이하 목표. 대안: 3년 고정 + 2년 변동, 또는 보험사 장기 대출 (4.6~5.0%).
+          </div>
+        </div>
+        <div class="phase-item">
+          <div>
+            <div class="phase-label">PHASE 4</div>
+            <div class="phase-day">Day 35~45</div>
+          </div>
+          <div class="phase-content">
+            <strong>가격 협상 및 SPA 체결</strong><br>
+            제시 가격: 평당 4,800~5,000만원 (LOI 확보 여부에 따라 조정). <strong>Hard ceiling: 평당 5,200만원</strong> (이상에서는 Base IRR 3%대로 PE 기대수익 미달). Fast close 조건으로 협상.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section" id="sec05">
+    <div class="section-header">
+      <span class="section-num">SECTION 05</span>
+      <span class="section-title">투자 의견</span>
+    </div>
+    <div class="section-body">
+
+      <div class="verdict-box">
+        <div class="verdict-stars">★★★☆☆</div>
+        <div class="verdict-label">조건부 매수 → LOI 확보 시 ★★★★☆</div>
+        <div class="verdict-sub">삼성SDS LOI 확보가 투자 실행의 절대 선행조건</div>
+      </div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">매수 조건 (All Required)</h3>
+      <ul class="check-list">
+        <li><span class="check-icon">⚠️</span><div><strong>삼성SDS 임대 연장 LOI 확보</strong> (5년 이상, 현행 임대료 수준 이상) — <strong style="color:var(--accent);">절대 선행조건</strong></div></li>
+        <li><span class="check-icon">💰</span><div>선순위 대출 4.8% 이하로 확정</div></li>
+        <li><span class="check-icon">🔍</span><div>TDD 결과 중대 하자 없음</div></li>
+        <li><span class="check-icon">💲</span><div>입찰가 평당 5,200만원 이하 낙찰</div></li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">투자 매력</h3>
+      <ul class="check-list">
+        <li><span class="check-icon">✅</span><div>LOI 확보 시 Bull IRR 15.5%: GBD Core 오피스 기준 탁월한 수준</div></li>
+        <li><span class="check-icon">✅</span><div>네거티브 레버리지 구간은 2년으로 제한, 재계약 후 레버리지 효과 전환</div></li>
+        <li><span class="check-icon">✅</span><div>삼성SDS AA 신용의 임차인이 협상 상대방 → 재계약 확률 높음</div></li>
+      </ul>
+
+      <div class="callout" style="margin-top:20px;">
+        <div class="callout-title">경고</div>
+        <p>LOI 없이 비딩하는 것은 블라인드 도박. 임대 재계약 실패 시 Bear IRR <strong>-8%</strong>로 투자 손실. 금리 반등 시나리오에서 50% LTV는 자본 손실 위험을 배가.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  작성일: 2026-04-30 &nbsp;|&nbsp; AI운용사 리서치 &nbsp;|&nbsp; 내부 검토용 — 대외비
+</div>
+
+</body>
+</html>
