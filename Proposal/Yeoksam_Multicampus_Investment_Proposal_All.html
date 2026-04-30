@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멀티캠퍼스 역삼 투자제안서 | AI운용사</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #1a2744;
+    --navy-light: #243560;
+    --gold:    #c9a84c;
+    --gold-light: #e8c96c;
+    --bg:      #f8f6f1;
+    --white:   #ffffff;
+    --text:    #1a1a2e;
+    --text-2:  #4a5568;
+    --text-3:  #718096;
+    --border:  #e2ddd5;
+    --card:    #ffffff;
+    --green:   #2d6a4f;
+    --green-bg:#e8f5e9;
+    --amber:   #b45309;
+    --amber-bg:#fef3c7;
+    --red:     #991b1b;
+    --red-bg:  #fee2e2;
+    --blue:    #1e40af;
+    --blue-bg: #dbeafe;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+  }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .serif { font-family: 'Noto Serif KR', serif; }
+
+  /* ── Cover ── */
+  .cover {
+    background: var(--navy);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 72px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+  .cover-header { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover-logo { font-size: 13px; letter-spacing: 0.12em; opacity: 0.7; text-transform: uppercase; }
+  .cover-logo strong { display: block; font-size: 18px; letter-spacing: 0.04em; opacity: 1; color: var(--gold); }
+  .cover-badge {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    border: 1px solid rgba(201,168,76,0.5); color: var(--gold);
+    padding: 4px 12px; border-radius: 2px;
+  }
+  .cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 80px 0 60px; }
+  .cover-eyebrow {
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .cover-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 52px; font-weight: 700;
+    line-height: 1.2; margin-bottom: 16px;
+  }
+  .cover-subtitle { font-size: 22px; font-weight: 300; opacity: 0.7; margin-bottom: 40px; }
+  .cover-divider { width: 60px; height: 2px; background: var(--gold); margin-bottom: 40px; }
+  .cover-kpi-row { display: flex; gap: 48px; }
+  .cover-kpi { }
+  .cover-kpi-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; }
+  .cover-kpi-val { font-family: 'JetBrains Mono', monospace; font-size: 26px; color: var(--gold-light); margin-top: 2px; }
+  .cover-kpi-sub { font-size: 11px; opacity: 0.5; }
+  .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; font-size: 12px; opacity: 0.45; }
+  .cover-footer-date { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── Section wrapper ── */
+  .section {
+    padding: 64px 0 48px;
+    page-break-inside: avoid;
+  }
+  .section + .section { border-top: 1px solid var(--border); }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 30px; font-weight: 700; color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .section-subtitle { font-size: 15px; color: var(--text-2); margin-bottom: 36px; }
+  .section-divider { width: 40px; height: 3px; background: var(--gold); margin-bottom: 36px; }
+
+  /* ── TOC ── */
+  .toc { page-break-after: always; }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .toc-item {
+    display: flex; align-items: center;
+    padding: 12px 16px; border: 1px solid var(--border);
+    border-radius: 4px; gap: 16px;
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.2s;
+  }
+  .toc-item:hover { border-color: var(--gold); }
+  .toc-num { font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--gold); min-width: 32px; }
+  .toc-name { font-size: 14px; font-weight: 500; }
+  .toc-desc { font-size: 12px; color: var(--text-3); }
+
+  /* ── KPI Cards ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .kpi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 20px 16px;
+    border-top: 3px solid var(--gold);
+  }
+  .kpi-card.highlight { border-top-color: var(--navy); }
+  .kpi-card.green { border-top-color: var(--green); }
+  .kpi-card.amber { border-top-color: var(--amber); }
+  .kpi-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+  .kpi-val { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 600; color: var(--navy); line-height: 1; }
+  .kpi-val.green { color: var(--green); }
+  .kpi-val.amber { color: var(--amber); }
+  .kpi-sub { font-size: 11px; color: var(--text-3); margin-top: 6px; }
+
+  /* ── Info Grid ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .info-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  .info-box-title {
+    font-size: 13px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--navy);
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .info-row { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed #eee; }
+  .info-row:last-child { border-bottom: none; }
+  .info-key { font-size: 12.5px; color: var(--text-2); }
+  .info-val { font-size: 13px; font-weight: 500; text-align: right; }
+  .info-val.mono { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    background: var(--navy); color: white;
+    padding: 10px 14px; text-align: left;
+    font-weight: 500; letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  thead th.right { text-align: right; }
+  tbody tr:nth-child(even) { background: #fafafa; }
+  tbody tr:hover { background: #f0f4ff; }
+  tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tbody td.right { text-align: right; font-family: 'JetBrains Mono', monospace; }
+  tbody tr.total td { background: var(--navy); color: white; font-weight: 600; }
+  tbody tr.total td.right { font-family: 'JetBrains Mono', monospace; }
+  tbody tr.subtotal td { background: #f0f4ff; font-weight: 500; }
+  tbody tr.gold td { background: #fefce8; border-top: 2px solid var(--gold); }
+
+  /* ── Scenario Cards ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .scenario-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .scenario-header {
+    padding: 14px 20px;
+    font-weight: 600; font-size: 15px; color: white;
+  }
+  .scenario-card.bear .scenario-header { background: var(--red); }
+  .scenario-card.base .scenario-header { background: var(--navy); }
+  .scenario-card.bull .scenario-header { background: var(--green); }
+  .scenario-badge {
+    display: inline-block; font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 2px 8px;
+    background: rgba(255,255,255,0.2); border-radius: 2px;
+    margin-bottom: 2px;
+  }
+  .scenario-body { padding: 16px 20px; }
+  .scenario-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #eee; font-size: 13px; }
+  .scenario-row:last-child { border-bottom: none; }
+  .scenario-row .label { color: var(--text-2); }
+  .scenario-row .val { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+  .scenario-irr {
+    margin-top: 12px; padding-top: 12px; border-top: 2px solid;
+    text-align: center;
+  }
+  .scenario-card.bear .scenario-irr { border-color: var(--red); }
+  .scenario-card.base .scenario-irr { border-color: var(--navy); }
+  .scenario-card.bull .scenario-irr { border-color: var(--green); }
+  .scenario-irr-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); }
+  .scenario-irr-val { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 600; }
+  .scenario-card.bear .scenario-irr-val { color: var(--red); }
+  .scenario-card.base .scenario-irr-val { color: var(--navy); }
+  .scenario-card.bull .scenario-irr-val { color: var(--green); }
+
+  /* ── Risk Matrix ── */
+  .risk-grid { display: grid; gap: 12px; }
+  .risk-item {
+    display: grid;
+    grid-template-columns: 200px 80px 80px 1fr;
+    gap: 16px;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 20px;
+  }
+  .risk-name { font-weight: 500; font-size: 13px; }
+  .risk-badge {
+    display: inline-block; text-align: center;
+    padding: 4px 10px; border-radius: 4px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+  }
+  .risk-badge.high { background: var(--red-bg); color: var(--red); }
+  .risk-badge.medium { background: var(--amber-bg); color: var(--amber); }
+  .risk-badge.low { background: var(--green-bg); color: var(--green); }
+  .risk-mitigation { font-size: 12px; color: var(--text-2); }
+  .risk-header {
+    display: grid;
+    grid-template-columns: 200px 80px 80px 1fr;
+    gap: 16px;
+    padding: 8px 20px;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-3); font-weight: 500;
+  }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; padding-left: 32px; margin: 24px 0; }
+  .timeline::before {
+    content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px;
+    width: 2px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 20px; }
+  .timeline-dot {
+    position: absolute; left: -26px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+  .timeline-dot.now { background: var(--navy); box-shadow: 0 0 0 2px var(--navy); }
+  .timeline-date { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 0.08em; }
+  .timeline-title { font-size: 14px; font-weight: 500; margin: 2px 0; }
+  .timeline-desc { font-size: 12px; color: var(--text-2); }
+
+  /* ── Callout ── */
+  .callout {
+    border-left: 4px solid var(--gold);
+    background: var(--white);
+    padding: 16px 20px;
+    border-radius: 0 6px 6px 0;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .callout.green { border-left-color: var(--green); }
+  .callout.amber { border-left-color: var(--amber); }
+  .callout.red { border-left-color: var(--red); }
+  .callout.navy { border-left-color: var(--navy); }
+  .callout-title { font-weight: 600; margin-bottom: 4px; }
+
+  /* ── Verdict Box ── */
+  .verdict {
+    background: var(--navy);
+    color: white;
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin: 32px 0;
+  }
+  .verdict-rating { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .verdict-title { font-family: 'Noto Serif KR', serif; font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+  .verdict-body { font-size: 14px; opacity: 0.85; line-height: 1.8; margin-bottom: 24px; }
+  .verdict-conditions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .verdict-cond {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: rgba(255,255,255,0.06); border-radius: 4px;
+    padding: 12px 14px; font-size: 13px;
+  }
+  .verdict-cond-icon { color: var(--gold); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── Comparable Table ── */
+  .comp-note { font-size: 12px; color: var(--text-3); margin-top: 8px; font-style: italic; }
+
+  /* ── Sensitivity ── */
+  .sensitivity-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin: 16px 0;
+  }
+  .sensitivity-cell {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+  .sensitivity-cell.header { background: var(--navy); color: white; font-family: 'Noto Sans KR', sans-serif; font-size: 11px; }
+  .sensitivity-cell.positive { background: #e8f5e9; color: var(--green); }
+  .sensitivity-cell.negative { background: #fee2e2; color: var(--red); }
+  .sensitivity-cell.neutral { background: #fef3c7; color: var(--amber); }
+  .sensitivity-axis { font-size: 11px; color: var(--text-3); text-align: center; margin: 4px 0; }
+
+  /* ── Footer strip ── */
+  .page-footer {
+    background: var(--navy); color: rgba(255,255,255,0.5);
+    font-size: 11px; letter-spacing: 0.06em;
+    padding: 14px 40px;
+    display: flex; justify-content: space-between;
+    margin-top: 40px;
+  }
+
+  /* ── Tags ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px; padding: 3px 10px;
+    border-radius: 12px; margin: 2px;
+    font-weight: 500;
+  }
+  .tag.navy { background: #e8ecf5; color: var(--navy); }
+  .tag.gold { background: #fefce8; color: #92650a; }
+  .tag.green { background: var(--green-bg); color: var(--green); }
+
+  /* ── Highlight bar ── */
+  .highlight-bar {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { background: white; }
+    .cover { min-height: 100vh; }
+    .section { page-break-inside: avoid; }
+    @page { size: A4; margin: 15mm 20mm; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .cover { padding: 40px 28px; }
+    .cover-title { font-size: 32px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .risk-item { grid-template-columns: 1fr 1fr; }
+    .container { padding: 0 20px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .verdict-conditions { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     COVER
+════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-header">
+    <div class="cover-logo">
+      <strong>AI운용사</strong>
+      AI Investment Management
+    </div>
+    <div class="cover-badge">기밀 — 내부 검토용</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-eyebrow">투자제안서 · Investment Proposal</div>
+    <div class="cover-title serif">멀티캠퍼스 역삼<br>매입 검토</div>
+    <div class="cover-subtitle">GBD 핵심 오피스 자산 — 신용도 최상위 단독 임차</div>
+    <div class="cover-divider"></div>
+    <div class="cover-kpi-row">
+      <div class="cover-kpi">
+        <div class="cover-kpi-label">희망 매입가</div>
+        <div class="cover-kpi-val mono">3,217억원+</div>
+        <div class="cover-kpi-sub">평당 5,000만원 (연면적 기준)</div>
+      </div>
+      <div class="cover-kpi">
+        <div class="cover-kpi-label">매입 Cap Rate</div>
+        <div class="cover-kpi-val mono">3.93%</div>
+        <div class="cover-kpi-sub">NOI 126.5억 / 매입가 3,217억</div>
+      </div>
+      <div class="cover-kpi">
+        <div class="cover-kpi-label">Unlevered IRR (Base)</div>
+        <div class="cover-kpi-val mono">5.8%</div>
+        <div class="cover-kpi-sub">5년 보유 시나리오</div>
+      </div>
+      <div class="cover-kpi">
+        <div class="cover-kpi-label">임차 보장</div>
+        <div class="cover-kpi-val mono">2028년</div>
+        <div class="cover-kpi-sub">삼성SDS 계열 전관임차</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <span>서울특별시 강남구 테헤란로 521 (역삼동)</span>
+    <span class="cover-footer-date">2026 · 04 · 28</span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     MAIN BODY
+════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- ── Table of Contents ── -->
+  <div class="section toc">
+    <div class="section-label">목차</div>
+    <div class="section-title serif">Table of Contents</div>
+    <div class="section-divider"></div>
+    <div class="toc-grid">
+      <a href="#exec" class="toc-item">
+        <div class="toc-num">01</div>
+        <div><div class="toc-name">투자 요약</div><div class="toc-desc">핵심 KPI 및 투자 포인트</div></div>
+      </a>
+      <a href="#deal" class="toc-item">
+        <div class="toc-num">02</div>
+        <div><div class="toc-name">딜 개요</div><div class="toc-desc">매각 구조 · 타임라인 · 입찰 조건</div></div>
+      </a>
+      <a href="#asset" class="toc-item">
+        <div class="toc-num">03</div>
+        <div><div class="toc-name">자산 분석</div><div class="toc-desc">위치 · 건물 스펙 · 인프라</div></div>
+      </a>
+      <a href="#tenant" class="toc-item">
+        <div class="toc-num">04</div>
+        <div><div class="toc-name">임차인 분석</div><div class="toc-desc">멀티캠퍼스 · 삼성SDS 계열 신용도</div></div>
+      </a>
+      <a href="#market" class="toc-item">
+        <div class="toc-num">05</div>
+        <div><div class="toc-name">GBD 시장 분석</div><div class="toc-desc">공실률 · 임대료 · Cap Rate 추이</div></div>
+      </a>
+      <a href="#financial" class="toc-item">
+        <div class="toc-num">06</div>
+        <div><div class="toc-name">재무 모델</div><div class="toc-desc">Bear / Base / Bull · 감도분석 · 연도별 CF</div></div>
+      </a>
+      <a href="#risk" class="toc-item">
+        <div class="toc-num">07</div>
+        <div><div class="toc-name">리스크 분석</div><div class="toc-desc">주요 위험 요인 및 완화 전략</div></div>
+      </a>
+      <a href="#verdict" class="toc-item">
+        <div class="toc-num">08</div>
+        <div><div class="toc-name">투자 의견</div><div class="toc-desc">권고 등급 · 핵심 전제 조건</div></div>
+      </a>
+      <a href="#structure" class="toc-item">
+        <div class="toc-num">09</div>
+        <div><div class="toc-name">투자 구조 옵션</div><div class="toc-desc">사모펀드 vs 리츠 · 자금 조달 구조</div></div>
+      </a>
+      <a href="#bidding" class="toc-item">
+        <div class="toc-num">10</div>
+        <div><div class="toc-name">비딩 경쟁 전략</div><div class="toc-desc">5대 차별화 전략 · 성공 확률 시나리오</div></div>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ── 01 Executive Summary ── -->
+  <div class="section" id="exec">
+    <div class="section-label">Section 01</div>
+    <div class="section-title serif">투자 요약</div>
+    <div class="section-divider"></div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card highlight">
+        <div class="kpi-label">희망 매입가 (총)</div>
+        <div class="kpi-val">3,217억</div>
+        <div class="kpi-sub">평당 50,000천원 × 6,435평</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">총 취득비용 (All-in)</div>
+        <div class="kpi-val">3,365억</div>
+        <div class="kpi-sub">취득세 4.6% + 부대비용 포함</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">연간 NOI (Base)</div>
+        <div class="kpi-val green">126.5억</div>
+        <div class="kpi-sub">공실률 0%, 전관임차 보장</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">매입 Cap Rate</div>
+        <div class="kpi-val">3.93%</div>
+        <div class="kpi-sub">총투자 기준 3.76%</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">Unlevered IRR</div>
+        <div class="kpi-val green">5.8%</div>
+        <div class="kpi-sub">5년 보유, Base Case</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">보유 전략</div>
+        <div class="kpi-val">5년</div>
+        <div class="kpi-sub">2026 매입 → 2031 매각</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">임대 잔여기간</div>
+        <div class="kpi-val amber">~2년</div>
+        <div class="kpi-sub">2028년 만료 → 재계약 필요</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">주관사</div>
+        <div class="kpi-val" style="font-size:18px;">JLL + 롯데</div>
+        <div class="kpi-sub">JLL코리아 + 롯데물산AMC</div>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-title">투자 포인트 요약</div>
+      GBD 핵심 입지에 위치한 삼성SDS 계열 멀티캠퍼스가 전관 임차 중인 Grade-A 오피스. 잔여 임대차 기간(~2028년) 동안 공실 리스크 Zero가 보장되며, 테헤란로 용적률 완화(최대 1,800%) 검토에 따른 자산가치 상승 옵션을 내포한다. 2022년 인수가 대비 +25% 상승한 평당 5,000만원+의 비딩이나, GBD 인근 케이스퀘어 강남2 거래(평당 5,350만원) 대비 여전히 디스카운트 수준이다.
+    </div>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-box-title">5대 투자 포인트</div>
+        <div style="display:grid; gap:10px; padding-top:4px;">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--gold); font-size:18px; flex-shrink:0;">①</span>
+            <div><strong>공실 리스크 Zero</strong><br><span style="font-size:12px; color:var(--text-2);">삼성SDS 100% 자회사 멀티캠퍼스㈜ 전관임차. 모기업 신용등급 AA, 이전 가능성 없음.</span></div>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--gold); font-size:18px; flex-shrink:0;">②</span>
+            <div><strong>GBD 공급 고갈</strong><br><span style="font-size:12px; color:var(--text-2);">강남구 프라임 오피스 공실률 &lt;1%. 추가 공급 제한으로 임대료 지속 상승 압력.</span></div>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--gold); font-size:18px; flex-shrink:0;">③</span>
+            <div><strong>용적률 완화 업사이드</strong><br><span style="font-size:12px; color:var(--text-2);">서울시 테헤란로 용적률 최대 1,800% 허용 검토. 재개발 옵션 장기 가치 상승 촉매.</span></div>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--gold); font-size:18px; flex-shrink:0;">④</span>
+            <div><strong>비교 거래 디스카운트</strong><br><span style="font-size:12px; color:var(--text-2);">케이스퀘어 강남2 (평당 5,350만원) 대비 본건 5,000만원+ 수준. 인근 거래 대비 합리적.</span></div>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--gold); font-size:18px; flex-shrink:0;">⑤</span>
+            <div><strong>기관 수요 집중</strong><br><span style="font-size:12px; color:var(--text-2);">JLL코리아+롯데물산 공동주관. 국내외 기관 복수 참여 예상 → 낙찰가 경쟁 심화 가능.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">거래 요약 (Deal Summary)</div>
+        <div class="info-row"><span class="info-key">자산명</span><span class="info-val">멀티캠퍼스 역삼</span></div>
+        <div class="info-row"><span class="info-key">주소</span><span class="info-val">강남구 테헤란로 521</span></div>
+        <div class="info-row"><span class="info-key">용도</span><span class="info-val">업무용 오피스 (Grade-A)</span></div>
+        <div class="info-row"><span class="info-key">연면적</span><span class="info-val mono">21,274㎡ (6,435평)</span></div>
+        <div class="info-row"><span class="info-key">규모</span><span class="info-val">지하8층 / 지상20층</span></div>
+        <div class="info-row"><span class="info-key">준공</span><span class="info-val">2014년</span></div>
+        <div class="info-row"><span class="info-key">매도인</span><span class="info-val">케이원제23호역삼리츠</span></div>
+        <div class="info-row"><span class="info-key">리츠 관리</span><span class="info-val">한국토지신탁</span></div>
+        <div class="info-row"><span class="info-key">매각 주관</span><span class="info-val">JLL코리아 + 롯데물산AMC</span></div>
+        <div class="info-row"><span class="info-key">매각 방식</span><span class="info-val">경쟁 입찰 (비딩)</span></div>
+        <div class="info-row"><span class="info-key">희망가 기준</span><span class="info-val mono">평당 50,000천원+</span></div>
+        <div class="info-row"><span class="info-key">이전 인수가</span><span class="info-val mono">평당 40,000천원 (2022)</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── 02 Deal Overview ── -->
+  <div class="section" id="deal">
+    <div class="section-label">Section 02</div>
+    <div class="section-title serif">딜 개요</div>
+    <div class="section-divider"></div>
+
+    <div class="info-grid">
+      <div>
+        <div class="callout">
+          <div class="callout-title">매각 배경</div>
+          케이원제23호역삼리츠는 2022년 평당 4,000만원에 멀티캠퍼스 역삼을 취득, 현재 운용 중. 리츠 만기 도래에 따른 자산 처분 절차로 JLL코리아·롯데물산AMC 공동 주관하에 경쟁 입찰 방식으로 매각 진행. 케이스퀘어 강남2 거래(평당 5,350만원, 2025) 이후 GBD 가격 기준선 재형성 국면에서 본건 비딩이 시장 지표로 주목받고 있음.
+        </div>
+
+        <div style="margin-top:24px;">
+          <div class="info-box-title" style="font-size:13px; font-weight:600; letter-spacing:0.08em; color:var(--navy); padding-bottom:8px; border-bottom:1px solid var(--border); margin-bottom:16px;">매각 구조</div>
+          <div class="info-row"><span class="info-key">매각 방식</span><span class="info-val">공개 경쟁입찰</span></div>
+          <div class="info-row"><span class="info-key">매각 주관</span><span class="info-val">JLL코리아, 롯데물산AMC</span></div>
+          <div class="info-row"><span class="info-key">인수 후보</span><span class="info-val">국내외 기관투자자</span></div>
+          <div class="info-row"><span class="info-key">희망 매각가</span><span class="info-val mono">3,217억원+ (평당 5,000만원+)</span></div>
+          <div class="info-row"><span class="info-key">보증금 방식</span><span class="info-val">입찰보증금 별도 안내 예정</span></div>
+          <div class="info-row"><span class="info-key">거래 종결 목표</span><span class="info-val">2026년 중 예정</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="info-box-title" style="font-size:13px; font-weight:600; letter-spacing:0.08em; color:var(--navy); padding-bottom:8px; border-bottom:1px solid var(--border); margin-bottom:16px;">예상 프로세스 타임라인</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot now"></div>
+            <div class="timeline-date">2026.04 현재</div>
+            <div class="timeline-title">입찰 공고 · IM 배포</div>
+            <div class="timeline-desc">JLL코리아·롯데물산AMC 매각 주관 개시. 투자설명서(IM) 배포 후 입찰 참가 의향서 접수.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026.05 예정</div>
+            <div class="timeline-title">실사 (Due Diligence)</div>
+            <div class="timeline-desc">기술 실사, 법률 실사, 환경 실사 동시 진행. 임차인 협의 현황 확인.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026.06 예정</div>
+            <div class="timeline-title">최종 입찰 · 우선협상대상자 선정</div>
+            <div class="timeline-desc">최종가 제출. 우선협상대상자 선정 후 SPA 협상 개시.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026.07~08 예정</div>
+            <div class="timeline-title">SPA 체결 및 잔금 납부</div>
+            <div class="timeline-desc">매매계약 체결. 금융 클로징 및 소유권 이전. 운영 인수인계.</div>
+          </div>
+        </div>
+
+        <div class="callout amber" style="margin-top:8px;">
+          <div class="callout-title">⚠ 경쟁 강도 주의</div>
+          JLL코리아 참여 + 상장 리츠 디폴트 이후 안전자산 선호 심화로 GBD 코어 자산 경쟁이 극도로 격화될 전망. 희망가 대비 5~10% 이상 초과 입찰 가능성 있음.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── 03 Asset Analysis ── -->
+  <div class="section" id="asset">
+    <div class="section-label">Section 03</div>
+    <div class="section-title serif">자산 분석</div>
+    <div class="section-divider"></div>
+
+    <div class="info-grid" style="margin-bottom:24px;">
+      <div class="info-box">
+        <div class="info-box-title">건물 제원</div>
+        <div class="info-row"><span class="info-key">정식 명칭</span><span class="info-val">멀티캠퍼스 역삼</span></div>
+        <div class="info-row"><span class="info-key">주소</span><span class="info-val">강남구 테헤란로 521</span></div>
+        <div class="info-row"><span class="info-key">지번</span><span class="info-val">역삼동 635-4번지 일원</span></div>
+        <div class="info-row"><span class="info-key">준공연도</span><span class="info-val">2014년</span></div>
+        <div class="info-row"><span class="info-key">구조/규모</span><span class="info-val">철근콘크리트 지하8/지상20F</span></div>
+        <div class="info-row"><span class="info-key">연면적</span><span class="info-val mono">21,274㎡ (6,435평)</span></div>
+        <div class="info-row"><span class="info-key">임대가능면적(NLA)</span><span class="info-val mono">13,828㎡ (4,183평)</span></div>
+        <div class="info-row"><span class="info-key">전용율</span><span class="info-val">65% (추정)</span></div>
+        <div class="info-row"><span class="info-key">주차대수</span><span class="info-val">지하 8개층 주차장</span></div>
+        <div class="info-row"><span class="info-key">그레이드</span><span class="info-val">Grade-A (GBD 기준)</span></div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">입지 분석</div>
+        <div class="info-row"><span class="info-key">지하철 접근성</span><span class="info-val">역삼역 (2호선) 도보 5분</span></div>
+        <div class="info-row"><span class="info-key">광역 접근성</span><span class="info-val">테헤란로 간선도로 직접 접면</span></div>
+        <div class="info-row"><span class="info-key">인근 랜드마크</span><span class="info-val">포스코타워, GS타워, 삼성생명빌딩</span></div>
+        <div class="info-row"><span class="info-key">용도지역</span><span class="info-val">일반상업지역</span></div>
+        <div class="info-row"><span class="info-key">현재 용적률</span><span class="info-val">약 900~1,000% (추정)</span></div>
+        <div class="info-row"><span class="info-key">용적률 허용 검토</span><span class="info-val">최대 1,800% (서울시 발표)</span></div>
+        <div class="info-row"><span class="info-key">주변 오피스 밀집도</span><span class="info-val">GBD 최고 집적지</span></div>
+        <div class="info-row"><span class="info-key">생활 인프라</span><span class="info-val">코엑스 도보권, 호텔·리테일 밀집</span></div>
+      </div>
+    </div>
+
+    <div class="highlight-bar">
+      📍 테헤란로 용적률 완화 옵션 — 서울시, 테헤란로 일원 최대 1,800% 용적률 허용 검토 발표. 현재 건물 대비 약 2배 이상 개발 포텐셜. 장기 재개발 시나리오에서 유의미한 업사이드.
+    </div>
+
+    <div class="callout green">
+      <div class="callout-title">위치 경쟁 우위</div>
+      역삼역 도보권 + 테헤란로 정면 접면은 GBD 내에서도 최상위 입지. 포스코타워(평당 5,500만원 거래), GS타워 등 인근 랜드마크 자산과 동급 지위. IT/컨설팅 기업 클러스터 중심에 위치해 임대 수요 기반이 견고하며, 2028년 재임차 협상 시 유리한 위치 프리미엄 확보.
+    </div>
+  </div>
+
+
+  <!-- ── 04 Tenant Analysis ── -->
+  <div class="section" id="tenant">
+    <div class="section-label">Section 04</div>
+    <div class="section-title serif">임차인 분석</div>
+    <div class="section-divider"></div>
+
+    <div class="info-grid" style="margin-bottom:24px;">
+      <div class="info-box">
+        <div class="info-box-title">임차인 프로파일</div>
+        <div class="info-row"><span class="info-key">임차인</span><span class="info-val">멀티캠퍼스㈜</span></div>
+        <div class="info-row"><span class="info-key">모기업</span><span class="info-val">삼성SDS㈜ (지분 100%)</span></div>
+        <div class="info-row"><span class="info-key">삼성SDS 신용등급</span><span class="info-val" style="color:var(--green); font-weight:600;">AA (국내 최상위)</span></div>
+        <div class="info-row"><span class="info-key">멀티캠퍼스 매출</span><span class="info-val">연 1,800억원+ (2024년 추정)</span></div>
+        <div class="info-row"><span class="info-key">사업 내용</span><span class="info-val">삼성그룹 인재개발·교육·컨설팅</span></div>
+        <div class="info-row"><span class="info-key">교육장 역할</span><span class="info-val">삼성그룹 전국 핵심 교육센터</span></div>
+        <div class="info-row"><span class="info-key">이전 용이성</span><span class="info-val" style="color:var(--red);">매우 낮음 (대규모 시설 투자)</span></div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">임대차 조건</div>
+        <div class="info-row"><span class="info-key">임대 형태</span><span class="info-val" style="color:var(--green); font-weight:600;">전관임차 (단독)</span></div>
+        <div class="info-row"><span class="info-key">임대 면적</span><span class="info-val mono">4,183평 (전 층)</span></div>
+        <div class="info-row"><span class="info-key">현재 공실률</span><span class="info-val mono" style="color:var(--green);">0.0%</span></div>
+        <div class="info-row"><span class="info-key">임대차 만료</span><span class="info-val">2028년 (추정)</span></div>
+        <div class="info-row"><span class="info-key">잔여 기간</span><span class="info-val amber">약 2년</span></div>
+        <div class="info-row"><span class="info-key">임대료 인상 조항</span><span class="info-val">CPI 연동 (추정)</span></div>
+        <div class="info-row"><span class="info-key">재계약 가능성</span><span class="info-val" style="color:var(--green);">높음 (시설 대규모 내장)</span></div>
+        <div class="info-row"><span class="info-key">보증금 방식</span><span class="info-val">보증금 + 월세 혼합</span></div>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-title">임차인 리스크 평가: 낮음</div>
+      멀티캠퍼스는 삼성그룹 임직원 교육을 전담하는 핵심 계열사로, 역삼 본사에 대규모 강의실·시뮬레이션 시설이 구축되어 있음. 물리적 이전 비용이 수백억원 수준으로 추정되어 사실상 이전 불가. 모기업 삼성SDS의 신용등급 AA는 국내 최상위 수준으로, 임대료 연체·부도 리스크는 사실상 없음.
+    </div>
+
+    <div class="callout amber">
+      <div class="callout-title">⚠ 2028년 임대차 만료 — 핵심 협상 포인트</div>
+      취득 후 약 2년 내 임대차 갱신 협상 필요. 전략적으로 매입 전/직후 임대차 연장 사전 협의를 통해 장기 계약(5~10년) 확보가 우선 과제. 재계약 시 임대료 인상(시장 임대료 기준 10~15% 업사이드 가능) 기회로도 활용 가능.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>멀티캠퍼스 역삼</th>
+            <th class="right">위험 수준</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>임차인 신용도</td>
+            <td>삼성SDS 계열 AA, 연 매출 1,800억+</td>
+            <td class="right" style="color:var(--green);">낮음</td>
+          </tr>
+          <tr>
+            <td>이전 가능성</td>
+            <td>대규모 교육시설 내장, 사실상 이전 불가</td>
+            <td class="right" style="color:var(--green);">낮음</td>
+          </tr>
+          <tr>
+            <td>임대료 연체</td>
+            <td>모기업 보증 구조 또는 그에 준하는 신용</td>
+            <td class="right" style="color:var(--green);">매우 낮음</td>
+          </tr>
+          <tr>
+            <td>2028년 재계약</td>
+            <td>이전 비용 부담 → 협상 레버리지 우위</td>
+            <td class="right" style="color:var(--amber);">중간</td>
+          </tr>
+          <tr>
+            <td>임대료 하락 협상</td>
+            <td>삼성그룹 협상력 — 임대료 인하 요구 가능</td>
+            <td class="right" style="color:var(--amber);">중간</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ── 05 Market Analysis ── -->
+  <div class="section" id="market">
+    <div class="section-label">Section 05</div>
+    <div class="section-title serif">GBD 시장 분석</div>
+    <div class="section-divider"></div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card green">
+        <div class="kpi-label">GBD 프라임 공실률</div>
+        <div class="kpi-val green">&lt;1%</div>
+        <div class="kpi-sub">강남구 프라임 오피스 기준</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">GBD 평균 임대료</div>
+        <div class="kpi-val">11~13만원</div>
+        <div class="kpi-sub">평/월, NLA 기준 (2025년)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">프라임 Cap Rate</div>
+        <div class="kpi-val">3.5~4.5%</div>
+        <div class="kpi-sub">GBD 코어 자산 대역</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">신규 공급</div>
+        <div class="kpi-val amber">제한적</div>
+        <div class="kpi-sub">2026~2027년 GBD 신규 공급 희소</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div style="font-size:13px; font-weight:600; color:var(--navy); margin-bottom:12px;">최근 GBD 주요 비교 거래</div>
+      <table>
+        <thead>
+          <tr>
+            <th>자산명</th>
+            <th>위치</th>
+            <th class="right">거래가</th>
+            <th class="right">평당 단가</th>
+            <th class="right">시점</th>
+            <th>특이사항</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>케이스퀘어 강남2</td>
+            <td>강남구 테헤란로</td>
+            <td class="right">약 3,400억</td>
+            <td class="right">5,350만원</td>
+            <td class="right">2025</td>
+            <td>GBD 신 기준선</td>
+          </tr>
+          <tr>
+            <td>멀티캠퍼스 역삼 <span class="tag gold">본건</span></td>
+            <td>강남구 테헤란로 521</td>
+            <td class="right">3,217억원+</td>
+            <td class="right">5,000만원+</td>
+            <td class="right">2026 비딩</td>
+            <td>비교 대비 할인</td>
+          </tr>
+          <tr>
+            <td>포스코타워 역삼</td>
+            <td>강남구 역삼동</td>
+            <td class="right">약 6,600억</td>
+            <td class="right">5,500만원</td>
+            <td class="right">2024</td>
+            <td>대형 랜드마크</td>
+          </tr>
+          <tr>
+            <td>멀티캠퍼스 역삼 (이전)</td>
+            <td>강남구 테헤란로 521</td>
+            <td class="right">2,574억원</td>
+            <td class="right">4,000만원</td>
+            <td class="right">2022</td>
+            <td>현 매도인 취득가</td>
+          </tr>
+          <tr>
+            <td>강남 CBD 평균</td>
+            <td>강남구 일대</td>
+            <td class="right">—</td>
+            <td class="right">4,500~5,500만원</td>
+            <td class="right">2025</td>
+            <td>CBRE 리포트</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="comp-note">* 거래금액은 공개 보도 및 시장 추정치 기반. 실제 체결가와 차이 있을 수 있음.</div>
+    </div>
+
+    <div class="info-grid" style="margin-top:24px;">
+      <div class="callout navy">
+        <div class="callout-title">공급 측면 — 구조적 우위</div>
+        강남구는 신규 오피스 공급이 기반시설·용지 제약으로 극도로 제한된 지역. 2026~2027년 GBD 신규 공급 파이프라인이 거의 없어 현 공실률(프라임 &lt;1%)은 중기적으로 유지될 전망. 임대료는 연 2~3% 완만한 상승 기조.
+      </div>
+      <div class="callout green">
+        <div class="callout-title">수요 측면 — 빅테크·금융 집중 지속</div>
+        글로벌 IT 기업(구글코리아, 카카오, 쿠팡 본사), 금융기관의 GBD 선호 지속. AI 인프라 확장에 따른 오피스 수요 증가 트렌드. 2024~2025년 GBD 순흡수면적 양호. 이지스자산운용 사태로 외국 투자자 이탈 공백을 국내 기관이 대체 중.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── 06 Financial Model ── -->
+  <div class="section" id="financial">
+    <div class="section-label">Section 06</div>
+    <div class="section-title serif">재무 모델</div>
+    <div class="section-divider"></div>
+
+    <!-- 기본 가정 -->
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:16px;">핵심 가정 (Base Case)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th style="width:40%">항목</th><th class="right">수치</th><th>비고</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>매입가</td><td class="right">3,217억원</td><td>연면적 6,435평 × 50,000천원</td></tr>
+          <tr><td>취득세 및 부대비용 (4.6%)</td><td class="right">148억원</td><td>취득세 4.0% + 등기비용 0.6%</td></tr>
+          <tr class="subtotal"><td>총 투자금 (All-in)</td><td class="right">3,365억원</td><td></td></tr>
+          <tr><td>임대가능면적 (NLA)</td><td class="right">4,183평</td><td>연면적 × 전용율 65%</td></tr>
+          <tr><td>임대료 (NLA 기준)</td><td class="right">270,000원/평/월</td><td>현 계약 기준 추정</td></tr>
+          <tr><td>연간 임대수입</td><td class="right">135.5억원</td><td>4,183평 × 270,000원 × 12</td></tr>
+          <tr><td>기타 수입 (주차 등)</td><td class="right">5.0억원</td><td>연간 추정</td></tr>
+          <tr><td>총 운영수입 (EGR)</td><td class="right">140.5억원</td><td></td></tr>
+          <tr><td>운영비용 (10%)</td><td class="right">(14.0억원)</td><td>관리비 pass-through 제외 후 순비용</td></tr>
+          <tr class="subtotal"><td>순운영수익 (NOI)</td><td class="right">126.5억원</td><td></td></tr>
+          <tr class="gold"><td><strong>매입 Cap Rate</strong></td><td class="right"><strong>3.93%</strong></td><td>NOI 126.5억 / 3,217억원</td></tr>
+          <tr class="gold"><td><strong>총투자 기준 Cap Rate</strong></td><td class="right"><strong>3.76%</strong></td><td>NOI 126.5억 / 3,365억원</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- IRR 시나리오 -->
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin: 32px 0 16px;">IRR 시나리오 분석 (5년 보유)</div>
+    <div class="scenario-grid">
+      <div class="scenario-card bear">
+        <div class="scenario-header">
+          <div class="scenario-badge">Bear Case</div><br>
+          비관적 시나리오
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row"><span class="label">2028 재계약</span><span class="val">-5% 임대료 인하</span></div>
+          <div class="scenario-row"><span class="label">임대료 상승률</span><span class="val">0% / 년</span></div>
+          <div class="scenario-row"><span class="label">5년차 NOI</span><span class="val">118억원</span></div>
+          <div class="scenario-row"><span class="label">Exit Cap Rate</span><span class="val">4.7%</span></div>
+          <div class="scenario-row"><span class="label">5년차 매각가</span><span class="val">2,511억원</span></div>
+          <div class="scenario-row"><span class="label">5년 누적 NOI</span><span class="val">621억원</span></div>
+          <div class="scenario-row"><span class="label">총 수익</span><span class="val">3,132억원</span></div>
+          <div class="scenario-irr">
+            <div class="scenario-irr-label">Unlevered IRR</div>
+            <div class="scenario-irr-val">-1.4%</div>
+          </div>
+        </div>
+      </div>
+      <div class="scenario-card base">
+        <div class="scenario-header">
+          <div class="scenario-badge">Base Case</div><br>
+          기본 시나리오
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row"><span class="label">2028 재계약</span><span class="val">+3% 임대료 인상</span></div>
+          <div class="scenario-row"><span class="label">임대료 상승률</span><span class="val">1.5% / 년</span></div>
+          <div class="scenario-row"><span class="label">5년차 NOI</span><span class="val">140억원</span></div>
+          <div class="scenario-row"><span class="label">Exit Cap Rate</span><span class="val">4.0%</span></div>
+          <div class="scenario-row"><span class="label">5년차 매각가</span><span class="val">3,500억원</span></div>
+          <div class="scenario-row"><span class="label">5년 누적 NOI</span><span class="val">690억원</span></div>
+          <div class="scenario-row"><span class="label">총 수익</span><span class="val">4,190억원</span></div>
+          <div class="scenario-irr">
+            <div class="scenario-irr-label">Unlevered IRR</div>
+            <div class="scenario-irr-val">5.8%</div>
+          </div>
+        </div>
+      </div>
+      <div class="scenario-card bull">
+        <div class="scenario-header">
+          <div class="scenario-badge">Bull Case</div><br>
+          낙관적 시나리오
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row"><span class="label">2028 재계약</span><span class="val">+8% 임대료 인상</span></div>
+          <div class="scenario-row"><span class="label">임대료 상승률</span><span class="val">3.0% / 년</span></div>
+          <div class="scenario-row"><span class="label">5년차 NOI</span><span class="val">165억원</span></div>
+          <div class="scenario-row"><span class="label">Exit Cap Rate</span><span class="val">3.5%</span></div>
+          <div class="scenario-row"><span class="label">5년차 매각가</span><span class="val">4,714억원</span></div>
+          <div class="scenario-row"><span class="label">5년 누적 NOI</span><span class="val">756억원</span></div>
+          <div class="scenario-row"><span class="label">총 수익</span><span class="val">5,470억원</span></div>
+          <div class="scenario-irr">
+            <div class="scenario-irr-label">Unlevered IRR</div>
+            <div class="scenario-irr-val">11.0%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 레버리지 분석 -->
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin: 32px 0 16px;">레버리지 분석 (Base Case 기준)</div>
+    <div class="callout amber">
+      <div class="callout-title">⚠ 현재 금리 환경에서 Negative Leverage 주의</div>
+      대출금리 5.0% &gt; Cap Rate 3.9% — 레버리지를 높일수록 수익률이 오히려 하락하는 역전 현상. LTV는 최소 수준(30~40%)으로 제한하거나 고정금리 확보 후 레버리지 활용 고려.
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th class="right">No Leverage</th>
+            <th class="right">LTV 30%</th>
+            <th class="right">LTV 50%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>자기자본</td><td class="right">3,365억원</td><td class="right">2,356억원</td><td class="right">1,683억원</td></tr>
+          <tr><td>차입금</td><td class="right">—</td><td class="right">1,010억원</td><td class="right">1,683억원</td></tr>
+          <tr><td>이자비용 (5.0%)</td><td class="right">—</td><td class="right">50.5억원/년</td><td class="right">84.2억원/년</td></tr>
+          <tr><td>자기자본 현금흐름</td><td class="right">126.5억원</td><td class="right">76.0억원</td><td class="right">42.3억원</td></tr>
+          <tr><td>Cash-on-Cash Yield</td><td class="right">3.76%</td><td class="right">3.23%</td><td class="right">2.51%</td></tr>
+          <tr class="gold"><td><strong>Levered IRR (5년)</strong></td><td class="right"><strong>5.8%</strong></td><td class="right"><strong>5.2%</strong></td><td class="right"><strong>4.1%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 감도분석 -->
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin: 32px 0 12px;">감도 분석: Exit Cap Rate × 임대료 변화율 → Unlevered IRR</div>
+    <div class="sensitivity-axis">임대료 변화 (2028 재계약)</div>
+    <div style="display:grid; grid-template-columns: 80px repeat(5, 1fr); gap:4px;">
+      <div class="sensitivity-cell header"></div>
+      <div class="sensitivity-cell header">-10%</div>
+      <div class="sensitivity-cell header">-5%</div>
+      <div class="sensitivity-cell header">0%</div>
+      <div class="sensitivity-cell header">+5%</div>
+      <div class="sensitivity-cell header">+10%</div>
+
+      <div class="sensitivity-cell header" style="writing-mode:vertical-lr; text-orientation:mixed; font-size:10px; padding:4px; height:48px; display:flex; align-items:center; justify-content:center;">Exit<br>Cap</div>
+      <div class="sensitivity-cell header" style="background:#c62828; font-size:11px;">3.5%</div>
+      <div class="sensitivity-cell header" style="background:#c62828; font-size:11px;">3.7%</div>
+      <div class="sensitivity-cell header" style="background:#1565c0; font-size:11px;">4.0%</div>
+      <div class="sensitivity-cell header" style="background:#1b5e20; font-size:11px;">4.5%</div>
+      <div class="sensitivity-cell header" style="background:#1b5e20; font-size:11px;">5.0%</div>
+
+      <!-- 3.5% Exit Cap -->
+      <div class="sensitivity-cell header" style="background:#e57373; font-size:11px;">3.5%</div>
+      <div class="sensitivity-cell positive">7.2%</div>
+      <div class="sensitivity-cell positive">8.1%</div>
+      <div class="sensitivity-cell positive">9.0%</div>
+      <div class="sensitivity-cell positive">9.9%</div>
+      <div class="sensitivity-cell positive">10.7%</div>
+
+      <!-- 4.0% Exit Cap -->
+      <div class="sensitivity-cell header" style="background:#90caf9; color:#1a2744; font-size:11px;">4.0%</div>
+      <div class="sensitivity-cell neutral">3.4%</div>
+      <div class="sensitivity-cell neutral">4.6%</div>
+      <div class="sensitivity-cell positive">5.8%</div>
+      <div class="sensitivity-cell positive">6.9%</div>
+      <div class="sensitivity-cell positive">7.9%</div>
+
+      <!-- 4.5% Exit Cap -->
+      <div class="sensitivity-cell header" style="background:#a5d6a7; color:#1a2744; font-size:11px;">4.5%</div>
+      <div class="sensitivity-cell negative">-0.1%</div>
+      <div class="sensitivity-cell neutral">1.3%</div>
+      <div class="sensitivity-cell neutral">2.7%</div>
+      <div class="sensitivity-cell neutral">4.1%</div>
+      <div class="sensitivity-cell positive">5.3%</div>
+
+      <!-- 5.0% Exit Cap -->
+      <div class="sensitivity-cell header" style="background:#81c784; color:#1a2744; font-size:11px;">5.0%</div>
+      <div class="sensitivity-cell negative">-3.1%</div>
+      <div class="sensitivity-cell negative">-1.6%</div>
+      <div class="sensitivity-cell negative">-0.2%</div>
+      <div class="sensitivity-cell neutral">1.3%</div>
+      <div class="sensitivity-cell neutral">2.7%</div>
+    </div>
+    <div class="comp-note" style="margin-top:8px;">* 녹색: IRR &gt;5%, 노란색: 0~5%, 빨간색: &lt;0%. Base Case(4.0% Exit Cap, 0% 재계약)에서 IRR 5.8%.</div>
+
+    <!-- 연도별 현금흐름 -->
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin: 32px 0 8px;">연도별 상세 현금흐름 (Base Case, 무차입 기준)</div>
+    <div style="font-size:12px; color:var(--text-3); margin-bottom:16px;">클로징 기준 2026 Q3 → 5년 보유 → 2031 Q3 매각 / 단위: 억원</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th class="right">취득</th>
+            <th class="right">Y1 (2027)</th>
+            <th class="right">Y2 (2028)</th>
+            <th class="right">Y3 (2029)</th>
+            <th class="right">Y4 (2030)</th>
+            <th class="right">Y5 (2031)</th>
+            <th class="right">합계</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>총 수입 (EGR)</td>
+            <td class="right">—</td>
+            <td class="right">140.5</td>
+            <td class="right">143.3</td>
+            <td class="right">150.5</td>
+            <td class="right">153.8</td>
+            <td class="right">157.2</td>
+            <td class="right">745.3</td>
+          </tr>
+          <tr>
+            <td>운영비용</td>
+            <td class="right">—</td>
+            <td class="right">(14.0)</td>
+            <td class="right">(14.3)</td>
+            <td class="right">(15.1)</td>
+            <td class="right">(15.4)</td>
+            <td class="right">(15.7)</td>
+            <td class="right">(74.5)</td>
+          </tr>
+          <tr class="subtotal">
+            <td><strong>NOI</strong></td>
+            <td class="right">—</td>
+            <td class="right"><strong>126.5</strong></td>
+            <td class="right"><strong>129.0</strong></td>
+            <td class="right"><strong>135.4</strong> <span style="font-size:10px; color:var(--green);">↑재계약</span></td>
+            <td class="right"><strong>138.4</strong></td>
+            <td class="right"><strong>141.5</strong></td>
+            <td class="right"><strong>670.8</strong></td>
+          </tr>
+          <tr>
+            <td>CapEx <span style="font-size:10px; color:var(--text-3);">(유지·리뉴얼)</span></td>
+            <td class="right">—</td>
+            <td class="right">(5.0)</td>
+            <td class="right">(5.0)</td>
+            <td class="right"><span style="color:var(--amber); font-weight:600;">(30.0)</span> <span style="font-size:10px; color:var(--text-3);">리뉴얼</span></td>
+            <td class="right">(5.0)</td>
+            <td class="right">(5.0)</td>
+            <td class="right">(50.0)</td>
+          </tr>
+          <tr class="subtotal">
+            <td><strong>순운영현금흐름 (NCOF)</strong></td>
+            <td class="right">—</td>
+            <td class="right"><strong>121.5</strong></td>
+            <td class="right"><strong>124.0</strong></td>
+            <td class="right"><strong>105.4</strong></td>
+            <td class="right"><strong>133.4</strong></td>
+            <td class="right"><strong>136.5</strong></td>
+            <td class="right"><strong>620.8</strong></td>
+          </tr>
+          <tr>
+            <td>매각수입 (Exit)</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+            <td class="right mono">3,500.0</td>
+            <td class="right mono">3,500.0</td>
+          </tr>
+          <tr>
+            <td>매각비용 (1%)</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+            <td class="right">—</td>
+            <td class="right">(35.0)</td>
+            <td class="right">(35.0)</td>
+          </tr>
+          <tr class="gold">
+            <td><strong>총 현금흐름</strong></td>
+            <td class="right"><strong>(3,365)</strong></td>
+            <td class="right"><strong>121.5</strong></td>
+            <td class="right"><strong>124.0</strong></td>
+            <td class="right"><strong>105.4</strong></td>
+            <td class="right"><strong>133.4</strong></td>
+            <td class="right"><strong>3,601.5</strong></td>
+            <td class="right">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="comp-note">* Y3 CapEx 30억 = 공용부 리뉴얼 + ESG 인증 준비 집중 투자. Y4부터 정상 성장 궤도 복귀.</div>
+    </div>
+    <div class="callout green" style="margin-top:16px;">
+      <div class="callout-title">Base Case 수익 요약 (무차입 기준)</div>
+      5년 누적 NCOF <strong>620.8억원</strong> + 매각차익(3,500 - 3,365) <strong>135억원</strong> = 총수익 <strong>755.8억원</strong><br>
+      투자원금 3,365억 대비 누적수익률 22.5% → <strong>Unlevered IRR 약 5.8%</strong>
+    </div>
+  </div>
+
+
+  <!-- ── 07 Risk Analysis ── -->
+  <div class="section" id="risk">
+    <div class="section-label">Section 07</div>
+    <div class="section-title serif">리스크 분석</div>
+    <div class="section-divider"></div>
+
+    <div class="risk-header">
+      <div>리스크 항목</div>
+      <div>발생 가능성</div>
+      <div>영향 수준</div>
+      <div>완화 전략</div>
+    </div>
+    <div class="risk-grid">
+      <div class="risk-item">
+        <div class="risk-name">2028년 임대차 미갱신</div>
+        <div><span class="risk-badge medium">중간</span></div>
+        <div><span class="risk-badge high">높음</span></div>
+        <div class="risk-mitigation">매입 직후 장기 계약(5년+) 사전 체결. 삼성SDS 모기업 수준 보증 요구.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name">Cap Rate 상승 (금리 인상)</div>
+        <div><span class="risk-badge medium">중간</span></div>
+        <div><span class="risk-badge high">높음</span></div>
+        <div class="risk-mitigation">보유 기간 5년 이상 장기화. Cap Rate 4.7% 상승 시에도 누적 NOI로 부분 상쇄.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name">임대료 협상력 열위</div>
+        <div><span class="risk-badge medium">중간</span></div>
+        <div><span class="risk-badge medium">중간</span></div>
+        <div class="risk-mitigation">삼성그룹 계열사 특성상 임대료 인하 요구 가능. 시장 임대료 기준 Indexing 조항 삽입.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name">금리 급등 (레버리지 시)</div>
+        <div><span class="risk-badge low">낮음</span></div>
+        <div><span class="risk-badge medium">중간</span></div>
+        <div class="risk-mitigation">Negative Leverage 구조. LTV 최소화(30% 이내) 또는 고정금리 조달 우선.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name">GBD 오피스 공급 증가</div>
+        <div><span class="risk-badge low">낮음</span></div>
+        <div><span class="risk-badge medium">중간</span></div>
+        <div class="risk-mitigation">강남구 신규 공급 가능 부지 극히 제한. 테헤란로 역세권 공급 파이프라인 사실상 無.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name">경쟁 입찰 가격 급등</div>
+        <div><span class="risk-badge high">높음</span></div>
+        <div><span class="risk-badge medium">중간</span></div>
+        <div class="risk-mitigation">Cap Rate 3.76% 이하 입찰 엄격 금지선 설정. 감정가 대비 Premium 한도 사전 결의.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name">건물 노후화·수선비 과다</div>
+        <div><span class="risk-badge low">낮음</span></div>
+        <div><span class="risk-badge low">낮음</span></div>
+        <div class="risk-mitigation">2014년 준공, 10년차. 기술 실사(TDD)에서 장기 수선계획 충분성 확인 필수.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-name">규제 변화 (용적률 등)</div>
+        <div><span class="risk-badge low">낮음</span></div>
+        <div><span class="risk-badge low">낮음</span></div>
+        <div class="risk-mitigation">테헤란로 용적률 완화는 업사이드 옵션. 규제 강화 시에도 현 운용에 직접 영향 없음.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;" class="callout red">
+      <div class="callout-title">최우선 리스크: 2028년 임대차 갱신 + 경쟁 입찰 가격 급등</div>
+      두 가지 리스크가 동시에 현실화될 경우(높은 가격에 매입 + 재계약 불발) Bear Case를 하회하는 손실 가능성. 임대차 연장 사전 확약을 매입 선행 조건으로 설정하는 것이 가장 효과적인 헤지.
+    </div>
+  </div>
+
+
+  <!-- ── 08 Investment Recommendation ── -->
+  <div class="section" id="verdict">
+    <div class="section-label">Section 08</div>
+    <div class="section-title serif">투자 의견</div>
+    <div class="section-divider"></div>
+
+    <div class="verdict">
+      <div class="verdict-rating">투자 등급 — 조건부 매수 검토 (Buy with Conditions)</div>
+      <div class="verdict-title serif">조건부 매수 검토 권고</div>
+      <div class="verdict-body">
+        멀티캠퍼스 역삼은 GBD 최핵심 입지의 Grade-A 오피스로, 삼성SDS 계열 전관임차라는 신용도 최상위 배경이 투자 안정성을 담보한다. Base Case 기준 Unlevered IRR 5.8%는 현 저금리 환경에서 매력적인 수준이며, 테헤란로 용적률 완화에 따른 장기 업사이드 옵션도 유효하다.
+        <br><br>
+        단, 두 가지 선행 조건 충족이 필수: ① 매입 전 임대차 연장 합의(5년 이상), ② 경쟁 입찰에서 평당 5,300만원 초과 금지. 조건 미충족 시 투자 판단을 재고할 것을 권고한다.
+      </div>
+      <div class="verdict-conditions">
+        <div class="verdict-cond">
+          <div class="verdict-cond-icon">✓</div>
+          <div><strong>선행 조건 ①</strong>: 매입 완결 전 멀티캠퍼스㈜ 임대차 연장 MOU 체결 (5년 이상, 2033년 만료 목표)</div>
+        </div>
+        <div class="verdict-cond">
+          <div class="verdict-cond-icon">✓</div>
+          <div><strong>선행 조건 ②</strong>: 최종 입찰가 평당 5,300만원 이내 (총 3,411억원). 초과 시 투자위원회 재심의 필요</div>
+        </div>
+        <div class="verdict-cond">
+          <div class="verdict-cond-icon">✓</div>
+          <div><strong>선행 조건 ③</strong>: 기술 실사에서 향후 5년 수선비 연 10억원 이내 확인 (NOI 방어)</div>
+        </div>
+        <div class="verdict-cond">
+          <div class="verdict-cond-icon">✓</div>
+          <div><strong>선행 조건 ④</strong>: LTV 최대 30% 이내 (Negative Leverage 최소화). 고정금리 조달 우선 검토</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-box-title">핵심 전제 (What must be true)</div>
+        <div class="info-row"><span class="info-key">임대 안정성</span><span class="info-val" style="color:var(--green);">전관임차 2028 이후 연장 확보</span></div>
+        <div class="info-row"><span class="info-key">GBD 공실률</span><span class="info-val">2% 이하 유지 (5년간)</span></div>
+        <div class="info-row"><span class="info-key">Exit Cap Rate</span><span class="info-val">4.5% 이내 (5년 후)</span></div>
+        <div class="info-row"><span class="info-key">임대료 변화</span><span class="info-val">-5% 이내 (재계약 시)</span></div>
+        <div class="info-row"><span class="info-key">조달 금리</span><span class="info-val">5.5% 이내 (LTV30%)</span></div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">차별화 투자 전략 (Value-Add)</div>
+        <div class="info-row"><span class="info-key">단기 (0~1년)</span><span class="info-val">임대차 연장 협상 조기 타결</span></div>
+        <div class="info-row"><span class="info-key">중기 (2~3년)</span><span class="info-val">공용부·로비 리뉴얼 투자</span></div>
+        <div class="info-row"><span class="info-key">중기 (3~4년)</span><span class="info-val">ESG 인증(LEED/G-SEED) 취득</span></div>
+        <div class="info-row"><span class="info-key">장기 (5년차)</span><span class="info-val">용적률 완화 상황 보며 Exit 또는 재개발 검토</span></div>
+        <div class="info-row"><span class="info-key">Exit 전략</span><span class="info-val">리츠 편입 또는 기관 개별 매각</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; padding:24px; background:var(--white); border:1px solid var(--border); border-radius:6px; border-left:4px solid var(--gold);">
+      <div style="font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">다음 단계 (Next Actions)</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="font-size:13px;">
+          <span style="font-weight:600; color:var(--navy);">즉시 실행:</span><br>
+          • JLL코리아 IM 수령 및 입찰 참가 의향 타진<br>
+          • 임대차 현황 및 잔여조건 상세 확인<br>
+          • 기술·법률·환경 실사팀 구성
+        </div>
+        <div style="font-size:13px;">
+          <span style="font-weight:600; color:var(--navy);">2주 이내:</span><br>
+          • 투자위원회 예비 보고 및 입찰 방향 결의<br>
+          • 멀티캠퍼스㈜ 임차의향 사전 탐색<br>
+          • 금융 주선기관 사전 접촉
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── 09 Investment Structure ── -->
+  <div class="section" id="structure">
+    <div class="section-label">Section 09</div>
+    <div class="section-title serif">투자 구조 옵션</div>
+    <div class="section-divider"></div>
+
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin-bottom:16px;">펀드 구조 비교</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>Option A: 사모부동산펀드 <span class="tag green">추천</span></th>
+            <th>Option B: 사모리츠</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>근거 법령</td>
+            <td>자본시장법 (사모 집합투자기구)</td>
+            <td>부동산투자회사법</td>
+          </tr>
+          <tr>
+            <td>인허가</td>
+            <td style="color:var(--green); font-weight:600;">없음 — 투자위원회 결의 즉시</td>
+            <td>국토부 영업인가 3~6개월 소요</td>
+          </tr>
+          <tr>
+            <td>의사결정 속도</td>
+            <td style="color:var(--green); font-weight:600;">빠름 (경쟁 입찰 대응 가능)</td>
+            <td style="color:var(--red);">느림 — 입찰 리스크 발생</td>
+          </tr>
+          <tr>
+            <td>세제 혜택</td>
+            <td>법인세 과세</td>
+            <td>분배 조건 충족 시 법인세 면제</td>
+          </tr>
+          <tr>
+            <td>투자자 구성 자유도</td>
+            <td>LP/GP 구조 자유 설계</td>
+            <td>주주 구성 제약 있음</td>
+          </tr>
+          <tr>
+            <td>이후 전환</td>
+            <td style="font-weight:600;">리츠 전환·상장 옵션 유지</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout green" style="margin-top:16px;">
+      <div class="callout-title">권고: Option A (사모부동산펀드)</div>
+      경쟁 입찰 속도 대응 및 구조 유연성 확보를 위해 Option A 우선 채택. 보유 3~5년 후 리츠 전환·상장(REIT IPO)을 Exit 옵션으로 병행 검토.
+    </div>
+
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin: 32px 0 16px;">목표 자금 조달 구조</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>구성</th>
+            <th class="right">금액</th>
+            <th class="right">비중</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LP 자기자본 (기관투자자)</td>
+            <td class="right">2,356억원</td>
+            <td class="right">70%</td>
+            <td>연기금·공제회·보험사</td>
+          </tr>
+          <tr>
+            <td>GP 자기자본 (AI운용사)</td>
+            <td class="right">100억원</td>
+            <td class="right">3%</td>
+            <td>Co-investment (신뢰도 제고)</td>
+          </tr>
+          <tr>
+            <td>선순위 대출 (LTV 27%)</td>
+            <td class="right">909억원</td>
+            <td class="right">27%</td>
+            <td>은행·보험사, 5년 고정금리 목표</td>
+          </tr>
+          <tr class="gold">
+            <td><strong>합계</strong></td>
+            <td class="right"><strong>3,365억원</strong></td>
+            <td class="right"><strong>100%</strong></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="comp-note">* LTV 27% 설정 근거: Negative Leverage 최소화 + 코어 자산 투자자 선호 레버리지 수준</div>
+    </div>
+
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin: 32px 0 16px;">보수 구조 (시장 수준 추정)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th class="right">요율</th>
+            <th class="right">추정 금액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>매입 수수료 (Acquisition Fee)</td>
+            <td class="right">매입가의 0.3%</td>
+            <td class="right">9.7억원 (일시)</td>
+          </tr>
+          <tr>
+            <td>운용 보수 (AM Fee)</td>
+            <td class="right">NAV의 0.55%/년</td>
+            <td class="right">약 18억원/년</td>
+          </tr>
+          <tr>
+            <td>매각 수수료 (Disposition Fee)</td>
+            <td class="right">매각가의 0.5%</td>
+            <td class="right">17.5억원 (일시)</td>
+          </tr>
+          <tr>
+            <td>성과 보수 (Carry)</td>
+            <td class="right">Hurdle 4% 초과분 × 20%</td>
+            <td class="right">성과 의존</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ── 10 Bidding Strategy ── -->
+  <div class="section" id="bidding">
+    <div class="section-label">Section 10</div>
+    <div class="section-title serif">비딩 경쟁 전략</div>
+    <div class="section-divider"></div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card amber">
+        <div class="kpi-label">예상 경쟁자</div>
+        <div class="kpi-val amber">5~7개사</div>
+        <div class="kpi-sub">국내 3~5개 + 해외 코어 1~2개</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">예상 낙찰 단가</div>
+        <div class="kpi-val amber">5,200~5,400만원</div>
+        <div class="kpi-sub">희망가 대비 4~8% 프리미엄 전망</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-label">우리의 절대 한도</div>
+        <div class="kpi-val" style="color:var(--red);">5,300만원/평</div>
+        <div class="kpi-sub">총 3,411억 | Cap Rate 3.71%</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">LP Soft Commit 목표</div>
+        <div class="kpi-val green">1,500억+</div>
+        <div class="kpi-sub">총 자기자본의 63% 사전 확보 목표</div>
+      </div>
+    </div>
+
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin: 32px 0 16px;">5대 차별화 전략</div>
+
+    <div class="risk-header" style="grid-template-columns: 220px 100px 1fr;">
+      <div>전략</div>
+      <div>타이밍</div>
+      <div>실행 방법 및 기대 효과</div>
+    </div>
+    <div class="risk-grid">
+      <div class="risk-item" style="grid-template-columns: 220px 100px 1fr;">
+        <div class="risk-name">① 임차인 사전 접촉 <span class="tag green">최우선</span></div>
+        <div><span class="risk-badge" style="background:var(--green-bg); color:var(--green);">IM 후 1주</span></div>
+        <div class="risk-mitigation">삼성SDS 부동산팀 비공식 접촉 → 임대차 연장 LOI 선취득. 딜 최대 리스크(2028 미갱신) 선제 해소 = 입찰가 정당화 근거 + 투자위원회 설득력 강화.</div>
+      </div>
+      <div class="risk-item" style="grid-template-columns: 220px 100px 1fr;">
+        <div class="risk-name">② Fast Close (60일 클로징)</div>
+        <div><span class="risk-badge medium">입찰 동시</span></div>
+        <div class="risk-mitigation">표준 90일 대비 30일 단축. 금융 Term Sheet 사전 확보 + 기술/법률 실사 병행. 리츠 만기 도래 매도인에게 "확실성"이 최고가 이상의 가치.</div>
+      </div>
+      <div class="risk-item" style="grid-template-columns: 220px 100px 1fr;">
+        <div class="risk-name">③ Committed Financing 선확보</div>
+        <div><span class="risk-badge medium">입찰 2주 전</span></div>
+        <div class="risk-mitigation">선순위 대출기관 2~3개 처 Term Sheet 취득. 목표: LTV 27%, 5년 고정금리 4.8% 이하. 매도인에게 "자금 조달 확실성 100%" 시그널.</div>
+      </div>
+      <div class="risk-item" style="grid-template-columns: 220px 100px 1fr;">
+        <div class="risk-name">④ LP Soft Commitment 선확보</div>
+        <div><span class="risk-badge medium">IC 전</span></div>
+        <div class="risk-mitigation">연기금·공제회·보험사 1~2곳 사전 투자 의향 확인. 목표 1,500억(자기자본 63%). 펀드 클로징 불확실성 제거 → 매도인 신뢰도 제고.</div>
+      </div>
+      <div class="risk-item" style="grid-template-columns: 220px 100px 1fr;">
+        <div class="risk-name">⑤ 가격 상한선 엄수</div>
+        <div><span class="risk-badge high" style="background:var(--red-bg); color:var(--red);">절대 한도</span></div>
+        <div class="risk-mitigation">평당 5,300만원 초과 시 전략적 포기. 단순 최고가 경쟁보다 "조건 없음 + 빠른 클로징"으로 비가격 경쟁력 확보. 재무 모델 훼손 방지 우선.</div>
+      </div>
+    </div>
+
+    <div style="font-size:15px; font-weight:600; color:var(--navy); margin: 32px 0 16px;">시나리오별 입찰 성공 확률 추정</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>시나리오</th>
+            <th class="right">추정 확률</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>가격 경쟁만으로 참여 (기본)</td>
+            <td class="right">20~30%</td>
+          </tr>
+          <tr>
+            <td>①②③ 완료 후 입찰</td>
+            <td class="right">50~60%</td>
+          </tr>
+          <tr class="gold">
+            <td><strong>①~④ 모두 완료 + 임차인 LOI 확보</strong></td>
+            <td class="right"><strong>70~80%</strong></td>
+          </tr>
+          <tr style="background:var(--red-bg);">
+            <td style="color:var(--red);">경쟁가 5,300만원 초과 확실 시</td>
+            <td class="right" style="color:var(--red); font-weight:600;">포기 결정</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ── Appendix ── -->
+  <div class="section" id="appendix">
+    <div class="section-label">부록</div>
+    <div class="section-title serif">GBD 자산 비교 분석</div>
+    <div class="section-divider"></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>자산</th>
+            <th class="right">연면적(평)</th>
+            <th class="right">거래 단가</th>
+            <th class="right">Cap Rate</th>
+            <th>임차 특성</th>
+            <th class="right">거래 연도</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>멀티캠퍼스 역삼 <span class="tag gold">본건</span></strong></td>
+            <td class="right">6,435평</td>
+            <td class="right">5,000만원+</td>
+            <td class="right">~3.9%</td>
+            <td>삼성SDS 전관 (AA)</td>
+            <td class="right">2026(비딩)</td>
+          </tr>
+          <tr>
+            <td>케이스퀘어 강남2</td>
+            <td class="right">약 6,360평</td>
+            <td class="right">5,350만원</td>
+            <td class="right">~3.8%</td>
+            <td>복수 임차인</td>
+            <td class="right">2025</td>
+          </tr>
+          <tr>
+            <td>포스코타워 역삼</td>
+            <td class="right">약 12,000평</td>
+            <td class="right">5,500만원</td>
+            <td class="right">~3.6%</td>
+            <td>포스코 앵커</td>
+            <td class="right">2024</td>
+          </tr>
+          <tr>
+            <td>GS타워</td>
+            <td class="right">약 18,000평</td>
+            <td class="right">5,200만원 (추정)</td>
+            <td class="right">~3.7%</td>
+            <td>GS그룹 전관</td>
+            <td class="right">2023</td>
+          </tr>
+          <tr>
+            <td>멀티캠퍼스 역삼 (이전)</td>
+            <td class="right">6,435평</td>
+            <td class="right">4,000만원</td>
+            <td class="right">~4.5%</td>
+            <td>삼성SDS 전관</td>
+            <td class="right">2022</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="comp-note">* 단가·Cap Rate는 공개 정보 및 시장 추정치. 법적 효력 없음.</div>
+    </div>
+
+    <div style="margin-top:32px; padding:20px; background:var(--white); border:1px solid var(--border); border-radius:6px;">
+      <div style="font-size:12px; color:var(--text-3); line-height:1.9;">
+        <strong style="color:var(--text-2);">면책 조항 (Disclaimer)</strong><br>
+        본 투자제안서는 AI운용사 내부 검토 목적으로 작성된 것으로, 공개된 보도자료 및 시장 추정치에 기반하며 법적·회계적 의견서가 아닙니다. 모든 재무 추정치는 가정에 기반한 것으로 실제 결과와 다를 수 있습니다. 투자 결정은 반드시 정식 실사 및 투자위원회 심의를 거쳐야 합니다. 본 문서는 기밀 문서로 외부 공개 및 무단 배포를 금지합니다.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+
+<!-- ── Footer ── -->
+<div class="page-footer">
+  <span>AI운용사 | AI Investment Management Co., Ltd.</span>
+  <span>멀티캠퍼스 역삼 투자제안서 | 작성일 2026-04-28 | 기밀문서</span>
+</div>
+
+</body>
+</html>
