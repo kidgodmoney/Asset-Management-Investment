@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멀티캠퍼스 역삼 — 투자자 유형별 비교 분석 | AI운용사</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #1a2744;
+    --navy-light: #243560;
+    --gold:       #c9a84c;
+    --gold-light: #e8c96c;
+    --bg:         #f8f6f1;
+    --white:      #ffffff;
+    --text:       #1a1a2e;
+    --text-2:     #4a5568;
+    --text-3:     #718096;
+    --border:     #e2ddd5;
+    --card:       #ffffff;
+    --blue:       #1e40af;
+    --blue-bg:    #dbeafe;
+    --blue-light: #eff6ff;
+    --red:        #991b1b;
+    --red-bg:     #fee2e2;
+    --red-light:  #fff5f5;
+    --green:      #2d6a4f;
+    --green-bg:   #d1fae5;
+    --green-light:#f0fdf4;
+    --amber:      #b45309;
+    --amber-bg:   #fef3c7;
+    --amber-light:#fffbeb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+  }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .serif { font-family: 'Noto Serif KR', serif; }
+
+  /* ── Cover ── */
+  .cover {
+    background: var(--navy);
+    color: white;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+  .cover-header { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover-logo { font-size: 13px; letter-spacing: 0.12em; opacity: 0.7; text-transform: uppercase; }
+  .cover-logo strong { display: block; font-size: 18px; letter-spacing: 0.04em; opacity: 1; color: var(--gold); }
+  .cover-badge {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    border: 1px solid rgba(201,168,76,0.5); color: var(--gold);
+    padding: 4px 12px; border-radius: 2px;
+  }
+  .cover-body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 0 20px; }
+  .cover-label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .cover-title { font-family: 'Noto Serif KR', serif; font-size: clamp(28px,4vw,52px); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .cover-subtitle { font-size: 18px; font-weight: 300; opacity: 0.7; margin-bottom: 8px; }
+  .cover-divider { width: 60px; height: 2px; background: var(--gold); margin: 24px 0; }
+  .cover-meta { display: flex; gap: 40px; }
+  .cover-meta-item { font-size: 12px; opacity: 0.6; letter-spacing: 0.05em; }
+  .cover-meta-item strong { display: block; font-size: 15px; opacity: 1; color: white; margin-top: 2px; }
+  .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; opacity: 0.4; letter-spacing: 0.08em; }
+
+  /* ── Section ── */
+  .section {
+    padding: 60px 72px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--gold); letter-spacing: 0.15em;
+  }
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px; font-weight: 700; color: var(--navy);
+  }
+  .section-desc { font-size: 13px; color: var(--text-3); margin-top: 4px; }
+
+  /* ── KPI Grid ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .kpi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 24px;
+    position: relative;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 4px 4px 0 0;
+  }
+  .kpi-card.blue::before  { background: var(--blue); }
+  .kpi-card.red::before   { background: var(--red); }
+  .kpi-card.green::before { background: var(--green); }
+  .kpi-card.amber::before { background: var(--amber); }
+  .kpi-label { font-size: 11px; color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .kpi-value { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 600; color: var(--navy); line-height: 1.2; }
+  .kpi-sub { font-size: 11px; color: var(--text-3); margin-top: 4px; }
+  .kpi-card.blue  .kpi-value { color: var(--blue); }
+  .kpi-card.red   .kpi-value { color: var(--red); }
+  .kpi-card.green .kpi-value { color: var(--green); }
+  .kpi-card.amber .kpi-value { color: var(--amber); }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; margin-bottom: 32px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--navy); color: white; }
+  thead th { padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; }
+  thead th:first-child { width: 160px; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(26,39,68,0.03); }
+  tbody td { padding: 10px 16px; color: var(--text-2); vertical-align: top; }
+  tbody td:first-child { font-weight: 600; color: var(--text); font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; }
+  .th-blue  { background: var(--blue-bg) !important; color: var(--blue) !important; }
+  .th-red   { background: var(--red-bg) !important; color: var(--red) !important; }
+  .th-green { background: var(--green-bg) !important; color: var(--green) !important; }
+  .th-amber { background: var(--amber-bg) !important; color: var(--amber) !important; }
+  .highlight-row td { background: rgba(201,168,76,0.08); font-weight: 600; }
+  .mono-cell { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+  /* ── Investor Cards Grid ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .inv-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .inv-card-header {
+    padding: 20px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .inv-card.blue  .inv-card-header { background: var(--blue-bg); }
+  .inv-card.red   .inv-card-header { background: var(--red-bg); }
+  .inv-card.green .inv-card-header { background: var(--green-bg); }
+  .inv-card.amber .inv-card-header { background: var(--amber-bg); }
+  .inv-card-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .inv-card.blue  .inv-card-label { color: var(--blue); }
+  .inv-card.red   .inv-card-label { color: var(--red); }
+  .inv-card.green .inv-card-label { color: var(--green); }
+  .inv-card.amber .inv-card-label { color: var(--amber); }
+  .inv-card-name { font-family: 'Noto Serif KR', serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-top: 4px; }
+  .inv-card-badge {
+    font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .inv-card.blue  .inv-card-badge { background: var(--blue); color: white; }
+  .inv-card.red   .inv-card-badge { background: var(--red); color: white; }
+  .inv-card.green .inv-card-badge { background: var(--green); color: white; }
+  .inv-card.amber .inv-card-badge { background: var(--amber); color: white; }
+  .inv-card-body { padding: 20px 24px; }
+  .inv-card-section { margin-bottom: 16px; }
+  .inv-card-section-title { font-size: 11px; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+  .inv-strength-list { list-style: none; }
+  .inv-strength-list li { font-size: 13px; color: var(--text-2); padding: 3px 0; padding-left: 16px; position: relative; }
+  .inv-strength-list li::before { content: '▸'; position: absolute; left: 0; }
+  .inv-card.blue  .inv-strength-list li::before { color: var(--blue); }
+  .inv-card.red   .inv-strength-list li::before { color: var(--red); }
+  .inv-card.green .inv-strength-list li::before { color: var(--green); }
+  .inv-card.amber .inv-strength-list li::before { color: var(--amber); }
+  .inv-mini-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .inv-mini-table tr { border-bottom: 1px solid var(--border); }
+  .inv-mini-table tr:last-child { border-bottom: none; }
+  .inv-mini-table td { padding: 5px 0; }
+  .inv-mini-table td:first-child { color: var(--text-3); width: 50%; }
+  .inv-mini-table td:last-child { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--navy); text-align: right; }
+  .inv-card.blue  .inv-mini-table td:last-child { color: var(--blue); }
+  .inv-card.red   .inv-mini-table td:last-child { color: var(--red); }
+  .inv-card.green .inv-mini-table td:last-child { color: var(--green); }
+  .inv-card.amber .inv-mini-table td:last-child { color: var(--amber); }
+  .inv-condition {
+    background: var(--bg); border-radius: 4px; padding: 10px 14px;
+    font-size: 12px; color: var(--text-2); margin-top: 12px;
+  }
+  .inv-condition strong { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 4px; }
+  .inv-card.blue  .inv-condition strong { color: var(--blue); }
+  .inv-card.red   .inv-condition strong { color: var(--red); }
+  .inv-card.green .inv-condition strong { color: var(--green); }
+  .inv-card.amber .inv-condition strong { color: var(--amber); }
+
+  /* ── Score bars ── */
+  .score-row { display: flex; align-items: center; gap: 10px; margin: 4px 0; }
+  .score-label { font-size: 11px; color: var(--text-3); width: 80px; flex-shrink: 0; }
+  .score-bar-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 3px; }
+  .inv-card.blue  .score-bar-fill { background: var(--blue); }
+  .inv-card.red   .score-bar-fill { background: var(--red); }
+  .inv-card.green .score-bar-fill { background: var(--green); }
+  .inv-card.amber .score-bar-fill { background: var(--amber); }
+  .score-pct { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); width: 30px; text-align: right; }
+
+  /* ── IRR Bar Chart ── */
+  .irr-chart { margin-bottom: 40px; }
+  .irr-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .irr-row:last-child { border-bottom: none; }
+  .irr-label { width: 200px; flex-shrink: 0; }
+  .irr-label-type { font-size: 11px; color: var(--text-3); }
+  .irr-label-name { font-weight: 600; color: var(--text); font-size: 13px; }
+  .irr-bars { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .irr-bar-row { display: flex; align-items: center; gap: 8px; }
+  .irr-scenario { font-size: 10px; color: var(--text-3); width: 30px; flex-shrink: 0; text-align: right; }
+  .irr-bar-track { flex: 1; height: 18px; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; position: relative; }
+  .irr-bar-fill { height: 100%; border-radius: 2px; display: flex; align-items: center; padding-left: 8px; }
+  .irr-bar-fill span { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: white; font-weight: 600; white-space: nowrap; }
+  .irr-bar-neg { background: repeating-linear-gradient(45deg, var(--red), var(--red) 2px, var(--red-bg) 2px, var(--red-bg) 8px); }
+
+  /* ── Callout ── */
+  .callout {
+    border-left: 3px solid var(--gold);
+    background: rgba(201,168,76,0.08);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+    margin: 20px 0;
+  }
+  .callout-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .callout p { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+  /* ── Decision Matrix ── */
+  .decision-cell-best   { background: #d1fae5; color: #065f46; font-weight: 600; text-align: center; }
+  .decision-cell-good   { background: #dbeafe; color: #1e3a8a; font-weight: 600; text-align: center; }
+  .decision-cell-mid    { background: #fef3c7; color: #78350f; font-weight: 600; text-align: center; }
+  .decision-cell-risk   { background: #fee2e2; color: #7f1d1d; font-weight: 600; text-align: center; }
+  .decision-cell-na     { background: var(--bg); color: var(--text-3); text-align: center; }
+
+  /* ── Footer ── */
+  .footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    padding: 32px 72px;
+    font-size: 11px;
+    display: flex; justify-content: space-between; align-items: center;
+    letter-spacing: 0.06em;
+  }
+  .footer strong { color: var(--gold); }
+
+  @media (max-width: 900px) {
+    .section { padding: 40px 24px; }
+    .cover { padding: 40px 24px; }
+    .footer { padding: 24px; }
+    .kpi-grid { grid-template-columns: repeat(2,1fr); }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ COVER -->
+<div class="cover">
+  <div class="cover-header">
+    <div class="cover-logo">
+      AI운용사
+      <strong>Investment Research</strong>
+    </div>
+    <div class="cover-badge">Confidential · Internal Use Only</div>
+  </div>
+  <div class="cover-body">
+    <div class="cover-label">투자자 유형별 비교 분석 — 멀티캠퍼스 역삼</div>
+    <div class="cover-title serif">멀티캠퍼스 역삼<br>투자자 유형별 비교 분석</div>
+    <div class="cover-subtitle">연기금 · PE · 리츠 · 가치부가 — 4가지 관점의 투자 전략</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">매입가<strong>3,217억원</strong></div>
+      <div class="cover-meta-item">All-in<strong>3,365억원</strong></div>
+      <div class="cover-meta-item">연면적<strong>6,435평</strong></div>
+      <div class="cover-meta-item">Cap Rate<strong>3.76% (All-in)</strong></div>
+      <div class="cover-meta-item">작성일<strong>2026-04-30</strong></div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>AI운용사 리서치팀</span>
+    <span>내부 검토용 · 대외비</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ OVERVIEW KPIs -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <div>
+      <div class="section-title">자산 기본 정보</div>
+      <div class="section-desc">4가지 투자자 유형 비교 분석의 공통 베이스라인</div>
+    </div>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card blue">
+      <div class="kpi-label">매입 가격</div>
+      <div class="kpi-value">3,217억</div>
+      <div class="kpi-sub">평당 5,000만원 · 6,435평</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">All-in 비용</div>
+      <div class="kpi-value">3,365억</div>
+      <div class="kpi-sub">취득세 4.6% = 148억 포함</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">NOI Year 1</div>
+      <div class="kpi-value">126.5억</div>
+      <div class="kpi-sub">임대 135.5 + 기타 5.0 - 운영비 14.0</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-label">Cap Rate (All-in)</div>
+      <div class="kpi-value">3.76%</div>
+      <div class="kpi-sub">임차인: 삼성SDS 100% · 만료 2028</div>
+    </div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">핵심 구조적 특징</div>
+    <p>삼성SDS(AA 신용등급) 100% 단독 임차 · GBD 강남업무지구 A급 오피스 · 현행 대출금리(5.0%) > Cap Rate(3.76%) → 네거티브 레버리지 환경 · 임대차 만료 2028년(약 2년 후) · Unlevered Base IRR 5년 기준 5.8%</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ OVERVIEW TABLE -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <div>
+      <div class="section-title">투자자 유형별 핵심 지표 비교</div>
+      <div class="section-desc">동일 자산 · 4가지 전략의 재무 구조 및 수익 목표 한눈에 보기</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th class="th-blue">A — 연기금 (보수형)</th>
+          <th class="th-red">B — PE (공격형)</th>
+          <th class="th-green">C — 리츠 (안정형)</th>
+          <th class="th-amber">D — 가치부가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>투자 스타일</td>
+          <td>ALM 장기 인컴</td>
+          <td>레버리지 · 재계약 옵션</td>
+          <td>FFO · 공모리츠 전환</td>
+          <td>CapEx · 액티브 운용</td>
+        </tr>
+        <tr>
+          <td>보유 기간</td>
+          <td class="mono-cell">10년</td>
+          <td class="mono-cell">5년</td>
+          <td class="mono-cell">5~7년 (상장 후)</td>
+          <td class="mono-cell">5년</td>
+        </tr>
+        <tr>
+          <td>LTV</td>
+          <td class="mono-cell">0%</td>
+          <td class="mono-cell">50%</td>
+          <td class="mono-cell">30%</td>
+          <td class="mono-cell">45%</td>
+        </tr>
+        <tr>
+          <td>자기자본</td>
+          <td class="mono-cell">3,365억</td>
+          <td class="mono-cell">1,683억</td>
+          <td class="mono-cell">2,356억</td>
+          <td class="mono-cell">1,851억</td>
+        </tr>
+        <tr>
+          <td>대출금액</td>
+          <td class="mono-cell">0</td>
+          <td class="mono-cell">1,682억 @ 4.8%</td>
+          <td class="mono-cell">1,010억 @ 4.3%</td>
+          <td class="mono-cell">1,514억 @ 5.0%</td>
+        </tr>
+        <tr>
+          <td>연간 이자</td>
+          <td class="mono-cell">0</td>
+          <td class="mono-cell">80.7억</td>
+          <td class="mono-cell">43.4억</td>
+          <td class="mono-cell">75.7억</td>
+        </tr>
+        <tr>
+          <td>Year 1 Equity CF</td>
+          <td class="mono-cell">126.5억</td>
+          <td class="mono-cell">45.8억</td>
+          <td class="mono-cell">79.1억 (FFO)</td>
+          <td class="mono-cell">50.8억</td>
+        </tr>
+        <tr>
+          <td>핵심 지표</td>
+          <td>Yield 3.76%</td>
+          <td>Levered IRR</td>
+          <td>FFO Yield · DPS</td>
+          <td>Value-add IRR</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>목표 수익 (Base)</td>
+          <td class="mono-cell">IRR 5.2% (10yr)</td>
+          <td class="mono-cell">IRR 4.8% (5yr)</td>
+          <td class="mono-cell">배당 3.0%→4.0%</td>
+          <td class="mono-cell">IRR ~9.8% (5yr)</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>목표 수익 (Bull)</td>
+          <td class="mono-cell">IRR 5.9% (10yr)</td>
+          <td class="mono-cell">IRR 15.5% (5yr)</td>
+          <td class="mono-cell">NAV +20% 프리미엄</td>
+          <td class="mono-cell">IRR ~12%+ (5yr)</td>
+        </tr>
+        <tr>
+          <td>CapEx 예산</td>
+          <td class="mono-cell">없음</td>
+          <td class="mono-cell">최소 (15~20억)</td>
+          <td class="mono-cell">없음</td>
+          <td class="mono-cell">50억 (Y2~Y3)</td>
+        </tr>
+        <tr>
+          <td>입찰가 한도</td>
+          <td class="mono-cell">평당 5,300만원</td>
+          <td class="mono-cell">평당 5,200만원</td>
+          <td class="mono-cell">평당 5,200만원</td>
+          <td class="mono-cell">평당 5,200만원</td>
+        </tr>
+        <tr>
+          <td>핵심 선행조건</td>
+          <td>임차인 의향 확인</td>
+          <td>삼성SDS LOI 필수</td>
+          <td>5년+ MOU 필수</td>
+          <td>LOI + PM팀 확보</td>
+        </tr>
+        <tr>
+          <td>투자 의견</td>
+          <td style="color:var(--blue);font-weight:700;">안정 매수</td>
+          <td style="color:var(--red);font-weight:700;">조건부 매수</td>
+          <td style="color:var(--green);font-weight:700;">조건부 매수</td>
+          <td style="color:var(--amber);font-weight:700;">매수 추천</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ INVESTOR CARDS -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <div>
+      <div class="section-title">투자자 유형별 상세 프로파일</div>
+      <div class="section-desc">각 투자자 관점에서의 핵심 강점, 재무 요약, 적합도 평가</div>
+    </div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- Card A: 연기금 -->
+    <div class="inv-card blue">
+      <div class="inv-card-header">
+        <div>
+          <div class="inv-card-label">Investor A</div>
+          <div class="inv-card-name">연기금 · 보수형</div>
+        </div>
+        <div class="inv-card-badge">안정 매수</div>
+      </div>
+      <div class="inv-card-body">
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">핵심 강점</div>
+          <ul class="inv-strength-list">
+            <li>AA 신용 단독 임차 → 공실 리스크 제로 수준</li>
+            <li>무차입 구조 → 금리 위험 완전 제거</li>
+            <li>10년 인컴 + GBD 자산가치 방어 → ALM 최적</li>
+          </ul>
+        </div>
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">재무 요약</div>
+          <table class="inv-mini-table">
+            <tr><td>자기자본</td><td>3,365억</td></tr>
+            <tr><td>초기 Yield</td><td>3.76%</td></tr>
+            <tr><td>10년 누적 NOI</td><td>~1,427억</td></tr>
+            <tr><td>Exit 가치 (Y10 Base)</td><td>4,147억</td></tr>
+            <tr><td>Unlevered IRR (10yr)</td><td>5.2%</td></tr>
+          </table>
+        </div>
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">적합도 평가</div>
+          <div class="score-row"><span class="score-label">리스크 허용</span><div class="score-bar-track"><div class="score-bar-fill" style="width:20%"></div></div><span class="score-pct">낮음</span></div>
+          <div class="score-row"><span class="score-label">수익 목표</span><div class="score-bar-track"><div class="score-bar-fill" style="width:40%"></div></div><span class="score-pct">중저</span></div>
+          <div class="score-row"><span class="score-label">보유 기간</span><div class="score-bar-track"><div class="score-bar-fill" style="width:100%"></div></div><span class="score-pct">10년</span></div>
+          <div class="score-row"><span class="score-label">실행 복잡도</span><div class="score-bar-track"><div class="score-bar-fill" style="width:15%"></div></div><span class="score-pct">단순</span></div>
+        </div>
+        <div class="inv-condition">
+          <strong>핵심 선행조건</strong>
+          임차인(삼성SDS) 임대 연장 의향 최소 구두 확인 + TDD 이상 소견 없음
+        </div>
+      </div>
+    </div>
+
+    <!-- Card B: PE -->
+    <div class="inv-card red">
+      <div class="inv-card-header">
+        <div>
+          <div class="inv-card-label">Investor B</div>
+          <div class="inv-card-name">PE · 공격형</div>
+        </div>
+        <div class="inv-card-badge">조건부 매수</div>
+      </div>
+      <div class="inv-card-body">
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">핵심 강점</div>
+          <ul class="inv-strength-list">
+            <li>재계약 성공 시 NOI +30% + Cap Rate 압축 = 더블 킥</li>
+            <li>50% LTV 레버리지 → Bull IRR 15.5% 달성 가능</li>
+            <li>45일 패스트 클로징 전략으로 경쟁 우위 확보</li>
+          </ul>
+        </div>
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">재무 요약 (Base / Bull / Bear)</div>
+          <table class="inv-mini-table">
+            <tr><td>자기자본</td><td>1,683억</td></tr>
+            <tr><td>Year 1 Equity CF</td><td>45.8억</td></tr>
+            <tr><td>Levered IRR (Base)</td><td>4.8%</td></tr>
+            <tr><td>Levered IRR (Bull)</td><td>15.5%</td></tr>
+            <tr><td>Levered IRR (Bear)</td><td>-8.0%</td></tr>
+          </table>
+        </div>
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">적합도 평가</div>
+          <div class="score-row"><span class="score-label">리스크 허용</span><div class="score-bar-track"><div class="score-bar-fill" style="width:90%"></div></div><span class="score-pct">높음</span></div>
+          <div class="score-row"><span class="score-label">수익 목표</span><div class="score-bar-track"><div class="score-bar-fill" style="width:95%"></div></div><span class="score-pct">높음</span></div>
+          <div class="score-row"><span class="score-label">보유 기간</span><div class="score-bar-track"><div class="score-bar-fill" style="width:50%"></div></div><span class="score-pct">5년</span></div>
+          <div class="score-row"><span class="score-label">실행 복잡도</span><div class="score-bar-track"><div class="score-bar-fill" style="width:70%"></div></div><span class="score-pct">높음</span></div>
+        </div>
+        <div class="inv-condition">
+          <strong>핵심 선행조건</strong>
+          삼성SDS LOI 확보 (5년+ 임대, 현행 임대료 이상) — 미확보 시 비딩 포기
+        </div>
+      </div>
+    </div>
+
+    <!-- Card C: 리츠 -->
+    <div class="inv-card green">
+      <div class="inv-card-header">
+        <div>
+          <div class="inv-card-label">Investor C</div>
+          <div class="inv-card-name">리츠 · 안정형</div>
+        </div>
+        <div class="inv-card-badge">조건부 매수</div>
+      </div>
+      <div class="inv-card-body">
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">핵심 강점</div>
+          <ul class="inv-strength-list">
+            <li>사모→공모 전환 시 NAV 프리미엄 10~20% 기대</li>
+            <li>30% LTV 보수적 구조 → 안정 배당 지속가능성</li>
+            <li>분기 배당 플랫폼으로 리츠 AUM 성장 발판</li>
+          </ul>
+        </div>
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">재무 요약 (FFO 기준)</div>
+          <table class="inv-mini-table">
+            <tr><td>자기자본 (출자)</td><td>2,356억</td></tr>
+            <tr><td>FFO Year 1</td><td>79.1억</td></tr>
+            <tr><td>초기 배당수익</td><td>3.02%</td></tr>
+            <tr><td>안정화 배당수익 (Y5+)</td><td>~4.0%</td></tr>
+            <tr><td>현재 WALE</td><td>약 2년 ⚠</td></tr>
+          </table>
+        </div>
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">적합도 평가</div>
+          <div class="score-row"><span class="score-label">리스크 허용</span><div class="score-bar-track"><div class="score-bar-fill" style="width:30%"></div></div><span class="score-pct">낮음</span></div>
+          <div class="score-row"><span class="score-label">수익 목표</span><div class="score-bar-track"><div class="score-bar-fill" style="width:45%"></div></div><span class="score-pct">중간</span></div>
+          <div class="score-row"><span class="score-label">보유 기간</span><div class="score-bar-track"><div class="score-bar-fill" style="width:70%"></div></div><span class="score-pct">5~7년</span></div>
+          <div class="score-row"><span class="score-label">실행 복잡도</span><div class="score-bar-track"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-pct">복잡</span></div>
+        </div>
+        <div class="inv-condition">
+          <strong>핵심 선행조건</strong>
+          임대차 5년+ 연장 MOU 확보 필수 — WALE 2년 상태로는 공모리츠 상장 불가
+        </div>
+      </div>
+    </div>
+
+    <!-- Card D: Value-add -->
+    <div class="inv-card amber">
+      <div class="inv-card-header">
+        <div>
+          <div class="inv-card-label">Investor D</div>
+          <div class="inv-card-name">가치부가 전략</div>
+        </div>
+        <div class="inv-card-badge">매수 추천</div>
+      </div>
+      <div class="inv-card-body">
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">핵심 강점</div>
+          <ul class="inv-strength-list">
+            <li>CapEx 50억 → NOI +28.5억 → IRR +4%p 달성</li>
+            <li>LEED Gold + 스마트빌딩 = 시장 최상위 자산 포지셔닝</li>
+            <li>Base 5.8% → Value-add 9.8%, 실행력이 알파를 만든다</li>
+          </ul>
+        </div>
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">재무 요약</div>
+          <table class="inv-mini-table">
+            <tr><td>자기자본</td><td>1,851억</td></tr>
+            <tr><td>총 CapEx 예산</td><td>50억 (Y2~Y3)</td></tr>
+            <tr><td>Post-CapEx NOI</td><td>155억</td></tr>
+            <tr><td>Exit 가치 (Y5)</td><td>4,189억</td></tr>
+            <tr><td>Value-add IRR</td><td>~9.8%</td></tr>
+          </table>
+        </div>
+        <div class="inv-card-section">
+          <div class="inv-card-section-title">적합도 평가</div>
+          <div class="score-row"><span class="score-label">리스크 허용</span><div class="score-bar-track"><div class="score-bar-fill" style="width:65%"></div></div><span class="score-pct">중고</span></div>
+          <div class="score-row"><span class="score-label">수익 목표</span><div class="score-bar-track"><div class="score-bar-fill" style="width:75%"></div></div><span class="score-pct">높음</span></div>
+          <div class="score-row"><span class="score-label">보유 기간</span><div class="score-bar-track"><div class="score-bar-fill" style="width:50%"></div></div><span class="score-pct">5년</span></div>
+          <div class="score-row"><span class="score-label">실행 복잡도</span><div class="score-bar-track"><div class="score-bar-fill" style="width:85%"></div></div><span class="score-pct">매우높음</span></div>
+        </div>
+        <div class="inv-condition">
+          <strong>핵심 선행조건</strong>
+          LOI 확보 + CapEx 실행 PM팀 내재화 + LEED 컨설팅 계약 — 실행 역량이 수익률 결정
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cards-grid -->
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ IRR CHART -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <div>
+      <div class="section-title">IRR 시나리오 비교</div>
+      <div class="section-desc">Bear / Base / Bull 3개 시나리오 기준 투자자별 기대수익률 분포</div>
+    </div>
+  </div>
+
+  <div class="irr-chart">
+    <!-- A 연기금 -->
+    <div class="irr-row">
+      <div class="irr-label">
+        <div class="irr-label-type">Investor A</div>
+        <div class="irr-label-name">연기금 · 무차입</div>
+      </div>
+      <div class="irr-bars">
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Bear</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:44%;background:var(--blue);opacity:0.4;"><span>4.4%</span></div></div>
+        </div>
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Base</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:52%;background:var(--blue);"><span>5.2%</span></div></div>
+        </div>
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Bull</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:59%;background:var(--blue);opacity:0.7;"><span>5.9%</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B PE -->
+    <div class="irr-row">
+      <div class="irr-label">
+        <div class="irr-label-type">Investor B</div>
+        <div class="irr-label-name">PE · 50% LTV</div>
+      </div>
+      <div class="irr-bars">
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Bear</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill irr-bar-neg" style="width:8%;"><span style="color:var(--red);">-8%</span></div></div>
+        </div>
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Base</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:48%;background:var(--red);"><span>4.8%</span></div></div>
+        </div>
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Bull</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:100%;background:var(--red);opacity:0.8;"><span>15.5%</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C 리츠 -->
+    <div class="irr-row">
+      <div class="irr-label">
+        <div class="irr-label-type">Investor C</div>
+        <div class="irr-label-name">리츠 · 30% LTV</div>
+      </div>
+      <div class="irr-bars">
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Bear</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:25%;background:var(--green);opacity:0.4;"><span>배당 2.5%</span></div></div>
+        </div>
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Base</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:40%;background:var(--green);"><span>배당 3.0%→4.0%</span></div></div>
+        </div>
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Bull</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:65%;background:var(--green);opacity:0.8;"><span>NAV +20% 프리미엄</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D Value-add -->
+    <div class="irr-row">
+      <div class="irr-label">
+        <div class="irr-label-type">Investor D</div>
+        <div class="irr-label-name">가치부가 · 45% LTV</div>
+      </div>
+      <div class="irr-bars">
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Bear</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:40%;background:var(--amber);opacity:0.4;"><span>4.0%</span></div></div>
+        </div>
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Base</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:72%;background:var(--amber);"><span>~9.8%</span></div></div>
+        </div>
+        <div class="irr-bar-row">
+          <span class="irr-scenario">Bull</span>
+          <div class="irr-bar-track"><div class="irr-bar-fill" style="width:88%;background:var(--amber);opacity:0.8;"><span>~12%+</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">해석 포인트</div>
+    <p>B(PE)는 수익 분포가 가장 넓다(-8%~+15.5%). D(가치부가)는 Base 수익률이 가장 높으나 실행 리스크가 분산 요인. A(연기금)는 분포가 좁고 안정적. C(리츠)는 배당 수익률 관점이므로 단순 IRR 비교에서 유불리 판단 시 주의 필요.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ DECISION MATRIX -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <div>
+      <div class="section-title">의사결정 매트릭스</div>
+      <div class="section-desc">투자자 유형별 핵심 평가 항목 및 상대 적합도</div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>평가 항목</th>
+          <th class="th-blue">A — 연기금</th>
+          <th class="th-red">B — PE</th>
+          <th class="th-green">C — 리츠</th>
+          <th class="th-amber">D — 가치부가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>수익률 (절대)</td>
+          <td class="decision-cell-mid">중 (5.2%)</td>
+          <td class="decision-cell-best">최고 (15.5% Bull)</td>
+          <td class="decision-cell-mid">중 (배당 4%)</td>
+          <td class="decision-cell-good">높음 (9.8%)</td>
+        </tr>
+        <tr>
+          <td>수익 안정성</td>
+          <td class="decision-cell-best">최고 (무차입)</td>
+          <td class="decision-cell-risk">낮음 (Bear -8%)</td>
+          <td class="decision-cell-good">양호</td>
+          <td class="decision-cell-mid">중간</td>
+        </tr>
+        <tr>
+          <td>임대 리스크</td>
+          <td class="decision-cell-good">낮음 (장기 Hold)</td>
+          <td class="decision-cell-risk">높음 (LOI 필수)</td>
+          <td class="decision-cell-risk">높음 (WALE 2yr)</td>
+          <td class="decision-cell-mid">중간 (LOI 필수)</td>
+        </tr>
+        <tr>
+          <td>금리 민감도</td>
+          <td class="decision-cell-best">없음 (무차입)</td>
+          <td class="decision-cell-risk">높음 (50% LTV)</td>
+          <td class="decision-cell-good">낮음 (30% LTV)</td>
+          <td class="decision-cell-mid">중간 (45% LTV)</td>
+        </tr>
+        <tr>
+          <td>실행 복잡도</td>
+          <td class="decision-cell-best">단순</td>
+          <td class="decision-cell-mid">중간</td>
+          <td class="decision-cell-risk">복잡 (상장 프로세스)</td>
+          <td class="decision-cell-risk">매우 복잡 (CapEx)</td>
+        </tr>
+        <tr>
+          <td>유동성 (Exit)</td>
+          <td class="decision-cell-mid">낮음 (10yr Lock)</td>
+          <td class="decision-cell-good">양호 (5yr 단기)</td>
+          <td class="decision-cell-best">최고 (상장 후 주식)</td>
+          <td class="decision-cell-good">양호 (5yr 단기)</td>
+        </tr>
+        <tr>
+          <td>자기자본 규모</td>
+          <td class="decision-cell-risk">최대 (3,365억)</td>
+          <td class="decision-cell-best">최소 (1,683억)</td>
+          <td class="decision-cell-mid">중간 (2,356억)</td>
+          <td class="decision-cell-good">중소 (1,851억)</td>
+        </tr>
+        <tr>
+          <td>ESG·인증 효과</td>
+          <td class="decision-cell-na">해당없음</td>
+          <td class="decision-cell-mid">경미 (15~20억)</td>
+          <td class="decision-cell-mid">보통</td>
+          <td class="decision-cell-best">최고 (LEED Gold)</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>종합 추천 등급</td>
+          <td style="text-align:center;color:var(--blue);font-weight:700;">★★★★☆<br>안정 매수</td>
+          <td style="text-align:center;color:var(--red);font-weight:700;">★★★☆☆<br>조건부 매수</td>
+          <td style="text-align:center;color:var(--green);font-weight:700;">★★★☆☆<br>조건부 매수</td>
+          <td style="text-align:center;color:var(--amber);font-weight:700;">★★★★☆<br>매수 추천</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">공통 전제 조건</div>
+    <p>4가지 전략 모두 삼성SDS 임대 연장 협상(최소 의향 확인)을 선행 조건으로 요구한다. 임차인 협상 결과에 따라 각 전략의 실현 가능성이 결정되므로, 비딩 참여 전 투자자 유형과 무관하게 임차인 접촉을 최우선으로 진행해야 한다.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ FOOTER -->
+<div class="footer">
+  <span><strong>AI운용사</strong> Investment Research</span>
+  <span>멀티캠퍼스 역삼 투자자 유형별 비교 분석 | 2026-04-30</span>
+  <span>내부 검토용 · 대외비 · 무단 배포 금지</span>
+</div>
+
+</body>
+</html>
