@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멀티캠퍼스 역삼 투자제안서 — 투자자 A (연기금·보수형)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-mid: #243057;
+  --navy-light: #2e3f6e;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --bg: #f8f6f1;
+  --bg-card: #ffffff;
+  --text: #1a1a2e;
+  --text-muted: #5a6070;
+  --border: #e0dbd0;
+  --accent: #1e40af;
+  --accent-light: #dbeafe;
+  --accent-dark: #1e3a8a;
+  --positive: #15803d;
+  --positive-bg: #dcfce7;
+  --warning: #b45309;
+  --warning-bg: #fef3c7;
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; }
+a { color: var(--accent); text-decoration: none; }
+
+/* ── COVER ── */
+.cover {
+  background: var(--navy);
+  color: white;
+  padding: 70px 60px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  background: var(--accent);
+  opacity: 0.08;
+  border-radius: 50%;
+}
+.cover-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 3px;
+  margin-bottom: 28px;
+}
+.cover-subtitle { color: var(--gold); font-family: 'Noto Serif KR', serif; font-size: 14px; letter-spacing: 1.5px; margin-bottom: 16px; text-transform: uppercase; }
+.cover h1 { font-family: 'Noto Serif KR', serif; font-size: clamp(26px,4vw,40px); font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+.cover-tagline { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 44px; }
+.cover-meta { display: flex; gap: 36px; flex-wrap: wrap; }
+.cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.cover-meta-label { color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.cover-meta-value { color: white; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; }
+.cover-line { width: 60px; height: 3px; background: var(--accent); margin: 28px 0; }
+
+/* ── CONTAINER ── */
+.container { max-width: 960px; margin: 0 auto; padding: 48px 32px; }
+
+/* ── TOC ── */
+.toc {
+  background: var(--navy);
+  color: white;
+  padding: 36px 40px;
+}
+.toc-title { color: var(--gold); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px 24px; }
+.toc-item { display: flex; align-items: center; gap: 10px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.toc-num { color: var(--accent-light); font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; min-width: 28px; opacity: 0.8; }
+.toc-item a { color: rgba(255,255,255,0.8); font-size: 13px; transition: color 0.2s; }
+.toc-item a:hover { color: var(--gold-light); }
+
+/* ── SECTION ── */
+.section { background: var(--bg-card); border-radius: 8px; margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.section-header { background: var(--navy); padding: 18px 28px; display: flex; align-items: center; gap: 14px; }
+.section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-light); font-weight: 600; opacity: 0.8; }
+.section-title { font-family: 'Noto Serif KR', serif; font-size: 17px; font-weight: 700; color: white; }
+.section-body { padding: 28px; }
+
+/* ── TABLES ── */
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 16px 0; }
+thead tr { background: var(--navy); color: white; }
+thead th { padding: 11px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }
+tbody tr:nth-child(even) { background: #fafaf7; }
+tbody tr:hover { background: var(--accent-light); transition: background 0.15s; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); }
+tbody td:first-child { color: var(--text-muted); font-size: 13px; }
+.highlight-row { background: var(--accent-light) !important; }
+.highlight-row td { font-weight: 700 !important; }
+.td-bold { font-weight: 700; color: var(--text) !important; }
+.td-accent { font-weight: 700; color: var(--accent) !important; }
+.td-positive { font-weight: 700; color: var(--positive) !important; }
+
+/* ── KPI CARDS ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.kpi-card { background: var(--navy); color: white; padding: 20px; border-radius: 6px; position: relative; overflow: hidden; }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+.kpi-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+.kpi-value { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; color: white; line-height: 1.1; }
+.kpi-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 5px; }
+
+/* ── CALLOUT ── */
+.callout { border-left: 4px solid var(--accent); background: var(--accent-light); padding: 16px 20px; border-radius: 0 6px 6px 0; margin: 16px 0; }
+.callout.gold { border-left-color: var(--gold); background: #fefce8; }
+.callout.positive { border-left-color: var(--positive); background: var(--positive-bg); }
+.callout.warning { border-left-color: var(--warning); background: var(--warning-bg); }
+.callout.danger { border-left-color: var(--danger); background: var(--danger-bg); }
+.callout-title { font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--accent-dark); }
+.callout.gold .callout-title { color: #854d0e; }
+.callout.positive .callout-title { color: #14532d; }
+.callout.warning .callout-title { color: #7c2d12; }
+.callout.danger .callout-title { color: #7f1d1d; }
+.callout p, .callout li { font-size: 13.5px; line-height: 1.6; }
+.callout ul { padding-left: 16px; }
+
+/* ── MATCH POINTS ── */
+.match-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+.match-card { background: var(--accent-light); border: 1px solid #bfdbfe; border-radius: 6px; padding: 18px 16px; }
+.match-num { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.match-title { font-weight: 700; font-size: 13px; color: var(--accent-dark); margin-bottom: 8px; }
+.match-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+
+/* ── RISK MATRIX ── */
+.risk-item { display: grid; grid-template-columns: 200px 80px 80px 1fr; gap: 0; border-bottom: 1px solid var(--border); }
+.risk-item:last-child { border-bottom: none; }
+.risk-col { padding: 11px 14px; font-size: 13px; }
+.risk-header { display: grid; grid-template-columns: 200px 80px 80px 1fr; background: var(--navy); color: white; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+.risk-header div { padding: 10px 14px; }
+.badge { display: inline-block; padding: 3px 9px; border-radius: 3px; font-size: 11px; font-weight: 700; }
+.badge-low { background: var(--positive-bg); color: var(--positive); }
+.badge-mid { background: var(--warning-bg); color: var(--warning); }
+.badge-high { background: var(--danger-bg); color: var(--danger); }
+
+/* ── VERDICT ── */
+.verdict-box { background: var(--navy); color: white; padding: 28px; border-radius: 8px; margin: 20px 0; text-align: center; }
+.verdict-stars { font-size: 26px; margin-bottom: 10px; letter-spacing: 4px; }
+.verdict-label { color: var(--gold); font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.verdict-sub { color: rgba(255,255,255,0.65); font-size: 13px; }
+
+/* ── CHECKLIST ── */
+.check-list { list-style: none; padding: 0; margin: 12px 0; }
+.check-list li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+.check-list li:last-child { border-bottom: none; }
+.check-icon { font-size: 15px; margin-top: 1px; min-width: 18px; }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.45); text-align: center; padding: 22px; font-size: 12px; letter-spacing: 0.5px; }
+
+/* ── UTILITY ── */
+.text-muted { color: var(--text-muted); font-size: 12.5px; }
+.section-divider { height: 1px; background: var(--border); margin: 20px 0; }
+.label-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.label { display: inline-block; padding: 3px 10px; background: var(--accent-light); color: var(--accent-dark); font-size: 11px; font-weight: 700; border-radius: 3px; }
+.label.gold { background: #fef9c3; color: #854d0e; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">투자자 A — 연기금 · 보수형</div>
+  <div class="cover-subtitle">Mastern Investment Management · Research</div>
+  <h1>멀티캠퍼스 역삼<br>투자제안서</h1>
+  <div class="cover-tagline">연기금 ALM 전략 · 10년 무차입 · 안정 인컴</div>
+  <div class="cover-line"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span class="cover-meta-label">매입가</span><span class="cover-meta-value">3,217억원</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Cap Rate</span><span class="cover-meta-value">3.76%</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">LTV</span><span class="cover-meta-value">0% (무차입)</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">목표 IRR</span><span class="cover-meta-value">5.2% (10yr)</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">작성일</span><span class="cover-meta-value">2026-04-30</span></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">목차</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01</span><a href="#sec01">투자 요약</a></div>
+    <div class="toc-item"><span class="toc-num">02</span><a href="#sec02">연기금 ALM 매칭 포인트</a></div>
+    <div class="toc-item"><span class="toc-num">03</span><a href="#sec03">재무 모델 (10년 무차입)</a></div>
+    <div class="toc-item"><span class="toc-num">04</span><a href="#sec04">위험 분석</a></div>
+    <div class="toc-item"><span class="toc-num">05</span><a href="#sec05">투자 의견</a></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 01 -->
+  <div class="section" id="sec01">
+    <div class="section-header">
+      <span class="section-num">SECTION 01</span>
+      <span class="section-title">투자 요약</span>
+    </div>
+    <div class="section-body">
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-label">매입가</div><div class="kpi-value">3,217억</div><div class="kpi-sub">평당 5,000만원</div></div>
+        <div class="kpi-card"><div class="kpi-label">All-in 비용</div><div class="kpi-value">3,365억</div><div class="kpi-sub">취득세 148억 포함</div></div>
+        <div class="kpi-card"><div class="kpi-label">Cap Rate</div><div class="kpi-value">3.76%</div><div class="kpi-sub">All-in 기준</div></div>
+        <div class="kpi-card"><div class="kpi-label">10년 IRR</div><div class="kpi-value">5.2%</div><div class="kpi-sub">비레버리지 세전</div></div>
+      </div>
+
+      <table>
+        <thead><tr><th>항목</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>자산명</td><td class="td-bold">멀티캠퍼스 역삼 (GBD 핵심 오피스)</td></tr>
+          <tr><td>매입가</td><td>3,217억원 (평당 5,000만원, 6,435평)</td></tr>
+          <tr><td>All-in 비용</td><td>3,365억원 (취득세 4.6% = 148억 포함)</td></tr>
+          <tr><td>보유 전략</td><td class="td-accent">10년 무차입 (0% LTV)</td></tr>
+          <tr><td>자기자본</td><td class="td-bold">3,365억원 (100% equity)</td></tr>
+          <tr><td>연간 임대수익</td><td>140.5억원 (임대 135.5 + 기타 5.0)</td></tr>
+          <tr><td>NOI Year 1</td><td>126.5억원</td></tr>
+          <tr class="highlight-row"><td>Cap Rate (All-in)</td><td class="td-accent">3.76%</td></tr>
+          <tr class="highlight-row"><td>목표 IRR (10년)</td><td class="td-accent">5.2% (세전, 비레버리지)</td></tr>
+          <tr><td>투자 의견</td><td class="td-positive">안정 매수 ★★★★☆</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout positive">
+        <div class="callout-title">핵심 판단</div>
+        <p>삼성SDS 100% 단독 임차 구조로 신용 리스크가 최소화된 Core 자산. 10년 무차입 보유 시 연간 안정 현금흐름과 GBD 공급 부족에 따른 자산가치 상승이 ALM 목적에 부합.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 02 -->
+  <div class="section" id="sec02">
+    <div class="section-header">
+      <span class="section-num">SECTION 02</span>
+      <span class="section-title">연기금 ALM 매칭 포인트</span>
+    </div>
+    <div class="section-body">
+      <div class="match-grid">
+        <div class="match-card">
+          <div class="match-num">01</div>
+          <div class="match-title">부채-자산 듀레이션 매칭</div>
+          <div class="match-desc">연기금의 장기 부채(10~20년) 대비 10년 보유 Core 오피스는 안정적 인컴 스트림 제공. 무차입 → 금리 위험 완전 제거, 현금흐름 예측성 최대화.</div>
+        </div>
+        <div class="match-card">
+          <div class="match-num">02</div>
+          <div class="match-title">신용 품질 AA 등급 임차인</div>
+          <div class="match-desc">삼성SDS: 삼성그룹 계열 IT 서비스, 신용등급 AA 이상. 단독 임차(100%) → 공실 리스크 사실상 Zero. 그룹 차원 사옥 전략으로 임차 연속성 높음.</div>
+        </div>
+        <div class="match-card">
+          <div class="match-num">03</div>
+          <div class="match-title">GBD 구조적 공급 부족</div>
+          <div class="match-desc">강남 신규 오피스 공급 연평균 3만평 미만(역대 최저). A급 공실률 1~2%대 유지. 공급 제약 + 수요 유지 → 장기 임대료 상승압력 구조적 지속.</div>
+        </div>
+        <div class="match-card">
+          <div class="match-num">04</div>
+          <div class="match-title">인플레이션 헤지 기능</div>
+          <div class="match-desc">임대차 내 임대료 연 2% 에스컬레이션. 실물 자산 특성상 인플레이션 환경에서 명목 자산가치 상승. 국내 연기금 실물자산 비중 확대 기조와 부합.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 03 -->
+  <div class="section" id="sec03">
+    <div class="section-header">
+      <span class="section-num">SECTION 03</span>
+      <span class="section-title">재무 모델 — 10년 무차입</span>
+    </div>
+    <div class="section-body">
+
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--navy);">연도별 NOI 및 누적 현금흐름</h3>
+      <table>
+        <thead><tr><th>연도</th><th>NOI (억원)</th><th>누적 NOI (억원)</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>Year 1</td><td class="td-bold">126.5</td><td>126.5</td><td>취득 직후, 기존 임대조건 유지</td></tr>
+          <tr><td>Year 2</td><td>128.9</td><td>255.4</td><td>임대료 +1.9% 에스컬레이션</td></tr>
+          <tr><td>Year 3 (임대만료)</td><td>131.5</td><td>386.9</td><td class="td-accent">임대차 만료 → 재계약 시점</td></tr>
+          <tr><td>Year 4 (재계약)</td><td>140.0</td><td>526.9</td><td>재계약 임대료 현행화 (+6%)</td></tr>
+          <tr><td>Year 5</td><td>142.8</td><td>669.7</td><td>에스컬레이션 적용</td></tr>
+          <tr><td>Year 6</td><td>145.7</td><td>815.4</td><td>지속 성장</td></tr>
+          <tr><td>Year 7</td><td>148.5</td><td>963.9</td><td></td></tr>
+          <tr><td>Year 8</td><td>151.5</td><td>1,115.4</td><td></td></tr>
+          <tr><td>Year 9</td><td>154.5</td><td>1,269.9</td><td></td></tr>
+          <tr class="highlight-row"><td>Year 10</td><td class="td-bold">157.6</td><td class="td-bold">1,427.5</td><td>누적 NOI 합계</td></tr>
+        </tbody>
+      </table>
+      <p class="text-muted" style="margin-bottom:20px;">* 가정: NOI 성장률 Y1~3 약 1.9%/yr, Y3 재계약 시 +6%, Y4~10 약 2%/yr 에스컬레이션</p>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">Exit 시나리오 (Year 10)</h3>
+      <table>
+        <thead><tr><th>시나리오</th><th>Exit Cap Rate</th><th>Exit 가치</th><th>총 수익 (NOI+Exit)</th><th>All-in IRR</th></tr></thead>
+        <tbody>
+          <tr><td>Base</td><td>3.8%</td><td class="td-bold">4,147억원</td><td>5,575억원</td><td class="td-accent">5.2%</td></tr>
+          <tr><td>Bull</td><td>3.5%</td><td class="td-positive">4,503억원</td><td>5,930억원</td><td class="td-positive">5.9%</td></tr>
+          <tr><td>Bear</td><td>4.2%</td><td style="color:var(--warning);font-weight:700;">3,752억원</td><td>5,180억원</td><td style="color:var(--warning);font-weight:700;">4.4%</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout gold">
+        <div class="callout-title">Base Case 요약</div>
+        <p>Exit NOI 157.6억 / Cap 3.8% = 4,147억. 총 수익 5,575억 vs 투자원금 3,365억 → <strong>배수 1.66x</strong>, IRR 5.2%. 10년 누적 NOI 1,427억 + Exit 4,147억 = 5,575억 총 수령액.</p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">투자 지표 요약</h3>
+      <table>
+        <thead><tr><th>지표</th><th>수치</th></tr></thead>
+        <tbody>
+          <tr><td>Initial Yield (All-in)</td><td class="td-bold">3.76%</td></tr>
+          <tr><td>10년 평균 NOI Yield</td><td>~4.2%</td></tr>
+          <tr><td>10년 누적 NOI</td><td>~1,427억원</td></tr>
+          <tr><td>Base Exit 가치 (Y10)</td><td>4,147억원</td></tr>
+          <tr><td>총 수익</td><td>5,575억원</td></tr>
+          <tr><td>투자원금 대비 배수</td><td class="td-bold">1.66x</td></tr>
+          <tr class="highlight-row"><td>Unlevered IRR (10yr)</td><td class="td-accent">5.2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 04 -->
+  <div class="section" id="sec04">
+    <div class="section-header">
+      <span class="section-num">SECTION 04</span>
+      <span class="section-title">위험 분석</span>
+    </div>
+    <div class="section-body">
+
+      <div class="risk-header">
+        <div>위험 요인</div><div>발생 가능성</div><div>영향도</div><div>완화 수단</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-col" style="font-weight:600;">임차인 신용 위험</div>
+        <div class="risk-col"><span class="badge badge-low">매우 낮음</span></div>
+        <div class="risk-col"><span class="badge badge-high">매우 높음</span></div>
+        <div class="risk-col">AA 신용등급 모니터링. 삼성SDS 연매출 15조+, 영업이익률 안정.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-col" style="font-weight:600;">임대 미재계약 위험</div>
+        <div class="risk-col"><span class="badge badge-low">낮음</span></div>
+        <div class="risk-col"><span class="badge badge-high">높음</span></div>
+        <div class="risk-col">취득 전 LOI 확보 권고. GBD 공실 1~2%, 대체 공간 부재로 임차인 협상력 제한.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-col" style="font-weight:600;">Cap Rate 확장 위험</div>
+        <div class="risk-col"><span class="badge badge-mid">중간</span></div>
+        <div class="risk-col"><span class="badge badge-mid">중간</span></div>
+        <div class="risk-col">무차입 구조 → 이자비용 없음. 인컴 수익만으로 Hold 가능. 10년 중 단기 가치변동은 부채 이행에 영향 없음.</div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-col" style="font-weight:600;">유동성 위험</div>
+        <div class="risk-col"><span class="badge badge-low">낮음</span></div>
+        <div class="risk-col"><span class="badge badge-low">낮음</span></div>
+        <div class="risk-col">Core 오피스 매각 소요기간 6~12개월. 연기금 장기 투자 성격과 일치. 비유동성 프리미엄 IRR에 내재.</div>
+      </div>
+
+      <div class="callout" style="margin-top:20px;">
+        <div class="callout-title">위험 평가 결론</div>
+        <p>임차인 신용 리스크는 국내 우량 채권 수준으로 관리 가능. 무차입 구조로 금리 위험 완전 제거. 연기금 장기 포트폴리오에 최적화된 위험-수익 프로파일.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 05 -->
+  <div class="section" id="sec05">
+    <div class="section-header">
+      <span class="section-num">SECTION 05</span>
+      <span class="section-title">투자 의견</span>
+    </div>
+    <div class="section-body">
+
+      <div class="verdict-box">
+        <div class="verdict-stars">★★★★☆</div>
+        <div class="verdict-label">안정 매수</div>
+        <div class="verdict-sub">연기금 ALM 전략에 최적화된 GBD Core 자산</div>
+      </div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">추천 근거</h3>
+      <ul class="check-list">
+        <li><span class="check-icon">✅</span><div><strong>인컴 안정성</strong>: AA 단독 임차인의 안정적 인컴 → 연기금 부채 이행 목적에 최적</div></li>
+        <li><span class="check-icon">✅</span><div><strong>공급 부족 프리미엄</strong>: GBD 오피스 공급 절벽 → 장기 자산가치 방어 및 상승 기대</div></li>
+        <li><span class="check-icon">✅</span><div><strong>무차입 안정성</strong>: 레버리지 없음 → 금리 위험 제로, 현금흐름 완전 예측 가능</div></li>
+        <li><span class="check-icon">✅</span><div><strong>인플레이션 헤지</strong>: 실물 자산 + 임대료 에스컬레이션으로 실질 수익률 유지</div></li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--navy);">선행 조건</h3>
+      <ul class="check-list">
+        <li><span class="check-icon">📋</span><div>임차인(삼성SDS) 임대 연장 의향 확인 (최소 Term Sheet 수준)</div></li>
+        <li><span class="check-icon">🔍</span><div>건물 실사(TDD) 이상 소견 없음 확인</div></li>
+        <li><span class="check-icon">⚖️</span><div>법적 권리 하자 없음 확인 (소유권·담보 현황)</div></li>
+      </ul>
+
+      <div class="callout gold" style="margin-top:20px;">
+        <div class="callout-title">입찰가 권고</div>
+        <p>최대 평당 <strong>5,300만원</strong> (All-in 3,477억원, Cap Rate 3.60% 수준 허용). 연기금의 장기 안정 인컴 전략에서 GBD A급 Core 오피스는 대체 불가능한 자산군. 현재 부동산 사이클 후반부에서 무차입 Core 매수는 합리적인 방어적 포지셔닝임.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  작성일: 2026-04-30 &nbsp;|&nbsp; AI운용사 리서치 &nbsp;|&nbsp; 내부 검토용 — 대외비
+</div>
+
+</body>
+</html>
