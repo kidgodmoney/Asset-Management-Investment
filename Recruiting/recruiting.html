@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자산운용사 채용공고 분석 2025–2026</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a1628;
+      --bg-soft: #0f1f3a;
+      --bg-card: #14264a;
+      --bg-card2: #162850;
+      --text: #f0f3f8;
+      --text-sub: #d1d9e6;
+      --text-muted: #6d7b94;
+      --accent: #3b8fff;
+      --accent-light: #7ab6ff;
+      --mint: #5eddb8;
+      --amber: #ffb23f;
+      --coral: #ff8585;
+      --purple: #a48cff;
+      --green: #4ade80;
+      --border: rgba(255,255,255,0.07);
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --radius: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Pretendard Variable', 'Pretendard', -apple-system, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: 'ss06' on;
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 70% 30%, rgba(49,130,246,0.18) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(94,221,184,0.08) 0%, transparent 50%),
+                  linear-gradient(160deg, #1e3a6b 0%, #0f1f3a 45%, #0a1628 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(59,143,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto;
+      padding: clamp(80px, 12vw, 140px) 32px clamp(60px, 8vw, 100px);
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(94,221,184,0.12);
+      border: 1px solid rgba(94,221,184,0.25);
+      color: var(--mint);
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5.5vw, 68px);
+      font-weight: 800; line-height: 1.08;
+      letter-spacing: -0.04em; margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #7ab6ff 0%, #5eddb8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: var(--text-sub); font-weight: 400;
+      line-height: 1.8; margin-bottom: 36px; max-width: 560px;
+    }
+
+    .hero-stat-row {
+      display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 36px;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 14px; padding: 16px 22px;
+      min-width: 110px;
+    }
+
+    .hero-stat-num {
+      font-size: 28px; font-weight: 800;
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px;
+    }
+
+    .hero-stat-label {
+      font-size: 11px; font-weight: 600;
+      color: var(--text-muted); letter-spacing: 0.04em;
+    }
+
+    .hero-meta {
+      display: flex; gap: 28px; flex-wrap: wrap;
+    }
+
+    .meta-item { display: flex; flex-direction: column; gap: 4px; }
+
+    .meta-label {
+      font-size: 11px; font-weight: 700;
+      color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .meta-value { font-size: 14px; font-weight: 700; color: var(--text); }
+
+    /* hero sidebar card */
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius); padding: 28px; position: relative;
+    }
+
+    .hero-card-label {
+      position: absolute; top: -13px; left: 20px;
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-radius: 999px; font-size: 11px; font-weight: 700;
+      color: var(--accent-light); padding: 4px 14px; letter-spacing: 0.06em;
+    }
+
+    .co-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+
+    .co-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px; border-radius: 12px;
+      transition: background 0.2s; cursor: pointer; text-decoration: none; color: inherit;
+    }
+
+    .co-item:hover { background: rgba(255,255,255,0.05); }
+
+    .co-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    .co-name { font-size: 13px; font-weight: 600; color: var(--text-sub); flex: 1; }
+
+    .co-tag {
+      font-size: 10px; font-weight: 700; color: var(--text-muted);
+      background: rgba(255,255,255,0.05);
+      padding: 2px 8px; border-radius: 999px;
+    }
+
+    /* ── NAV ── */
+    .quicknav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,22,40,0.82);
+      backdrop-filter: saturate(180%) blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+    }
+
+    .quicknav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none; height: 54px;
+    }
+
+    .quicknav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 16px; border-radius: 999px;
+      font-size: 13px; font-weight: 600; color: var(--text-muted);
+      white-space: nowrap; text-decoration: none;
+      transition: all 0.2s; cursor: pointer; border: none; background: none;
+    }
+
+    .nav-chip:hover, .nav-chip.active {
+      background: rgba(59,143,255,0.15); color: var(--accent-light);
+    }
+
+    .nav-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    /* ── SECTION COMMON ── */
+    .section-wrap {
+      max-width: 1200px; margin: 0 auto; padding: 72px 32px 48px;
+    }
+
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11.5px; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent-light); margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 3.2vw, 36px);
+      font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 15px; color: var(--text-muted); margin-bottom: 40px;
+    }
+
+    /* ── OVERVIEW STATS ── */
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 20px; text-align: center;
+    }
+
+    .stat-card.c-amber { border-color: rgba(255,178,63,0.3); }
+    .stat-card.c-mint  { border-color: rgba(94,221,184,0.3); }
+    .stat-card.c-blue  { border-color: rgba(59,143,255,0.3); }
+    .stat-card.c-purple{ border-color: rgba(164,140,255,0.3); }
+
+    .stat-val {
+      font-size: 38px; font-weight: 800;
+      letter-spacing: -0.05em; line-height: 1; margin-bottom: 6px;
+    }
+
+    .c-amber .stat-val { color: var(--amber); }
+    .c-mint  .stat-val { color: var(--mint); }
+    .c-blue  .stat-val { color: var(--accent-light); }
+    .c-purple .stat-val { color: var(--purple); }
+
+    .stat-label {
+      font-size: 12px; font-weight: 600;
+      color: var(--text-muted); line-height: 1.4;
+    }
+
+    /* ── COMPANY ENTRIES ── */
+    .company-entry {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 0 48px; margin-bottom: 4px; position: relative;
+    }
+
+    .entry-num-col {
+      position: sticky; top: 72px; align-self: start;
+      padding-top: 28px; padding-bottom: 28px;
+    }
+
+    .entry-num {
+      font-size: 48px; font-weight: 800;
+      line-height: 1; letter-spacing: -0.05em;
+    }
+
+    .entry-num.c1 { color: var(--amber); }
+    .entry-num.c2 { color: var(--mint); }
+    .entry-num.c3 { color: var(--accent-light); }
+    .entry-num.c4 { color: var(--purple); }
+    .entry-num.c5 { color: var(--coral); }
+    .entry-num.c6 { color: #38bdf8; }
+    .entry-num.c7 { color: #fb923c; }
+    .entry-num.c8 { color: #a3e635; }
+
+    .entry-type-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-top: 10px; padding: 4px 10px; border-radius: 999px;
+      font-size: 10.5px; font-weight: 800; letter-spacing: 0.06em;
+    }
+
+    .badge-large  { background: rgba(255,178,63,0.15); color: var(--amber); }
+    .badge-mid    { background: rgba(94,221,184,0.15); color: var(--mint); }
+    .badge-small  { background: rgba(164,140,255,0.15); color: var(--purple); }
+    .badge-active { background: rgba(59,143,255,0.15); color: var(--accent-light); }
+
+    .entry-card {
+      padding: 28px;
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 12px;
+    }
+
+    .entry-card.accent-amber {
+      background: linear-gradient(135deg, rgba(255,178,63,0.06) 0%, rgba(255,255,255,0.01) 100%);
+      border-color: rgba(255,178,63,0.25); border-left: 3px solid var(--amber);
+    }
+
+    .entry-card.accent-mint {
+      background: linear-gradient(135deg, rgba(94,221,184,0.06) 0%, rgba(255,255,255,0.01) 100%);
+      border-color: rgba(94,221,184,0.25); border-left: 3px solid var(--mint);
+    }
+
+    .entry-card.accent-blue {
+      background: linear-gradient(135deg, rgba(59,143,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
+      border-color: rgba(59,143,255,0.25); border-left: 3px solid var(--accent-light);
+    }
+
+    .entry-card.accent-purple {
+      background: linear-gradient(135deg, rgba(164,140,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
+      border-color: rgba(164,140,255,0.25); border-left: 3px solid var(--purple);
+    }
+
+    .entry-card.accent-coral {
+      background: linear-gradient(135deg, rgba(255,133,133,0.06) 0%, rgba(255,255,255,0.01) 100%);
+      border-color: rgba(255,133,133,0.25); border-left: 3px solid var(--coral);
+    }
+
+    .co-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+
+    .co-title-kr {
+      font-size: 21px; font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .co-aum {
+      font-size: 11px; font-weight: 700;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 4px 12px; border-radius: 999px;
+      color: var(--text-muted);
+    }
+
+    .co-subtitle {
+      font-size: 12px; font-weight: 600;
+      color: var(--text-muted); letter-spacing: 0.03em; margin-bottom: 18px;
+    }
+
+    .co-desc {
+      font-size: 14.5px; color: var(--text-sub);
+      line-height: 1.85; margin-bottom: 22px;
+    }
+
+    /* info table */
+    .info-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 13.5px; margin-bottom: 22px;
+    }
+
+    .info-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: top;
+    }
+
+    .info-table tr:last-child td { border-bottom: none; }
+    .info-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .info-key {
+      font-size: 11px; font-weight: 800; color: var(--text-muted);
+      letter-spacing: 0.07em; text-transform: uppercase;
+      white-space: nowrap; width: 120px; padding-top: 11px;
+    }
+
+    .info-val { color: var(--text-sub); }
+
+    .info-val strong { color: var(--text); }
+
+    /* job tags */
+    .job-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+
+    .job-tag {
+      font-size: 12px; font-weight: 700;
+      padding: 4px 10px; border-radius: 6px;
+    }
+
+    .jt-amber  { background: rgba(255,178,63,0.15); color: var(--amber); }
+    .jt-mint   { background: rgba(94,221,184,0.15); color: var(--mint); }
+    .jt-blue   { background: rgba(59,143,255,0.15); color: var(--accent-light); }
+    .jt-purple { background: rgba(164,140,255,0.15); color: var(--purple); }
+    .jt-coral  { background: rgba(255,133,133,0.15); color: var(--coral); }
+    .jt-gray   { background: rgba(255,255,255,0.07); color: var(--text-muted); }
+
+    /* kpi row */
+    .kpi-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin-top: 20px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px; text-align: center;
+    }
+
+    .kpi-val {
+      font-size: 24px; font-weight: 800;
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: 5px;
+    }
+
+    .kpi-label { font-size: 11.5px; color: var(--text-muted); font-weight: 600; line-height: 1.4; }
+
+    /* connector */
+    .entry-connector {
+      display: flex; align-items: center; gap: 16px;
+      padding: 12px 0; color: var(--text-muted);
+      font-size: 13px; font-weight: 600;
+      margin: 4px 0 4px 208px;
+    }
+
+    .connector-line { flex: 1; height: 1px; background: var(--border); }
+
+    .connector-icon {
+      width: 32px; height: 32px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+
+    /* ── TREND SECTION ── */
+    .trend-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 16px; margin-top: 32px;
+    }
+
+    .trend-card {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+    }
+
+    .trend-card-head {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+
+    .trend-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+
+    .trend-title { font-size: 16px; font-weight: 800; }
+
+    .trend-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+    .trend-list li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 13.5px; color: var(--text-sub);
+    }
+
+    .trend-list li::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      margin-top: 8px; flex-shrink: 0;
+    }
+
+    .trend-card.t-amber .trend-list li::before { background: var(--amber); }
+    .trend-card.t-mint  .trend-list li::before { background: var(--mint); }
+    .trend-card.t-blue  .trend-list li::before { background: var(--accent-light); }
+    .trend-card.t-purple .trend-list li::before { background: var(--purple); }
+
+    /* ── SECTOR TABLE ── */
+    .sector-table {
+      width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 14px;
+    }
+
+    .sector-table th {
+      text-align: left; font-size: 11px; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sector-table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text-sub); vertical-align: middle;
+    }
+
+    .sector-table tr:last-child td { border-bottom: none; }
+    .sector-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .td-co { font-weight: 700; color: var(--text); }
+
+    .demand-bar-wrap { display: flex; align-items: center; gap: 10px; }
+
+    .demand-bar {
+      height: 6px; border-radius: 999px;
+      background: linear-gradient(90deg, var(--mint), var(--accent-light));
+    }
+
+    .demand-label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+
+    /* ── CONCLUSION CARD ── */
+    .conclusion-card {
+      background: linear-gradient(135deg, rgba(59,143,255,0.08) 0%, rgba(94,221,184,0.04) 100%);
+      border: 1px solid rgba(59,143,255,0.25);
+      border-radius: var(--radius); padding: 40px 44px;
+    }
+
+    .conclusion-card h3 {
+      font-size: 22px; font-weight: 800;
+      letter-spacing: -0.03em; margin-bottom: 20px;
+    }
+
+    .principle-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+
+    .principle-item { display: flex; gap: 14px; align-items: flex-start; }
+
+    .principle-num {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: rgba(59,143,255,0.2); color: var(--accent-light);
+      font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+
+    .principle-text { font-size: 14.5px; color: var(--text-sub); line-height: 1.7; }
+    .principle-text strong { color: var(--text); }
+
+    .conclusion-card p { font-size: 15px; color: var(--text-sub); line-height: 1.85; margin-bottom: 12px; }
+    .conclusion-card p:last-child { margin-bottom: 0; }
+    .conclusion-card strong { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 1200px; margin: 0 auto;
+      padding: 40px 32px 60px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+
+    .footer-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .footer-text strong { color: var(--text-sub); }
+
+    .footer-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11.5px; font-weight: 700; color: var(--text-muted);
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 999px;
+    }
+
+    .sources-section {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 32px 48px;
+    }
+
+    .sources-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 20px;
+    }
+
+    .source-item {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+    }
+
+    .source-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+    }
+
+    .source-name {
+      font-weight: 600; color: var(--text-sub);
+      font-size: 12.5px; display: block;
+    }
+
+    .source-meta { font-size: 11px; color: var(--text-muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .company-entry { grid-template-columns: 1fr; }
+      .entry-num-col { position: static; padding: 0; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+      .trend-grid { grid-template-columns: 1fr; }
+      .sources-grid { grid-template-columns: repeat(2, 1fr); }
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .hero-inner { padding: 80px 20px 60px; }
+      .section-wrap, .sources-section { padding-left: 20px; padding-right: 20px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .conclusion-card { padding: 28px 24px; }
+      .entry-connector { margin-left: 0; }
+      .sources-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        채용시장 분석 리포트 · 2025–2026
+      </div>
+      <h1 class="hero-title">
+        자산운용사<br><em>인재 확보 전쟁</em>
+      </h1>
+      <p class="hero-subtitle">
+        삼성·한투·미래에셋 등 주요 8개사 채용공고를 분석했습니다.<br>
+        신입 공채 vs 수시 경력채용 구조, 직무 트렌드, 핵심 자격 요건을 정리했습니다.
+      </p>
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <div class="hero-stat-num" style="color:var(--mint)">8개</div>
+          <div class="hero-stat-label">분석 대상 운용사</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" style="color:var(--amber)">5명</div>
+          <div class="hero-stat-label">공채 최소 인원<br><span style="font-size:10px;opacity:0.7">(우리자산운용)</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" style="color:var(--accent-light)">400조</div>
+          <div class="hero-stat-label">삼성AM AUM</div>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="meta-label">분석일</span>
+          <span class="meta-value">2026. 5. 1</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">대상</span>
+          <span class="meta-value">2025~2026 공고</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">출처</span>
+          <span class="meta-value">금투협·링커리어·공식사이트</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <span class="hero-card-label">분석 대상 운용사</span>
+      <ul class="co-list">
+        <li class="co-item" onclick="document.getElementById('co1').scrollIntoView({behavior:'smooth'})">
+          <span class="co-dot" style="background:var(--amber)"></span>
+          <span class="co-name">삼성자산운용</span>
+          <span class="co-tag">AUM 400조</span>
+        </li>
+        <li class="co-item" onclick="document.getElementById('co2').scrollIntoView({behavior:'smooth'})">
+          <span class="co-dot" style="background:var(--mint)"></span>
+          <span class="co-name">한국투자신탁운용</span>
+          <span class="co-tag">국내 최초 투신</span>
+        </li>
+        <li class="co-item" onclick="document.getElementById('co3').scrollIntoView({behavior:'smooth'})">
+          <span class="co-dot" style="background:var(--accent-light)"></span>
+          <span class="co-name">미래에셋자산운용</span>
+          <span class="co-tag">연봉 1.1억</span>
+        </li>
+        <li class="co-item" onclick="document.getElementById('co4').scrollIntoView({behavior:'smooth'})">
+          <span class="co-dot" style="background:var(--purple)"></span>
+          <span class="co-name">우리자산운용</span>
+          <span class="co-tag">공채 5명</span>
+        </li>
+        <li class="co-item" onclick="document.getElementById('co5').scrollIntoView({behavior:'smooth'})">
+          <span class="co-dot" style="background:#38bdf8"></span>
+          <span class="co-name">NH아문디자산운용</span>
+          <span class="co-tag">인턴 연계형</span>
+        </li>
+        <li class="co-item" onclick="document.getElementById('co6').scrollIntoView({behavior:'smooth'})">
+          <span class="co-dot" style="background:var(--coral)"></span>
+          <span class="co-name">키움투자자산운용</span>
+          <span class="co-tag">홀세일 2명</span>
+        </li>
+        <li class="co-item" onclick="document.getElementById('co7').scrollIntoView({behavior:'smooth'})">
+          <span class="co-dot" style="background:#fb923c"></span>
+          <span class="co-name">한화자산운용</span>
+          <span class="co-tag">인프라 경력직</span>
+        </li>
+        <li class="co-item" onclick="document.getElementById('co8').scrollIntoView({behavior:'smooth'})">
+          <span class="co-dot" style="background:#a3e635"></span>
+          <span class="co-name">Sh수협자산운용</span>
+          <span class="co-tag">주식운용 1명</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ NAV ════════════════════════════════ -->
+<nav class="quicknav">
+  <div class="quicknav-inner">
+    <a class="nav-chip" href="#overview"><span class="dot"></span> 요약</a>
+    <a class="nav-chip" href="#large"><span class="dot" style="background:var(--amber)"></span> 대형사</a>
+    <a class="nav-chip" href="#mid"><span class="dot" style="background:var(--mint)"></span> 중소형사</a>
+    <a class="nav-chip" href="#trend"><span class="dot" style="background:var(--accent-light)"></span> 직무 트렌드</a>
+    <a class="nav-chip" href="#compare"><span class="dot" style="background:var(--purple)"></span> 비교표</a>
+    <a class="nav-chip" href="#conclusion"><span class="dot" style="background:var(--coral)"></span> 결론</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ OVERVIEW ══════════════════════════ -->
+<section class="section-wrap" id="overview">
+  <div class="section-eyebrow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    채용시장 현황 요약
+  </div>
+  <h2 class="section-title">극소수 선발, 경력직 위주의 시장</h2>
+  <p class="section-subtitle">대부분의 운용사가 인원 비공개 — 확인된 공채 인원만 합산해도 10명 내외</p>
+
+  <div class="stat-grid">
+    <div class="stat-card c-amber">
+      <div class="stat-val">3개</div>
+      <div class="stat-label">신입 공채 진행 대형사<br>(삼성·한투·미래에셋)</div>
+    </div>
+    <div class="stat-card c-mint">
+      <div class="stat-val">5명</div>
+      <div class="stat-label">유일하게 인원 공개한<br>우리자산운용 2026 공채</div>
+    </div>
+    <div class="stat-card c-blue">
+      <div class="stat-val">80%+</div>
+      <div class="stat-label">수시·경력채용 비중<br>대부분 운용사 공통</div>
+    </div>
+    <div class="stat-card c-purple">
+      <div class="stat-val">3년+</div>
+      <div class="stat-label">경력직 최소 요구 연수<br>투자자산운용사 자격 필수</div>
+    </div>
+  </div>
+
+  <!-- 채용 유형 비교 -->
+  <div style="background:var(--bg-soft);border:1px solid var(--border);border-radius:16px;padding:28px;display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:center;">
+    <div>
+      <div style="font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;">신입 공채 위주 (대형사)</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-sub);"><span style="width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;display:inline-block"></span>연 1~2회 정기 공채 운영</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-sub);"><span style="width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;display:inline-block"></span>직무적성검사·다단계 면접</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-sub);"><span style="width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;display:inline-block"></span>영어회화 자격 필수</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-sub);"><span style="width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;display:inline-block"></span>운용+마케팅 겸용 선발</li>
+      </ul>
+    </div>
+    <div style="text-align:center;font-size:22px;color:var(--accent-light);opacity:0.6;">⟷</div>
+    <div>
+      <div style="font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--mint);margin-bottom:14px;">수시·경력채용 위주 (중소형사)</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-sub);"><span style="width:6px;height:6px;border-radius:50%;background:var(--mint);flex-shrink:0;display:inline-block"></span>결원 발생 시 수시채용</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-sub);"><span style="width:6px;height:6px;border-radius:50%;background:var(--mint);flex-shrink:0;display:inline-block"></span>서류+면접 단순 구조</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-sub);"><span style="width:6px;height:6px;border-radius:50%;background:var(--mint);flex-shrink:0;display:inline-block"></span>투자자산운용사 자격증 필수</li>
+        <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-sub);"><span style="width:6px;height:6px;border-radius:50%;background:var(--mint);flex-shrink:0;display:inline-block"></span>부서 특화 전문직 채용</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ LARGE COMPANIES ═══════════════════ -->
+<div class="section-wrap" id="large" style="padding-bottom:0">
+  <div class="section-eyebrow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    대형 자산운용사
+  </div>
+  <h2 class="section-title">정기 공채 + 수시 경력채용 병행</h2>
+  <p class="section-subtitle">AUM 규모 및 브랜드 인지도 최상위 — 신입 공채의 대부분이 이 3개사에서 나온다</p>
+</div>
+
+<div style="max-width:1200px;margin:0 auto;padding:24px 32px 80px;">
+
+  <!-- 삼성자산운용 -->
+  <div class="company-entry" id="co1">
+    <div class="entry-num-col">
+      <div class="entry-num c1">01</div>
+      <div class="entry-type-badge badge-large">대형사</div>
+    </div>
+    <div class="entry-card accent-amber">
+      <div class="co-header">
+        <div class="co-title-kr">삼성자산운용</div>
+        <span class="co-aum">AUM ~400조원 · 국내 최대</span>
+      </div>
+      <div class="co-subtitle">Samsung Asset Management · 1998년 설립</div>
+      <p class="co-desc">
+        국내 최대 AUM을 보유한 자산운용사. 연 1회 하반기 신입 공채를 진행하며,
+        수시채용을 위한 인재풀 상시 등록도 운영한다. KODEX ETF를 통해
+        ETF 시장 점유율 1위를 유지 중이며, 이에 따른 마케팅·운용 인력 수요가 꾸준하다.
+      </p>
+      <table class="info-table">
+        <tr>
+          <td class="info-key">채용 시기</td>
+          <td class="info-val"><strong>2025 하반기</strong> — 접수 2025.08.26 ~ 09.03</td>
+        </tr>
+        <tr>
+          <td class="info-key">모집 직무</td>
+          <td class="info-val">
+            <div class="job-tags">
+              <span class="job-tag jt-amber">자산운용 (주식·채권운용)</span>
+              <span class="job-tag jt-amber">조사분석·리스크관리</span>
+              <span class="job-tag jt-amber">컴플라이언스</span>
+              <span class="job-tag jt-blue">영업마케팅 (법인·리테일)</span>
+              <span class="job-tag jt-blue">마케팅전략·상품개발</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="info-key">채용 인원</td>
+          <td class="info-val"><strong>비공개</strong> (수시채용 병행: s-invest@samsung.com)</td>
+        </tr>
+        <tr>
+          <td class="info-key">지원 자격</td>
+          <td class="info-val">2026년 2월 이전 졸업 또는 예정, <strong>영어회화 자격 필수</strong> (OPIc 또는 토익스피킹)</td>
+        </tr>
+        <tr>
+          <td class="info-key">전형 절차</td>
+          <td class="info-val">서류 → 직무적합성평가 → 직무적성검사(9~10월) → 면접(11월) → 건강검진(12월)</td>
+        </tr>
+      </table>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--amber)">연 1회</div>
+          <div class="kpi-label">정기 신입 공채</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--amber)">5단계</div>
+          <div class="kpi-label">채용 전형</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--amber)">400조</div>
+          <div class="kpi-label">운용 자산(AUM)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry-connector">
+    <div class="connector-line"></div>
+    <div class="connector-icon">↓</div>
+    <div class="connector-line"></div>
+  </div>
+
+  <!-- 한국투자신탁운용 -->
+  <div class="company-entry" id="co2">
+    <div class="entry-num-col">
+      <div class="entry-num c2">02</div>
+      <div class="entry-type-badge badge-large">대형사</div>
+    </div>
+    <div class="entry-card accent-mint">
+      <div class="co-header">
+        <div class="co-title-kr">한국투자신탁운용</div>
+        <span class="co-aum">1974년 설립 · 국내 최초 투신</span>
+      </div>
+      <div class="co-subtitle">Korea Investment Trust Management · 평균연봉 6,213만원</div>
+      <p class="co-desc">
+        국내 최초의 투자신탁 회사로, 연 2회(상반기 채용연계형 인턴십 + 하반기 신입 공채) 채용 구조를 운영한다.
+        채권운용과 GIS(글로벌 투자 솔루션) 직무를 명시해 글로벌 자산배분 전문인력 수요가 뚜렷하다.
+        전형이 가장 세분화되어 있어 준비 기간이 충분히 필요하다.
+      </p>
+      <table class="info-table">
+        <tr>
+          <td class="info-key">상반기 인턴십</td>
+          <td class="info-val">접수 2025.05.23 ~ 06.09 · 직무: 운용 / 관리 / 마케팅</td>
+        </tr>
+        <tr>
+          <td class="info-key">하반기 공채</td>
+          <td class="info-val">접수 2025.09.18 ~ 10.10 · <strong>입사 2025년 12월 예정</strong></td>
+        </tr>
+        <tr>
+          <td class="info-key">모집 직무</td>
+          <td class="info-val">
+            <div class="job-tags">
+              <span class="job-tag jt-mint">채권운용</span>
+              <span class="job-tag jt-mint">GIS운용 (글로벌 자산배분)</span>
+              <span class="job-tag jt-blue">WM영업</span>
+              <span class="job-tag jt-blue">기관영업</span>
+              <span class="job-tag jt-blue">디지털마케팅</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="info-key">채용 인원</td>
+          <td class="info-val"><strong>비공개</strong></td>
+        </tr>
+        <tr>
+          <td class="info-key">지원 자격</td>
+          <td class="info-val">4년제 졸업 또는 2026.02 예정 · 해외여행 결격사유 없음 · 병역완료</td>
+        </tr>
+        <tr>
+          <td class="info-key">전형 절차</td>
+          <td class="info-val">서류 → 직무적합성검사(온라인, 10.25) → 1차면접 → 2차면접 → 최종면접 → 채용검진</td>
+        </tr>
+      </table>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--mint)">연 2회</div>
+          <div class="kpi-label">인턴십 + 공채</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--mint)">6단계</div>
+          <div class="kpi-label">가장 많은 전형 단계</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--mint)">GIS</div>
+          <div class="kpi-label">글로벌자산배분 직무<br>업계 최초 명시</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry-connector">
+    <div class="connector-line"></div>
+    <div class="connector-icon">↓</div>
+    <div class="connector-line"></div>
+  </div>
+
+  <!-- 미래에셋자산운용 -->
+  <div class="company-entry" id="co3">
+    <div class="entry-num-col">
+      <div class="entry-num c3">03</div>
+      <div class="entry-type-badge badge-large">대형사</div>
+    </div>
+    <div class="entry-card accent-blue">
+      <div class="co-header">
+        <div class="co-title-kr">미래에셋자산운용</div>
+        <span class="co-aum">평균연봉 1억 1,233만원 · 글로벌 최대급</span>
+      </div>
+      <div class="co-subtitle">Mirae Asset Global Investments · 수시·경력 중심 채용</div>
+      <p class="co-desc">
+        글로벌 AUM 규모에서 국내 최대 수준. 신입 공채보다 수시·경력채용 비중이 압도적으로 높다.
+        AI혁신본부를 포함해 ETF·REITs·PEF·해외부동산 등 다양한 부서에서 상시채용이 진행된다.
+        정규직 전환형 인턴 경로도 존재한다.
+      </p>
+      <table class="info-table">
+        <tr>
+          <td class="info-key">채용 방식</td>
+          <td class="info-val"><strong>수시·경력 위주</strong> + 정규직 전환형 인턴 병행</td>
+        </tr>
+        <tr>
+          <td class="info-key">주요 채용 부서</td>
+          <td class="info-val">
+            <div class="job-tags">
+              <span class="job-tag jt-blue">AI혁신본부</span>
+              <span class="job-tag jt-mint">REITs운용본부</span>
+              <span class="job-tag jt-mint">채권운용팀 (경력 3년↑)</span>
+              <span class="job-tag jt-amber">ETF마케팅</span>
+              <span class="job-tag jt-amber">PEF부문</span>
+              <span class="job-tag jt-purple">글로벌리서치본부</span>
+              <span class="job-tag jt-purple">해외부동산부문</span>
+              <span class="job-tag jt-gray">국내부동산투자본부 (전환형 인턴)</span>
+              <span class="job-tag jt-gray">컴플라이언스본부</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="info-key">신입 공채</td>
+          <td class="info-val">2025년 상반기 3~5월 진행 (채용연계형 인턴/신입 병행)</td>
+        </tr>
+        <tr>
+          <td class="info-key">채용 특이점</td>
+          <td class="info-val"><strong>AI혁신본부</strong> 별도 운용 — 업계에서 AI/데이터 직무를 명시한 드문 사례</td>
+        </tr>
+      </table>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--accent-light)">1.1억</div>
+          <div class="kpi-label">평균 연봉<br>(업계 최고 수준)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--accent-light)">10+</div>
+          <div class="kpi-label">상시채용 부서 수</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--accent-light)">AI</div>
+          <div class="kpi-label">업계 유일<br>AI혁신본부 채용</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════ MID COMPANIES ═════════════════════ -->
+<div class="section-wrap" id="mid" style="padding-bottom:0">
+  <div class="section-eyebrow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    중소형 자산운용사
+  </div>
+  <h2 class="section-title">소수 정예 선발 · 전문직 위주</h2>
+  <p class="section-subtitle">모집인원 1~5명 규모 — 자격증·경력 요건이 대형사보다 엄격하다</p>
+</div>
+
+<div style="max-width:1200px;margin:0 auto;padding:24px 32px 80px;">
+
+  <!-- 우리자산운용 -->
+  <div class="company-entry" id="co4">
+    <div class="entry-num-col">
+      <div class="entry-num c4">04</div>
+      <div class="entry-type-badge badge-mid">중형사</div>
+    </div>
+    <div class="entry-card accent-purple">
+      <div class="co-header">
+        <div class="co-title-kr">우리자산운용</div>
+        <span class="co-aum">우리금융그룹 계열</span>
+      </div>
+      <div class="co-subtitle">Woori Asset Management</div>
+      <p class="co-desc">
+        중형 자산운용사 중 가장 투명하게 채용 정보를 공개한 회사.
+        <strong>모집인원 5명</strong>을 명시해 경쟁률 예측이 가능하다.
+        연 1회 공개채용 구조이며, 2025년과 2026년 공채를 모두 진행했다.
+      </p>
+      <table class="info-table">
+        <tr>
+          <td class="info-key">채용 시기</td>
+          <td class="info-val"><strong>2026년 상반기</strong> — 접수 2025.11.27 ~ 12.14</td>
+        </tr>
+        <tr>
+          <td class="info-key">모집 인원</td>
+          <td class="info-val" style="font-size:16px;font-weight:800;color:var(--purple)">5명 (유일하게 인원 공개)</td>
+        </tr>
+        <tr>
+          <td class="info-key">전형 일정</td>
+          <td class="info-val">1차 면접 2025.12.30~2026.01.16 · 최종 합격 발표 2026.01.26</td>
+        </tr>
+      </table>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--purple)">5명</div>
+          <div class="kpi-label">공개 모집 인원</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--purple)">연 1회</div>
+          <div class="kpi-label">정기 공채</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--purple)">透明</div>
+          <div class="kpi-label">업계 최고 수준<br>채용 공개성</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry-connector">
+    <div class="connector-line"></div>
+    <div class="connector-icon">↓</div>
+    <div class="connector-line"></div>
+  </div>
+
+  <!-- NH아문디 -->
+  <div class="company-entry" id="co5">
+    <div class="entry-num-col">
+      <div class="entry-num" style="color:#38bdf8;font-size:48px;font-weight:800;line-height:1;letter-spacing:-0.05em;">05</div>
+      <div class="entry-type-badge badge-mid">중형사</div>
+    </div>
+    <div class="entry-card" style="background:linear-gradient(135deg,rgba(56,189,248,0.06) 0%,rgba(255,255,255,0.01) 100%);border-color:rgba(56,189,248,0.25);border-left:3px solid #38bdf8;">
+      <div class="co-header">
+        <div class="co-title-kr">NH아문디자산운용</div>
+        <span class="co-aum">NH농협금융+Amundi 합자 · 평균연봉 6,284만원</span>
+      </div>
+      <div class="co-subtitle">NH-Amundi Asset Management · 재무평가 상위 3%</div>
+      <p class="co-desc">
+        국내 대형 금융그룹(NH농협)과 유럽 최대 운용사(Amundi)의 합작법인.
+        채용연계형 인턴 경로가 정규직 입사의 주요 루트다.
+        채권운용과 마케팅(ETF 포함) 두 트랙으로 나눠 선발한다.
+      </p>
+      <table class="info-table">
+        <tr>
+          <td class="info-key">채용 방식</td>
+          <td class="info-val"><strong>채용연계형 인턴</strong> 위주 (정규직 전환 가능)</td>
+        </tr>
+        <tr>
+          <td class="info-key">모집 분야</td>
+          <td class="info-val">
+            <div class="job-tags">
+              <span class="job-tag jt-mint">채권운용 (채권형 펀드 운용·리서치 보조)</span>
+              <span class="job-tag jt-blue">마케팅 (ETF마케팅·기관영업·리스크관리)</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="info-key">별도 공고</td>
+          <td class="info-val">대체투자부문 전략사업TF 인턴 (해외재간접 분야, 2025.05 마감)</td>
+        </tr>
+        <tr>
+          <td class="info-key">채용 시기</td>
+          <td class="info-val">2025 채용연계형 인턴 — 마감 2025.09.19</td>
+        </tr>
+      </table>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:#38bdf8">인턴→</div>
+          <div class="kpi-label">정규직 전환형<br>채용 주경로</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:#38bdf8">2개</div>
+          <div class="kpi-label">채권운용 +<br>마케팅 트랙</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:#38bdf8">6,284</div>
+          <div class="kpi-label">평균연봉 (만원)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry-connector">
+    <div class="connector-line"></div>
+    <div class="connector-icon">↓</div>
+    <div class="connector-line"></div>
+  </div>
+
+  <!-- 키움투자자산운용 -->
+  <div class="company-entry" id="co6">
+    <div class="entry-num-col">
+      <div class="entry-num c5">06</div>
+      <div class="entry-type-badge badge-mid">중형사</div>
+    </div>
+    <div class="entry-card accent-coral">
+      <div class="co-header">
+        <div class="co-title-kr">키움투자자산운용</div>
+        <span class="co-aum">평균연봉 6,163만원</span>
+      </div>
+      <div class="co-subtitle">Kiwoom Asset Management</div>
+      <p class="co-desc">
+        수시채용 위주로 운영. 가장 최근에는 홀세일본부 홀세일1팀·2팀 팀원을
+        <strong>계약직</strong>으로 채용 중이다. ETF 기관영업 확대 전략의 일환으로 해석된다.
+      </p>
+      <table class="info-table">
+        <tr>
+          <td class="info-key">채용 공고</td>
+          <td class="info-val">홀세일본부 홀세일1팀·2팀 팀원 모집 (마감 2026.03.16)</td>
+        </tr>
+        <tr>
+          <td class="info-key">모집 인원</td>
+          <td class="info-val"><strong>2명</strong> — 홀세일1팀 1명 (마케팅 지원), 홀세일2팀 1명 (영업)</td>
+        </tr>
+        <tr>
+          <td class="info-key">고용 형태</td>
+          <td class="info-val">계약직 (주임~선임 레벨)</td>
+        </tr>
+        <tr>
+          <td class="info-key">업무 내용</td>
+          <td class="info-val">홀세일1팀: 기관고객 마케팅 지원·보고서 작성 / 홀세일2팀: 기관·법인 영업</td>
+        </tr>
+      </table>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--coral)">2명</div>
+          <div class="kpi-label">공개 모집 인원</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--coral)">계약직</div>
+          <div class="kpi-label">고용 형태</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:var(--coral)">ETF↑</div>
+          <div class="kpi-label">홀세일 확대 전략<br>반영</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="entry-connector">
+    <div class="connector-line"></div>
+    <div class="connector-icon">↓</div>
+    <div class="connector-line"></div>
+  </div>
+
+  <!-- 한화자산운용 -->
+  <div class="company-entry" id="co7">
+    <div class="entry-num-col">
+      <div class="entry-num" style="color:#fb923c;font-size:48px;font-weight:800;line-height:1;letter-spacing:-0.05em;">07</div>
+      <div class="entry-type-badge badge-small">중형사</div>
+    </div>
+    <div class="entry-card" style="background:linear-gradient(135deg,rgba(251,146,60,0.06) 0%,rgba(255,255,255,0.01) 100%);border-color:rgba(251,146,60,0.25);border-left:3px solid #fb923c;">
+      <div class="co-header">
+        <div class="co-title-kr">한화자산운용</div>
+        <span class="co-aum">평균연봉 5,901만원</span>
+      </div>
+      <div class="co-subtitle">Hanwha Asset Management</div>
+      <p class="co-desc">
+        수시·경력채용 위주. 가장 최근 공고는 인프라투자팀 경력직이며,
+        에너지·SOC 등 인프라 대체투자 전문인력을 선발한다.
+      </p>
+      <table class="info-table">
+        <tr>
+          <td class="info-key">최근 공고</td>
+          <td class="info-val">인프라투자팀 경력직 채용 — 마감 2026.02.05</td>
+        </tr>
+        <tr>
+          <td class="info-key">채용 직무</td>
+          <td class="info-val">
+            <div class="job-tags">
+              <span class="job-tag" style="background:rgba(251,146,60,0.15);color:#fb923c;">인프라투자 (SOC·재생에너지 등)</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="info-key">특이사항</td>
+          <td class="info-val">대체투자 중심 인력 확장 추세</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="entry-connector">
+    <div class="connector-line"></div>
+    <div class="connector-icon">↓</div>
+    <div class="connector-line"></div>
+  </div>
+
+  <!-- Sh수협자산운용 -->
+  <div class="company-entry" id="co8">
+    <div class="entry-num-col">
+      <div class="entry-num" style="color:#a3e635;font-size:48px;font-weight:800;line-height:1;letter-spacing:-0.05em;">08</div>
+      <div class="entry-type-badge badge-small">소형사</div>
+    </div>
+    <div class="entry-card" style="background:linear-gradient(135deg,rgba(163,230,53,0.06) 0%,rgba(255,255,255,0.01) 100%);border-color:rgba(163,230,53,0.25);border-left:3px solid #a3e635;">
+      <div class="co-header">
+        <div class="co-title-kr">Sh수협자산운용</div>
+        <span class="co-aum">2026년 4월 공고 · 진행 중</span>
+      </div>
+      <div class="co-subtitle">Suhyup Asset Management · 경력직 전문 채용</div>
+      <p class="co-desc">
+        소형 전문 운용사. 주식운용본부 운용역 <strong>1명</strong>을 경력직으로 채용 중.
+        롱숏 매니저 경력 또는 증권사 리서치 3년 이상 경험자를 우대한다.
+        이메일 접수로 채용 완료시까지 상시 진행한다.
+      </p>
+      <table class="info-table">
+        <tr>
+          <td class="info-key">모집 부문</td>
+          <td class="info-val">주식운용본부 주식운용팀 경력직</td>
+        </tr>
+        <tr>
+          <td class="info-key">모집 인원</td>
+          <td class="info-val"><strong>1명</strong> (운용역)</td>
+        </tr>
+        <tr>
+          <td class="info-key">담당 업무</td>
+          <td class="info-val">주식형 펀드 운용 및 포트폴리오 관리 · 국내외 주식시장 분석 · 운용전략 수립·리서치</td>
+        </tr>
+        <tr>
+          <td class="info-key">지원 자격</td>
+          <td class="info-val">
+            <div class="job-tags">
+              <span class="job-tag" style="background:rgba(163,230,53,0.15);color:#a3e635;">펀드운용·리서치 경력 3년↑</span>
+              <span class="job-tag" style="background:rgba(163,230,53,0.15);color:#a3e635;">투자자산운용사 자격증 필수</span>
+              <span class="job-tag jt-gray">Long-Short 매니저 경력 우대</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="info-key">접수 방법</td>
+          <td class="info-val">이메일 kbn@suhyup-asset.com · 채용 완료시까지 상시</td>
+        </tr>
+      </table>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:#a3e635">1명</div>
+          <div class="kpi-label">모집 인원<br>(초정예 선발)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:#a3e635">3년+</div>
+          <div class="kpi-label">최소 요구 경력</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" style="color:#a3e635">자격증</div>
+          <div class="kpi-label">투자자산운용사<br>필수 보유</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════ TREND ════════════════════════════ -->
+<section class="section-wrap" id="trend">
+  <div class="section-eyebrow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+    직무 트렌드 분석
+  </div>
+  <h2 class="section-title">ETF·대체투자·AI — 3대 성장 직무</h2>
+  <p class="section-subtitle">채용공고에 반복 등장하는 키워드로 산업 변화를 읽는다</p>
+
+  <div class="trend-grid">
+    <div class="trend-card t-mint">
+      <div class="trend-card-head">
+        <div class="trend-icon" style="background:rgba(94,221,184,0.15);">📊</div>
+        <div class="trend-title">채권운용·GIS</div>
+      </div>
+      <ul class="trend-list">
+        <li>금리 고점 사이클 이후 채권 재조명 — 채권운용역 수요 급증</li>
+        <li>한투·NH아문디 등 복수 운용사가 채권운용을 별도 직무로 명시</li>
+        <li>GIS(글로벌 투자 솔루션) 신직무 등장 — 글로벌 자산배분 전문가 부족</li>
+        <li>CFA·채권 관련 자격증 보유자 우대</li>
+      </ul>
+    </div>
+    <div class="trend-card t-amber">
+      <div class="trend-card-head">
+        <div class="trend-icon" style="background:rgba(255,178,63,0.15);">🏦</div>
+        <div class="trend-title">ETF 마케팅·홀세일 영업</div>
+      </div>
+      <ul class="trend-list">
+        <li>KODEX·TIGER·ARIRANG ETF 경쟁 격화로 영업조직 확대 중</li>
+        <li>키움투자자산운용 홀세일1팀·2팀 계약직 채용 — ETF 기관영업 확대 신호</li>
+        <li>ETF 콘텐츠 공급·세미나 운영 전담 인력 신설 사례 증가</li>
+        <li>디지털마케팅 직무 분리 (한투 명시)</li>
+      </ul>
+    </div>
+    <div class="trend-card t-blue">
+      <div class="trend-card-head">
+        <div class="trend-icon" style="background:rgba(59,143,255,0.15);">🏗️</div>
+        <div class="trend-title">부동산·인프라 대체투자</div>
+      </div>
+      <ul class="trend-list">
+        <li>미래에셋 REITs운용본부·해외부동산부문 동시 채용</li>
+        <li>한화자산운용 인프라투자팀(에너지·SOC) 경력직 모집</li>
+        <li>NH아문디 대체투자부문 전략사업TF(해외재간접) 별도 채용</li>
+        <li>에너지 전환(재생에너지 인프라) 투자 전문인력 수요 급부상</li>
+      </ul>
+    </div>
+    <div class="trend-card t-purple">
+      <div class="trend-card-head">
+        <div class="trend-icon" style="background:rgba(164,140,255,0.15);">🤖</div>
+        <div class="trend-title">AI·데이터 분석</div>
+      </div>
+      <ul class="trend-list">
+        <li>미래에셋 AI혁신본부 — 업계 유일하게 AI 전담 조직을 채용 공고에 명시</li>
+        <li>퀀트·시스템 트레이딩 전문인력 수요 증가 추세</li>
+        <li>기존 리서치 업무에 LLM·데이터파이프라인 역량 추가 요구</li>
+        <li>향후 2~3년 내 AI 전담 채용 다수 운용사로 확산 예상</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ COMPARE TABLE ═══════════════════ -->
+<section class="section-wrap" id="compare">
+  <div class="section-eyebrow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    회사별 채용 비교표
+  </div>
+  <h2 class="section-title">한눈에 비교하는 8개사 채용 현황</h2>
+  <p class="section-subtitle">2025~2026년 공고 기준 · 인원은 공개된 경우만 표기</p>
+
+  <table class="sector-table">
+    <thead>
+      <tr>
+        <th>회사</th>
+        <th>채용 형태</th>
+        <th>모집 인원</th>
+        <th>주요 직무</th>
+        <th>평균연봉</th>
+        <th>수요 강도</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="td-co" style="color:var(--amber)">삼성자산운용</span></td>
+        <td>신입 공채 + 수시</td>
+        <td>비공개</td>
+        <td>
+          <div class="job-tags">
+            <span class="job-tag jt-amber" style="font-size:11px">자산운용</span>
+            <span class="job-tag jt-blue" style="font-size:11px">영업마케팅</span>
+          </div>
+        </td>
+        <td>~1억↑</td>
+        <td>
+          <div class="demand-bar-wrap">
+            <div class="demand-bar" style="width:90%"></div>
+            <span class="demand-label">높음</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-co" style="color:var(--mint)">한국투자신탁운용</span></td>
+        <td>인턴십+공채 연 2회</td>
+        <td>비공개</td>
+        <td>
+          <div class="job-tags">
+            <span class="job-tag jt-mint" style="font-size:11px">채권운용</span>
+            <span class="job-tag jt-mint" style="font-size:11px">GIS운용</span>
+            <span class="job-tag jt-blue" style="font-size:11px">WM·기관영업</span>
+          </div>
+        </td>
+        <td>6,213만</td>
+        <td>
+          <div class="demand-bar-wrap">
+            <div class="demand-bar" style="width:85%"></div>
+            <span class="demand-label">높음</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-co" style="color:var(--accent-light)">미래에셋자산운용</span></td>
+        <td>수시·경력 위주</td>
+        <td>수십 명 추정</td>
+        <td>
+          <div class="job-tags">
+            <span class="job-tag jt-blue" style="font-size:11px">AI혁신</span>
+            <span class="job-tag jt-mint" style="font-size:11px">REITs·PEF</span>
+            <span class="job-tag jt-purple" style="font-size:11px">글로벌리서치</span>
+          </div>
+        </td>
+        <td>11,233만</td>
+        <td>
+          <div class="demand-bar-wrap">
+            <div class="demand-bar" style="width:95%"></div>
+            <span class="demand-label">매우 높음</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-co" style="color:var(--purple)">우리자산운용</span></td>
+        <td>연 1회 공채</td>
+        <td style="font-weight:800;color:var(--purple)">5명</td>
+        <td>비공개</td>
+        <td>비공개</td>
+        <td>
+          <div class="demand-bar-wrap">
+            <div class="demand-bar" style="width:50%"></div>
+            <span class="demand-label">보통</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-co" style="color:#38bdf8">NH아문디자산운용</span></td>
+        <td>채용연계형 인턴</td>
+        <td>소수</td>
+        <td>
+          <div class="job-tags">
+            <span class="job-tag jt-mint" style="font-size:11px">채권운용</span>
+            <span class="job-tag jt-blue" style="font-size:11px">ETF마케팅</span>
+          </div>
+        </td>
+        <td>6,284만</td>
+        <td>
+          <div class="demand-bar-wrap">
+            <div class="demand-bar" style="width:55%"></div>
+            <span class="demand-label">보통</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-co" style="color:var(--coral)">키움투자자산운용</span></td>
+        <td>수시(계약직)</td>
+        <td style="font-weight:800;color:var(--coral)">2명</td>
+        <td>
+          <div class="job-tags">
+            <span class="job-tag jt-coral" style="font-size:11px">홀세일영업</span>
+            <span class="job-tag jt-coral" style="font-size:11px">기관마케팅</span>
+          </div>
+        </td>
+        <td>6,163만</td>
+        <td>
+          <div class="demand-bar-wrap">
+            <div class="demand-bar" style="width:45%"></div>
+            <span class="demand-label">보통</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-co" style="color:#fb923c">한화자산운용</span></td>
+        <td>수시·경력</td>
+        <td>소수</td>
+        <td>
+          <div class="job-tags">
+            <span class="job-tag" style="background:rgba(251,146,60,0.15);color:#fb923c;font-size:11px">인프라투자</span>
+          </div>
+        </td>
+        <td>5,901만</td>
+        <td>
+          <div class="demand-bar-wrap">
+            <div class="demand-bar" style="width:40%"></div>
+            <span class="demand-label">낮음</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="td-co" style="color:#a3e635">Sh수협자산운용</span></td>
+        <td>경력직 수시</td>
+        <td style="font-weight:800;color:#a3e635">1명</td>
+        <td>
+          <div class="job-tags">
+            <span class="job-tag" style="background:rgba(163,230,53,0.15);color:#a3e635;font-size:11px">주식운용역</span>
+          </div>
+        </td>
+        <td>비공개</td>
+        <td>
+          <div class="demand-bar-wrap">
+            <div class="demand-bar" style="width:30%"></div>
+            <span class="demand-label">낮음</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════════ CONCLUSION ════════════════════════ -->
+<section class="section-wrap" id="conclusion">
+  <div class="section-eyebrow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    결론 및 인사이트
+  </div>
+
+  <div class="conclusion-card">
+    <h3>자산운용사 취업, 이렇게 준비하라</h3>
+
+    <ul class="principle-list">
+      <li class="principle-item">
+        <div class="principle-num">1</div>
+        <div class="principle-text">
+          <strong>신입 공채 기회는 대형 3사에 집중된다</strong> — 삼성·한투·미래에셋이
+          국내 신입 공채의 대부분을 차지한다. 중소형사는 경력직 수시채용이 주를 이루므로
+          커리어 경로를 구분해 준비해야 한다.
+        </div>
+      </li>
+      <li class="principle-item">
+        <div class="principle-num">2</div>
+        <div class="principle-text">
+          <strong>ETF·채권·대체투자·AI — 4대 직무에 집중하라</strong> — 단순 주식운용역보다
+          ETF 마케팅, 채권운용, 부동산/인프라 대체투자, AI/퀀트 분야의 수요가 빠르게 늘고 있다.
+          관련 자격증(CFA, 투자자산운용사)과 실무 경험이 경쟁력을 결정한다.
+        </div>
+      </li>
+      <li class="principle-item">
+        <div class="principle-num">3</div>
+        <div class="principle-text">
+          <strong>경력직 시장은 실질적으로 더 크다</strong> — 공개된 신입 공채 인원보다
+          수시 경력채용 규모가 훨씬 크다. 증권사·은행 3~5년 경력 후 운용사로 이직하는
+          루트가 현실적으로 더 많은 자리를 차지한다.
+        </div>
+      </li>
+      <li class="principle-item">
+        <div class="principle-num">4</div>
+        <div class="principle-text">
+          <strong>채용연계형 인턴이 최고의 신입 경로다</strong> — NH아문디, 한투, 미래에셋 등
+          주요사의 채용연계형 인턴십은 정규직 입사의 핵심 루트다.
+          공채 경쟁보다 현실적인 진입점이 될 수 있다.
+        </div>
+      </li>
+    </ul>
+
+    <p>
+      자산운용사 채용 시장은 <strong>극소수 선발</strong>이 특징이다. 대부분의 운용사가
+      모집인원을 비공개로 하며, 확인된 공채 인원만 합산해도 연간 수십 명 수준에 불과하다.
+      그만큼 준비의 깊이와 타이밍이 당락을 좌우한다.
+    </p>
+    <p>
+      <strong>지금 당장 열려있는 포지션</strong>은 Sh수협자산운용 주식운용역 1명(상시),
+      미래에셋 각 부서 수시채용, 키움투자자산운용 홀세일 계약직이며,
+      하반기 공채는 삼성·한투가 8~10월 접수를 예상하면 된다.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SOURCES ═══════════════════════════ -->
+<div class="sources-section">
+  <div class="section-eyebrow" style="margin-bottom:16px;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    데이터 출처
+  </div>
+  <div class="sources-grid">
+    <div class="source-item">
+      <div class="source-icon" style="background:rgba(59,143,255,0.15)">🏛️</div>
+      <div>
+        <span class="source-name">금융투자협회 채용안내</span>
+        <span class="source-meta">kofia.or.kr · 한국투자신탁운용·Sh수협자산운용 공고</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="source-icon" style="background:rgba(94,221,184,0.15)">🔗</div>
+      <div>
+        <span class="source-name">링커리어</span>
+        <span class="source-meta">삼성AM·NH아문디·키움투자AM 공고</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="source-icon" style="background:rgba(255,178,63,0.15)">🏢</div>
+      <div>
+        <span class="source-name">삼성자산운용 공식 홈페이지</span>
+        <span class="source-meta">samsungfund.com · 직무소개·인재풀</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="source-icon" style="background:rgba(164,140,255,0.15)">🚀</div>
+      <div>
+        <span class="source-name">미래에셋 채용 홈페이지</span>
+        <span class="source-meta">career.miraeasset.com · 계열사 통합</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="source-icon" style="background:rgba(255,133,133,0.15)">📋</div>
+      <div>
+        <span class="source-name">우리자산운용·KB자산운용</span>
+        <span class="source-meta">공식 채용 홈페이지</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="source-icon" style="background:rgba(163,230,53,0.15)">📊</div>
+      <div>
+        <span class="source-name">캐치·잡코리아·인크루트</span>
+        <span class="source-meta">기업정보·연봉 데이터</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ FOOTER ════════════════════════════ -->
+<footer>
+  <div class="footer-text">
+    <strong>자산운용사 채용공고 분석 · 2025–2026</strong><br>
+    분석일: 2026년 5월 1일 · 출처: 금투협·링커리어·각사 공식 채용 홈페이지
+  </div>
+  <div class="footer-badge">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    2026. 5. 1 기준 데이터
+  </div>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navChips = document.querySelectorAll('.nav-chip');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navChips.forEach(c => c.classList.remove('active'));
+        const active = document.querySelector(`.nav-chip[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
